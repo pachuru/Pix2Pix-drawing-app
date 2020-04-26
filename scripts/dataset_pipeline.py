@@ -48,7 +48,7 @@ def save_images(path, images):
         
         print("Saving images as compressed " + path + " file.")
         [source_images, target_images] = images
-        savez_compressed(output_file_path, source_images, target_images)
+        savez_compressed(path, source_images, target_images)
         print("Compressed file successfully generated!")
         
 '''
