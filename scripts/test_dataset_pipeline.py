@@ -1,12 +1,14 @@
 # Test dataset_pipeline.py
 import pytest
+import os
 from dataset_pipeline import load_images
 
 
 class TestDatasetPipeline:
 
     def test_load_images(self):
-        input_file_path = "..\\datasets\\raw\maps\\train\\"
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        input_file_path = dir_path.replace("scripts","datasets/raw/maps/train")
         number_of_files = 1096
 
         loaded_dataset = load_images(input_file_path)
