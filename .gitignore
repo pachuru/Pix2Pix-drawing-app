@@ -1,7 +1,6 @@
-maps/
-cityscapes/
-edges2shoes/
-facades/
+datasets/
+models/
+output/
 *.png
 *.npz
 *.h5

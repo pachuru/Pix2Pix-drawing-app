@@ -11,6 +11,9 @@ matplotlib = "*"
 keras = "*"
 numpy = "*"
 tensorflow = "*"
+pytest = "*"
+ipykernel = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.7"

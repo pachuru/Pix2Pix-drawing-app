@@ -1,38 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-from os import listdir
-from numpy import asarray
-from numpy import vstack
-from keras.preprocessing.image import img_to_array
-from keras.preprocessing.image import load_img
-from numpy import savez_compressed
-
-
-def load_images(path, size=(256,512)):
-    source_imgs_list, target_imgs_list = list(), list()
-    for filename in listdir(path):
-        img_pixels = load_img(path + filename, target_size=size)
-        img_pixels = img_to_array(img_pixels)
-        # The source and target images came as a unique image where half of it is
-        # the source and the other half the target.
-        source_img, target_img = img_pixels[:, :256], img_pixels[:, 256:]
-        source_imgs_list.append(source_img)
-        target_imgs_list.append(target_img)
-    return [asarray(source_imgs_list), asarray(target_imgs_list)]        
-
-from pathlib import Path
-
-path = "./maps/maps/train/"
-if not Path("./maps_256.npz").exists():
-    [source_images, target_images] = load_images(path)
-
-
-filename = 'maps_256.npz'
-if not Path("./maps_256.npz").exists():
-    savez_compressed(filename, source_images, target_images)
-
-
 from numpy import load
 from numpy import zeros
 from numpy import ones
