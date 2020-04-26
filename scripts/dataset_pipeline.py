@@ -51,12 +51,12 @@ def save_images(path, images):
         savez_compressed(path, source_images, target_images)
         print("Compressed file successfully generated!")
         
-'''
+
 args = parser.parse_args()
 
 input_dir_path = args.input_dir_path
 output_file_path = args.output_file_path + ".npz"
 
 pipeline(input_dir_path, output_file_path)
-'''
+
     
