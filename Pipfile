@@ -19,6 +19,7 @@ sphinx-rtd-theme = "*"
 sphinx-argparse = "*"
 pylint = "*"
 git-pylint-commit-hook = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.7"
