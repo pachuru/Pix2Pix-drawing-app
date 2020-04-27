@@ -1,12 +1,14 @@
 import pix2pix_model as model
 import argparse
 import os
+import sys
 from pathlib import Path
 from numpy import load
 from numpy import ones
 from numpy import zeros
 from numpy.random import randint
 from matplotlib import pyplot
+from keras.engine.saving import load_model
 
 output_dir_path = os.path.dirname(os.path.realpath(__file__))
 output_dir_path = output_dir_path.replace("scripts","output")
@@ -67,12 +69,22 @@ def summarize_performance(step, generator, dataset, n_samples=3):
     pyplot.savefig(filename)
     pyplot.close()
     
-def save_model(step, generator, verbose=False):
-    filename = models_dir_path + 'model_%06d.h5' % (step)
-    generator.save(filename)
-   
+def save_models(step, generator, discriminator, gan, verbose=False):
+
+    save_model(step, "gen", generator)
+    save_model(step, "dis", discriminator)
+    save_model(step, "gan", gan)
+
     if(verbose):
-        print('Saved model: %s ' % (filename))
+        print('Saved model')
+
+# TODO: ¿Is all this code necessary?
+def save_model(step, name, model):
+    filename = models_dir_path + name + '_%06d' % step
+    model_json = model.to_json()
+    with open(filename + ".json", "w") as json_file:
+        json_file.write(model_json)
+    model.save_weights(filename + '.h5')
 
 def train(discriminator, generator, gan, dataset, n_epochs=100, n_batch=1):
     
@@ -90,12 +102,19 @@ def train(discriminator, generator, gan, dataset, n_epochs=100, n_batch=1):
         
         print('>%d, disc_loss_real[%.3f] disc_loss_fake[%.3f] gan_loss[%.3f]' % (i+1, disc_loss_real, disc_loss_fake, gan_loss))
         if (i % 100) == 0:
-            save_model(i, generator)
-    save_model(n_steps, generator)
+            save_models(i, generator, discriminator, gan)
+            summarize_performance(i, generator, dataset)
+    save_models(n_steps, generator, discriminator, gan)
 
 parser = argparse.ArgumentParser(prog="network_trainer", description="Trains a model based on a compressed dataset (.npz)")
 parser.add_argument('input_file_path', help="The compressed file path")
 parser.add_argument('number_of_epochs', help="Number of epochs you expect the model to be trained")
+parser.add_argument('-m', help="Indicates you're using a pretrained model", action='store_true')
+
+parser.add_argument('--gen_path', help="The path of the generator model")
+parser.add_argument('--dis_path', help="The path of the discriminator model")
+parser.add_argument('--gan_path', help="The path of the gan model")
+
 args = parser.parse_args()
 
 input_file_path = args.input_file_path
@@ -104,10 +123,22 @@ dataset = load_dataset(input_file_path)
 
 image_shape = dataset[0].shape[1:]
 
+
 discriminator = model.discriminator(image_shape)
 generator = model.generator(image_shape)
 gan = model.gan(generator, discriminator, image_shape)
 
-summarize_performance(1, generator, dataset)
+
+if args.gen_path != None:
+    generator.load_weights(args.gen_path)
+
+if args.dis_path != None:
+    discriminator.load_weights(args.dis_path)
+
+if args.gan_path != None:
+    gan.load_weights(args.gan_path)
+
+summarize_performance(85454, generator, dataset)
+
 
 train(discriminator, generator, gan, dataset, number_of_epochs, 1)
