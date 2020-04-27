@@ -10,6 +10,7 @@ from numpy.random import randint
 from matplotlib import pyplot
 from keras.engine.saving import load_model
 
+
 output_dir_path = os.path.dirname(os.path.realpath(__file__))
 output_dir_path = output_dir_path.replace("scripts","output")
 samples_dir_path = output_dir_path + "\\images\\"
@@ -81,9 +82,11 @@ def save_models(step, generator, discriminator, gan, verbose=False):
 # TODO: ¿Is all this code necessary?
 def save_model(step, name, model):
     filename = models_dir_path + name + '_%06d' % step
+    '''
     model_json = model.to_json()
     with open(filename + ".json", "w") as json_file:
         json_file.write(model_json)
+    '''
     model.save_weights(filename + '.h5')
 
 def train(discriminator, generator, gan, dataset, n_epochs=100, n_batch=1):
@@ -128,7 +131,7 @@ discriminator = model.discriminator(image_shape)
 generator = model.generator(image_shape)
 gan = model.gan(generator, discriminator, image_shape)
 
-
+# If a path is provided to load weights, load them.
 if args.gen_path != None:
     generator.load_weights(args.gen_path)
 
@@ -141,4 +144,4 @@ if args.gan_path != None:
 summarize_performance(85454, generator, dataset)
 
 
-train(discriminator, generator, gan, dataset, number_of_epochs, 1)
+#train(discriminator, generator, gan, dataset, number_of_epochs, 1)
