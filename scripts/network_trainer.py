@@ -9,12 +9,17 @@ from numpy import zeros
 from numpy.random import randint
 from matplotlib import pyplot
 from keras.engine.saving import load_model
+import tensorflow as tf
+from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard
+from tensorflow.keras import regularizers
+import datetime
 
 
 output_dir_path = os.path.dirname(os.path.realpath(__file__))
 output_dir_path = output_dir_path.replace("scripts","output")
 samples_dir_path = output_dir_path + "\\images\\"
 models_dir_path = output_dir_path + "\\models\\"
+log_dir_path = output_dir_path + "\\logs\\"
 
 def retrieve_real_samples(dataset, n_samples, patch_shape):
     source_imgs, target_imgs = dataset
@@ -95,14 +100,22 @@ def train(discriminator, generator, gan, dataset, n_epochs=100, n_batch=1):
     source_imgs, target_imgs = dataset
     iterations = int(len(source_imgs) / n_batch)
     n_steps = iterations * n_epochs
-    
+        
+    log_dir = os.path.join(log_dir_path, datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
+    summary_writer = tf.summary.create_file_writer(logdir=log_dir)
+
     for i in range(n_steps):
         [source_imgs, target_imgs], real_labels = retrieve_real_samples(dataset, n_batch, discriminator_patch_shape)
         fake_imgs, fake_labels = generate_fake_samples(generator, source_imgs, discriminator_patch_shape)
         disc_loss_real = discriminator.train_on_batch([source_imgs, target_imgs], real_labels)
         disc_loss_fake = discriminator.train_on_batch([source_imgs, fake_imgs], fake_labels)
         gan_loss, _, _ = gan.train_on_batch(source_imgs, [real_labels, target_imgs])
-        
+
+        with summary_writer.as_default():
+            tf.summary.scalar('gan_loss', gan_loss, step=int(i / iterations))
+            tf.summary.scalar('disc_loss_real', disc_loss_real,  step=int(i / iterations))
+            tf.summary.scalar('disc_loss_fake', disc_loss_fake,  step=int(i / iterations))
+
         print('>%d, disc_loss_real[%.3f] disc_loss_fake[%.3f] gan_loss[%.3f]' % (i+1, disc_loss_real, disc_loss_fake, gan_loss))
         if (i % 100) == 0:
             save_models(i, generator, discriminator, gan)
@@ -112,7 +125,6 @@ def train(discriminator, generator, gan, dataset, n_epochs=100, n_batch=1):
 parser = argparse.ArgumentParser(prog="network_trainer", description="Trains a model based on a compressed dataset (.npz)")
 parser.add_argument('input_file_path', help="The compressed file path")
 parser.add_argument('number_of_epochs', help="Number of epochs you expect the model to be trained")
-parser.add_argument('-m', help="Indicates you're using a pretrained model", action='store_true')
 
 parser.add_argument('--gen_path', help="The path of the generator model")
 parser.add_argument('--dis_path', help="The path of the discriminator model")
@@ -143,5 +155,4 @@ if args.gan_path != None:
 
 summarize_performance(85454, generator, dataset)
 
-
-#train(discriminator, generator, gan, dataset, number_of_epochs, 1)
+train(discriminator, generator, gan, dataset, number_of_epochs, 1)
