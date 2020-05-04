@@ -2,6 +2,7 @@ import os
 from numpy.random import randint
 from numpy import load
 from numpy import zeros
+from numpy import ones
 
 def retrieve_real_samples(dataset, n_samples, patch_shape):
     source_imgs, target_imgs = dataset

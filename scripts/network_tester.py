@@ -1,8 +1,4 @@
 import pix2pix_model as model
-import tensorflow as tf
-from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard
-from tensorflow.keras import regularizers
-from keras.engine.saving import load_model
 import argparse
 from matplotlib import pyplot
 import image_handler
