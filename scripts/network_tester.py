@@ -4,6 +4,12 @@ from matplotlib import pyplot
 import image_handler
 import routes
 
+#   This script generates for a test set the network predictions given 
+#   that input test dataset and an input model.
+
+
+#   Summarizes the performance creating an image where the target, source and 
+#   generated images are saved 
 def summarize_performance(iteration, source_img, target_img, fake_img, n_samples=1):
 
     source_img = image_handler.scale_img_pixels(source_img)

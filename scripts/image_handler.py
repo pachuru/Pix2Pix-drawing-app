@@ -18,6 +18,7 @@ def retrieve_real_samples(dataset, n_samples, patch_shape):
 
 #   Loads the dataset and normalizes the images to be
 #   between a range of 0 and 1
+
 def load_dataset(file_path):
     if os.path.exists(file_path) == False:
         sys.exit("Error: No file with path: " + file_path + " exists.")
