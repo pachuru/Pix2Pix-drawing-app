@@ -73,8 +73,6 @@ def discriminator(image_shape):
     return model
 
 
-## ENCODER
-
 def encoder_block(input, num_filters, apply_batch_norm=True):
     
     init = RandomNormal(stddev=0.02)
