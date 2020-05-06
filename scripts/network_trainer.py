@@ -88,9 +88,9 @@ def train(discriminator, generator, gan, dataset, n_epochs=100, n_batch=1):
             tf.summary.scalar('disc_loss_real', disc_loss_real,  step=int(i / iterations))
             tf.summary.scalar('disc_loss_fake', disc_loss_fake,  step=int(i / iterations))
 
-        # print('>%d, disc_loss_real[%.3f] disc_loss_fake[%.3f] gan_loss[%.3f]' % (i+1, disc_loss_real, disc_loss_fake, gan_loss))
         if ((i + 1) % (batch_size)) == 0:
             print("EPOCH %d FINISHED" % ((i + 1) % (batch_size)))
+            print('>%d, disc_loss_real[%.3f] disc_loss_fake[%.3f] gan_loss[%.3f]' % (i+1, disc_loss_real, disc_loss_fake, gan_loss))
             summarize_performance((i + 1) / batch_size, generator, dataset)
         if ((i + 1) % (batch_size * 10)) == 0:
             print("SAVING MODEL")

@@ -19,6 +19,9 @@ parser.add_argument('input_dir_path', help="The directory where the files are lo
 parser.add_argument('output_file_path', help="The path and name of the output file")
 
 
+#   Takes as input the directory where the images of the dataset are located and compress them
+#   into a .npz file.
+
 def pipeline(input_dir_path, output_file_path):
     if Path(output_file_path).exists():
         override = input("A file with that name already exists in the provided directory do you want to override it? [Y\\N] : ")
@@ -28,6 +31,13 @@ def pipeline(input_dir_path, output_file_path):
     
     images = load_images(input_dir_path)
     save_images(output_file_path, images)
+
+
+
+#    Loads the images of the dataset from its folder, then splits them
+#    in half and stores each half into their corresponding list (source
+#    images list or target images list).
+#    It returns those list as numpy array.
 
 def load_images(path, size=(256,512)):
     source_imgs_list, target_imgs_list = list(), list()
@@ -43,6 +53,7 @@ def load_images(path, size=(256,512)):
     print("Data splitted!")
     return [asarray(source_imgs_list), asarray(target_imgs_list)]        
 
+#   Compress and saves dataset in the specified path
 
 def save_images(path, images):
         
