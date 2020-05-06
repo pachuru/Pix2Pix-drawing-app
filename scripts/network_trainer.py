@@ -17,12 +17,21 @@ import datetime
 import routes
 import image_handler
 
+#   Given an input compressed dataset and a number of epochs this script
+#   trains a model. It also can (optionally) receive a pretrained model
+#   for the discriminator, generator and/or GAN.
+
+#   Generates and returns fake instances given some samples and also the same number of 
+#   fake labels (patch_shape objects full of ones)
+
 def generate_fake_samples(generator, samples, patch_shape):
     fake_instances = generator.predict(samples)
     fake_img_labels = zeros((len(fake_instances), patch_shape, patch_shape, 1))
     return fake_instances, fake_img_labels
 
-# TODO: Deberían de salir 3 filas
+#   Summarizes the performance by creating an image exposing source, target and 
+#   generated images in some step of the training and saving that image.
+ 
 def summarize_performance(step, generator, dataset, n_samples=3):
     
     [source_imgs, target_imgs], _ = image_handler.retrieve_real_samples(dataset, n_samples, 1)
@@ -50,7 +59,9 @@ def summarize_performance(step, generator, dataset, n_samples=3):
     filename = routes.samples_dir_path + 'training_sample_%03d.png' % (step)
     pyplot.savefig(filename)
     pyplot.close()
-    
+
+#   Saves the generator, discriminator and gan model in an specific state
+
 def save_models(step, generator, discriminator, gan, verbose=False):
 
     save_model(step, "gen", generator)
@@ -63,6 +74,12 @@ def save_models(step, generator, discriminator, gan, verbose=False):
 def save_model(step, name, model):
     filename = routes.models_dir_path + name + '_%03d' % step
     model.save_weights(filename + '.h5')
+
+#   Given a discriminator, generator and gan model in conjunction with a number of epochs
+#   and a batch_size it trains the networks.
+#   It also saves a log for displaying a Tensorboard (at real time or after training) that
+#   shows the training performance.
+#   The trained models are stored periodically (also the summarized performances).
 
 def train(discriminator, generator, gan, dataset, n_epochs=100, n_batch=1):
     
