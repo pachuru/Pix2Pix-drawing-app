@@ -9,7 +9,7 @@ from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>*
 
 export default function Navbar() {
     return (
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
+        <nav id="navbar" class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
           <div id="navbar-logo-container">
              <img src={require('../images/thinking.svg')} alt="Logo" style={{width:"40px"}}/>
              <span id="navbar-title">PIX2PIX</span>

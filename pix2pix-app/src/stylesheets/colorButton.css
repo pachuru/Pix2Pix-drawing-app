@@ -1,0 +1,17 @@
+
+#button-wrapper{
+    font-family: 'Righteous', cursive;
+    display: flex;
+    background-color: brown;
+}
+#color-button{
+    width: 100%;
+    background-color: #292b2c;
+    color: white;
+    border: none;
+    font-size: 2vw;
+}
+
+#color-image{
+    width: 3vw;
+}
