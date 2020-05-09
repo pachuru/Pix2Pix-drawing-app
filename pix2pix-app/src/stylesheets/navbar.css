@@ -15,6 +15,10 @@
     padding-left: 1vw;
 }
 
+#navbar-logo{
+    width: 3vw;
+}
+
 #navbar-about, #navbar-create{
     font-size: 2vw;
 }

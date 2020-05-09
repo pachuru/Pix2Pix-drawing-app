@@ -11,7 +11,7 @@ export default function Navbar() {
     return (
         <nav id="navbar" class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
           <div id="navbar-logo-container">
-             <img src={require('../images/thinking.svg')} alt="Logo" style={{width:"40px"}}/>
+             <img id="navbar-logo" src={require('../images/thinking.svg')} alt="Logo"/>
              <span id="navbar-title">PIX2PIX</span>
           </div>
           <div>
