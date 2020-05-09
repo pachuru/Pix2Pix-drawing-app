@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body{
+    font-family: 'Righteous', cursive;
+}
+
+
+
+#navbar-logo-container{
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 2vw;
+}
+
+#navbar-title{
+    padding-left: 1vw;
+}
+
+#navbar-about, #navbar-create{
+    font-size: 2vw;
+}
