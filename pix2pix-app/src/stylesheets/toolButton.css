@@ -1,13 +1,13 @@
 #tool-button-wrapper{
-    display: flex;
-    background-color: blue;
+    padding: 0.25vh;
 }
 
 #tool-button{
+    width: 100%;
     border: none;
     padding: 1vh;
-    width: 100%;
 }
+
 #tool-button-icon{
     width: 3vw;
 }

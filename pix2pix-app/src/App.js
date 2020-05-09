@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 
 import Navbar from './components/navbar'
-import ColorButton from './components/colorButton'
 import ColorButtonList from './components/colorButtonList'
-import ToolButton from './components/toolButton'
+import ToolButtonList from './components/toolButtonList'
+
 
 import "./stylesheets/app.css"
 
@@ -17,10 +17,8 @@ export default class App extends Component {
           <div class="row">
             <div class="col-2">
             </div>
-            <div class="col-2">
-              <ToolButton
-                toolName={"undo"}
-              ></ToolButton>
+            <div class="col-4">
+              <ToolButtonList></ToolButtonList>
             </div>
           </div>
           <div class="row" id="color-button-list-row">
