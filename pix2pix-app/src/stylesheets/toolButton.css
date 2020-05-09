@@ -1,0 +1,13 @@
+#tool-button-wrapper{
+    display: flex;
+    background-color: blue;
+}
+
+#tool-button{
+    border: none;
+    padding: 1vh;
+    width: 100%;
+}
+#tool-button-icon{
+    width: 3vw;
+}
