@@ -3,6 +3,7 @@
     font-family: 'Righteous', cursive;
     display: flex;
     background-color: brown;
+    margin-top: 0.5vh;
 }
 #color-button{
     width: 100%;
