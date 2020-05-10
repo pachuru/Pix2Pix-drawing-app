@@ -5,8 +5,7 @@ import Navbar from './components/navbar'
 import ColorButtonList from './components/colorButtonList'
 import ToolButtonList from './components/toolButtonList'
 import DrawingCanvas from './components/drawingCanvas'
-import AddLayerButton from './components/addLayerButton'
-import LayerButton from './components/layerButton'
+import LayerMenu from './components/layerMenu'
 import toolList from './config/toolList'
 
 import "./stylesheets/app.css"
@@ -39,11 +38,10 @@ export default class App extends Component {
             <div class="col-4" id="drawing-canvas-col">
               <DrawingCanvas></DrawingCanvas>
             </div>
-            <div class="col-2" id="canvas-layers-col">
-              <AddLayerButton></AddLayerButton>
-              <LayerButton
-                layerName={"LAYER1"}
-              ></LayerButton>
+            <div class="col-2" id="layers-menu-col">
+              <LayerMenu
+                layers = {["LAYER 1","LAYER 2", "LAYER 3"]}
+              ></LayerMenu>
             </div>
             <div class="col-4" id="output-canvas-col">
 

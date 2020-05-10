@@ -21,8 +21,9 @@
   padding: 0;
 }
 
-#canvas-layers-col{
+#layers-menu-col{
   background-color: rebeccapurple;
+  padding: 0;
 }
 
 #output-canvas-col{
