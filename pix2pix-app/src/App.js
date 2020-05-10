@@ -4,6 +4,7 @@ import { Row, Col } from 'antd'
 import Navbar from './components/navbar'
 import ColorButtonList from './components/colorButtonList'
 import ToolButtonList from './components/toolButtonList'
+import DrawingCanvas from './components/drawingCanvas'
 import toolList from './config/toolList'
 
 import "./stylesheets/app.css"
@@ -34,6 +35,7 @@ export default class App extends Component {
               <ColorButtonList></ColorButtonList>
             </div>
             <div class="col-4" id="drawing-canvas-col">
+              <DrawingCanvas></DrawingCanvas>
             </div>
             <div class="col-2" id="canvas-layers-col">
 

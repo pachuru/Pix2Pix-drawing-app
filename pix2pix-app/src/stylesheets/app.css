@@ -18,6 +18,7 @@
 
 #drawing-canvas-col{
   background-color: lightgreen;
+  padding: 0;
 }
 
 #canvas-layers-col{
