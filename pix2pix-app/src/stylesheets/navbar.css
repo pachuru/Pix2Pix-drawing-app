@@ -19,6 +19,17 @@
     width: 3vw;
 }
 
-#navbar-about, #navbar-create{
-    font-size: 2vw;
+#navbar-about{
+    border-style: none;
+    background-color:  #343a40;
+    color: white;
+    margin-right: 1vw;
+    font-size: 1.25vw;
+} 
+
+#navbar-create{
+    border-style: none;
+    background-color:  #343a40;
+    color: white;
+    font-size: 1.25vw;
 }

@@ -14,13 +14,13 @@ export default function Navbar() {
              <img id="navbar-logo" src={require('../images/thinking.svg')} alt="Logo"/>
              <span id="navbar-title">PIX2PIX</span>
           </div>
-          <div>
-            <a class="navbar-brand" id="navbar-about" href="#">
+          <div id="navbar-buttons-wrapper">
+            <button id="navbar-about" href="#">
               <span>ABOUT</span>
-            </a>
-             <a class="navbar-brand" id="navbar-create" href="#">
+            </button>
+             <button id="navbar-create" href="#">
                <span>CREATE</span>
-            </a>
+            </button>
           </div>
         </nav> 
     )
