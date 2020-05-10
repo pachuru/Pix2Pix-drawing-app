@@ -1,5 +1,49 @@
-<?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512"><g id="Free_transform" data-name="Free transform">
-  <path d="M62,9a1,1,0,0,0,1-1V2a1,1,0,0,0-1-1H56a1,1,0,0,0-1,1V4H36V2a1,1,0,0,0-1-1H29a1,1,0,0,0-1,1V4H9V2A1,1,0,0,0,8,1H2A1,1,0,0,0,1,2V8A1,1,0,0,0,2,9H4V28H2a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1H4V55H2a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1H8a1,1,0,0,0,1-1V60H28v2a1,1,0,0,0,1,1h6a1,1,0,0,0,1-1V60H55v2a1,1,0,0,0,1,1h6a1,1,0,0,0,1-1V56a1,1,0,0,0-1-1H60V36h2a1,1,0,0,0,1-1V29a1,1,0,0,0-1-1H60V9ZM57,3h4V7H57ZM30,3h4V7H30ZM3,7V3H7V7ZM3,34V30H7v4ZM7,61H3V57H7Zm27,0H30V57h4Zm27-4v4H57V57Zm0-27v4H57V30Zm-3-2H56a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1h2V55H56a1,1,0,0,0-1,1v2H36V56a1,1,0,0,0-1-1H29a1,1,0,0,0-1,1v2H9V56a1,1,0,0,0-1-1H6V36H8a1,1,0,0,0,1-1V29a1,1,0,0,0-1-1H6V9H8A1,1,0,0,0,9,8V6H28V8a1,1,0,0,0,1,1h6a1,1,0,0,0,1-1V6H55V8a1,1,0,0,0,1,1h2Z" style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"/>
-<path d="M30,47H29a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Z" style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"/>
-<path d="M49,16V26a1,1,0,0,1-2,0V18.41L18.41,47H26a1,1,0,0,1,0,2H16a1,1,0,0,1-.38-.08.956.956,0,0,1-.54-.54A1,1,0,0,1,15,48V38a1,1,0,0,1,2,0v7.59L45.59,17H38a1,1,0,0,1,0-2H48a1,1,0,0,1,.38.08.956.956,0,0,1,.54.54A1,1,0,0,1,49,16Z" style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"/></g></svg>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<g>
+			<path d="M128,32V0H16C7.163,0,0,7.163,0,16v112h32V54.56L180.64,203.2l22.56-22.56L54.56,32H128z"
+				style=" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;"/>
+			<path d="M496,0H384v32h73.44L308.8,180.64l22.56,22.56L480,54.56V128h32V16C512,7.163,504.837,0,496,0z"
+				style=" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;"/>
+			<path d="M480,457.44L331.36,308.8l-22.56,22.56L457.44,480H384v32h112c8.837,0,16-7.163,16-16V384h-32V457.44z"
+				style=" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;"/>
+			<path d="M180.64,308.64L32,457.44V384H0v112c0,8.837,7.163,16,16,16h112v-32H54.56L203.2,331.36L180.64,308.64z"
+				style=" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;"/>
+		</g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>

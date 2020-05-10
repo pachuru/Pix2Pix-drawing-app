@@ -14,10 +14,6 @@ Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kir
 from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 */
 
-/*
-Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> 
-from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-*/
 
 /*
 Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> 
@@ -37,12 +33,18 @@ Icons made by <a href="https://www.flaticon.com/free-icon/delete_1214594"
 title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 */
 
+/*
+Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> 
+from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+ */
+
 const toolList = [
     "undo",
     "redo",
     "save",
     "load",
     "random",
+    "move",
     "resize",
     "square",
     "fill",
