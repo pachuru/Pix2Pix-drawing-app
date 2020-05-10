@@ -2,6 +2,10 @@
 }
 
 #color-button-list-col{
-  margin-left: 0.5vh;
   padding: 0;
+}
+
+#tool-button-list-col{
+  background-color: lightcoral;
+  padding: 0.5vh;
 }

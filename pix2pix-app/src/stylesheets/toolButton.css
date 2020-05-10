@@ -1,5 +1,5 @@
 #tool-button-wrapper{
-    padding: 0.25vh;
+    padding: 0.1vh;
 }
 
 #tool-button{
@@ -10,5 +10,5 @@
 
 #tool-button-icon{
     fill: white;
-    width: 3vw;
+    width: 1.5vw;
 }
