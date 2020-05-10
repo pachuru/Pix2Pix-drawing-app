@@ -8,7 +8,9 @@ export default function ColorButton(props) {
     const colorName = props.colorName;
     return (
         <div id="color-button-wrapper">
-            <button id="color-button" class="bg-dark" type="button">{colorName}</button>
+            <button id="color-button" type="button">
+                <span id="color-text">{colorName}</span>
+            </button>
             <img id="color-image" src={require('../images/colors/' + colorName + ".svg")} alt="Color"/>
         </div>
     )
