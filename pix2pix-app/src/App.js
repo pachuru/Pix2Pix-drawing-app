@@ -6,6 +6,7 @@ import ColorButtonList from './components/colorButtonList'
 import ToolButtonList from './components/toolButtonList'
 import DrawingCanvas from './components/drawingCanvas'
 import AddLayerButton from './components/addLayerButton'
+import LayerButton from './components/layerButton'
 import toolList from './config/toolList'
 
 import "./stylesheets/app.css"
@@ -40,6 +41,9 @@ export default class App extends Component {
             </div>
             <div class="col-2" id="canvas-layers-col">
               <AddLayerButton></AddLayerButton>
+              <LayerButton
+                layerName={"LAYER1"}
+              ></LayerButton>
             </div>
             <div class="col-4" id="output-canvas-col">
 

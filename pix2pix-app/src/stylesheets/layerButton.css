@@ -1,0 +1,45 @@
+
+#layer-button-wrapper{
+    font-family: 'Righteous', cursive;
+    display: flex;
+    background-color: #343a40;
+    margin-top: 0.25vh;
+}
+
+#hide-layer-button{
+    width: 15%;
+    text-align: center;
+    color: white;
+    border: none;
+    vertical-align: middle;
+}
+
+#delete-layer-button{
+    width: 25%;
+    text-align: center;
+    color: white;
+    border: none;
+    vertical-align: middle;
+}
+
+
+#layer-input-text{
+    width: 75%;
+    background-color: #292b2c;
+    color: white;
+    border: none;
+    text-align: center;
+    font-size: 1.5vw;
+    padding-right: 1vw;
+    vertical-align: middle;
+}
+
+#hide-layer-icon{
+    width: 2vw;
+    vertical-align: middle;
+}
+
+#delete-layer-icon{
+    width: 2vw;
+    vertical-align: middle;
+}
