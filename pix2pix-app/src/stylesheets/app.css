@@ -9,3 +9,21 @@
   background-color: lightcoral;
   padding: 0.5vh;
 }
+
+#output-button-list-col{
+  background-color: lightcoral;
+  padding: 0.5vh;
+  margin-top: 3vh;
+}
+
+#drawing-canvas-col{
+  background-color: lightgreen;
+}
+
+#canvas-layers-col{
+  background-color: rebeccapurple;
+}
+
+#output-canvas-col{
+  background-color: saddlebrown;
+}
