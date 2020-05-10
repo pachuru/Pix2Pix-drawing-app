@@ -1,0 +1,26 @@
+
+#add-layer-button-wrapper{
+    font-family: 'Righteous', cursive;
+    display: flex;
+    background-color: #343a40;
+    margin-top: 0.25vh;
+}
+#add-layer-button{
+    width: 100%;
+    background-color: #292b2c;
+    color: white;
+    border: none;
+    font-size: 1.5vw;
+    vertical-align: middle;
+    padding: 0.5vh;
+}
+
+#add-layer-text{
+    padding-right: 1vw;
+    vertical-align: middle;
+}
+
+#add-layer-icon{
+    width: 2vw;
+    vertical-align: middle;
+}
