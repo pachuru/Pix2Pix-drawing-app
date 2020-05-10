@@ -7,7 +7,7 @@
 }
 
 #hide-layer-button{
-    width: 15%;
+    width: 12.5%;
     text-align: center;
     color: white;
     border: none;
@@ -15,16 +15,31 @@
 }
 
 #delete-layer-button{
-    width: 25%;
+    width: 12.5%;
     text-align: center;
     color: white;
     border: none;
     vertical-align: middle;
 }
 
+#up-layer-button{
+    width: 12.5%;
+    text-align: center;
+    color: white;
+    border: none;
+    vertical-align: middle;
+}
+
+#down-layer-button{
+    width: 12.5%;
+    text-align: center;
+    color: white;
+    border: none;
+    vertical-align: middle;
+}
 
 #layer-input-text{
-    width: 75%;
+    width: 50%;
     background-color: #292b2c;
     color: white;
     border: none;
@@ -35,11 +50,21 @@
 }
 
 #hide-layer-icon{
-    width: 2vw;
+    width: 1.5vw;
     vertical-align: middle;
 }
 
 #delete-layer-icon{
-    width: 2vw;
+    width: 1.5vw;
+    vertical-align: middle;
+}
+
+#up-layer-icon{
+    width: 1.5vw;
+    vertical-align: middle;
+}
+
+#down-layer-icon{
+    width: 1.5vw;
     vertical-align: middle;
 }
