@@ -27,6 +27,13 @@ export default class App extends Component {
     })
   }
 
+  deleteLayer(layerId){
+    let layers_ = this.state.layers.filter(layer => layer.id != layerId)
+    this.setState({
+      layers: [...layers_]
+    })
+  }
+
   displayNewLayerPopup(){
     this.setState({
       displayNewLayerPopup: true
@@ -83,6 +90,7 @@ export default class App extends Component {
               <LayerMenu
                 layers = {this.state.layers}
                 addLayer = {this.displayNewLayerPopup.bind(this)}
+                deleteLayer = {this.deleteLayer.bind(this)}
               ></LayerMenu>
             </div>
             <div class="col-4" id="output-canvas-col">

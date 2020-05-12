@@ -22,7 +22,8 @@ title="Flaticon"> www.flaticon.com</a>
  */
 
 export default function LayerButton(props){
-    const layerName = props.layerName;
+    const layerName = props.layer.name;
+    const layerId = props.layer.id;
     return (
         <div id="layer-button-wrapper">
             <input id="layer-input-text" type="text" value={layerName}>
@@ -30,7 +31,7 @@ export default function LayerButton(props){
             <button id="hide-layer-button" class="bg-dark">
                  <img id="hide-layer-icon" src={require('../images/tools/hide.svg')} alt="AddIcon"/>
             </button>
-            <button id="delete-layer-button" class="bg-dark">
+            <button id="delete-layer-button" class="bg-dark" onClick={() => props.deleteLayer(layerId)}>
                 <img id="delete-layer-icon" src={require('../images/tools/remove.svg')} alt="AddIcon"/>
             </button>
             <button id="up-layer-button" class="bg-dark">
