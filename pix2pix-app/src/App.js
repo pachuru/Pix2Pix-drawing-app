@@ -34,6 +34,21 @@ export default class App extends Component {
     })
   }
 
+  changeLayerName(layerId, newName){
+    let layers_ = this.state.layers.map((layer) => {
+      if(layer.id == layerId){
+        return {
+          name: newName,
+          id: layer.id,
+          order: layer.order
+        }
+      }else return layer
+    })
+    this.setState({
+      layers: layers_
+    })
+  }
+
   displayNewLayerPopup(){
     this.setState({
       displayNewLayerPopup: true
@@ -91,6 +106,7 @@ export default class App extends Component {
                 layers = {this.state.layers}
                 addLayer = {this.displayNewLayerPopup.bind(this)}
                 deleteLayer = {this.deleteLayer.bind(this)}
+                changeLayerName = {this.changeLayerName.bind(this)}
               ></LayerMenu>
             </div>
             <div class="col-4" id="output-canvas-col">

@@ -17,6 +17,7 @@ export default function LayerMenu(props) {
                         return <LayerButton 
                                     layer={layer}
                                     deleteLayer={props.deleteLayer}
+                                    changeLayerName={props.changeLayerName}
                                 ></LayerButton>
                 })
             }
