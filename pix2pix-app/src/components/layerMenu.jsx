@@ -6,9 +6,12 @@ import "../stylesheets/layerMenu.css"
 
 export default function LayerMenu(props) {
     const layers = props.layers
+
     return (
         <div id="layer-menu-wrapper">
-            <AddLayerButton></AddLayerButton>
+            <AddLayerButton
+                addLayer={props.addLayer}
+            ></AddLayerButton>
             {
                 layers.map((value) => {
                         return <LayerButton 

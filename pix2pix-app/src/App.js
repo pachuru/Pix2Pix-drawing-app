@@ -6,12 +6,27 @@ import ColorButtonList from './components/colorButtonList'
 import ToolButtonList from './components/toolButtonList'
 import DrawingCanvas from './components/drawingCanvas'
 import LayerMenu from './components/layerMenu'
+import NewLayerPopup from './components/newLayerPopup'
 import toolList from './config/toolList'
 
 import "./stylesheets/app.css"
 
 
 export default class App extends Component {
+
+  state = {
+    displayNewLayer: false,
+    layers : []
+  }
+
+  addLayer(layer){
+    let layers_ = this.state.layers
+    layers_.push(layer)
+    this.setState({
+      layers : [...layers_]
+    })
+  }
+
   render() {
     return (
       <div>
@@ -40,7 +55,8 @@ export default class App extends Component {
             </div>
             <div class="col-2" id="layers-menu-col">
               <LayerMenu
-                layers = {["LAYER 1","LAYER 2", "LAYER 3"]}
+                layers = {this.state.layers}
+                addLayer = {this.addLayer.bind(this)}
               ></LayerMenu>
             </div>
             <div class="col-4" id="output-canvas-col">
@@ -48,7 +64,8 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-       </div>
+    { this.state.displayNewLayer && <NewLayerPopup></NewLayerPopup> }
+        </div>
     )
   }
 }
