@@ -72,3 +72,20 @@
   margin: 0;
   padding: 0;
 }
+
+#exit-new-layer-button{
+    width: 10%;
+    height: 15%;
+    border-style: none;
+    background-color: #343a40;
+    align-self: flex-end;
+}
+
+#exit-new-layer-icon{
+    width: 100%;
+    height: 100%;
+}
+
+#exit-new-layer-button:focus{
+    outline-width: 0;
+}

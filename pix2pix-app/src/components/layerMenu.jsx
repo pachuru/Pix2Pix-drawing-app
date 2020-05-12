@@ -13,9 +13,9 @@ export default function LayerMenu(props) {
                 addLayer={props.addLayer}
             ></AddLayerButton>
             {
-                layers.map((value) => {
+                layers.map((layer) => {
                         return <LayerButton 
-                                    layerName={value}
+                                    layerName={layer.name}
                                 ></LayerButton>
                 })
             }

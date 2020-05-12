@@ -15,7 +15,7 @@ import "./stylesheets/app.css"
 export default class App extends Component {
 
   state = {
-    displayNewLayer: false,
+    displayNewLayerPopup: false,
     layers : []
   }
 
@@ -24,6 +24,32 @@ export default class App extends Component {
     layers_.push(layer)
     this.setState({
       layers : [...layers_]
+    })
+  }
+
+  displayNewLayerPopup(){
+    this.setState({
+      displayNewLayerPopup: true
+    })
+  }
+
+  closeNewLayerPopup(){
+    this.setState({
+      displayNewLayerPopup: false
+    })
+  }
+
+  addNewLayer(layerName){
+    let newLayer = {
+      name: layerName,
+      id: Math.random(0,100),
+      order: this.state.layers.length
+    }    
+    let layers_ = this.state.layers
+    
+    this.setState({
+      layers: [...layers_, newLayer],
+      displayNewLayerPopup: false
     })
   }
 
@@ -56,7 +82,7 @@ export default class App extends Component {
             <div class="col-2" id="layers-menu-col">
               <LayerMenu
                 layers = {this.state.layers}
-                addLayer = {this.addLayer.bind(this)}
+                addLayer = {this.displayNewLayerPopup.bind(this)}
               ></LayerMenu>
             </div>
             <div class="col-4" id="output-canvas-col">
@@ -64,7 +90,12 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-    { this.state.displayNewLayer && <NewLayerPopup></NewLayerPopup> }
+      {this.state.displayNewLayerPopup 
+      && <NewLayerPopup 
+          addNewLayer={this.addNewLayer.bind(this)}
+          close={this.closeNewLayerPopup.bind(this)}>
+          </NewLayerPopup> 
+      }
         </div>
     )
   }
