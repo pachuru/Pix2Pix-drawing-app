@@ -40,7 +40,8 @@ export default class App extends Component {
         return {
           name: newName,
           id: layer.id,
-          order: layer.order
+          order: layer.order,
+          elements: []
         }
       }else return layer
     })
@@ -99,7 +100,9 @@ export default class App extends Component {
               <ColorButtonList></ColorButtonList>
             </div>
             <div class="col-4" id="drawing-canvas-col">
-              <DrawingCanvas></DrawingCanvas>
+              <DrawingCanvas
+                layers={this.state.layers}
+              ></DrawingCanvas>
             </div>
             <div class="col-2" id="layers-menu-col">
               <LayerMenu
