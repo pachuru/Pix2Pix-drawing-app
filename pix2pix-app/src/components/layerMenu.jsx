@@ -13,8 +13,9 @@ export default function LayerMenu(props) {
                 addLayer={props.addLayer}
             ></AddLayerButton>
             {
-                layers.map((layer) => {
+                layers.map((layer, index) => {
                         return <LayerButton 
+                                    key={index}
                                     layer={layer}
                                     deleteLayer={props.deleteLayer}
                                     changeLayerName={props.changeLayerName}

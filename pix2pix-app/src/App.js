@@ -63,9 +63,13 @@ export default class App extends Component {
   }
 
   addNewLayer(layerName){
+
+    //http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
+    let randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
     let newLayer = {
       name: layerName,
-      id: Math.random(0,100),
+      id: randomId,
       order: this.state.layers.length
     }    
     let layers_ = this.state.layers
