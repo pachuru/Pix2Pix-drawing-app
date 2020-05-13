@@ -20,6 +20,12 @@ export default class NewLayerPopup extends React.Component {
         this.props.addNewLayer(this.state.layerInputText)
     }
 
+    handleInputSubmit = (e) => {
+        if(e.keyCode == 13){
+            this.props.addNewLayer(this.state.layerInputText)
+        }
+    }
+
     render(){
         return (
             <div id="new-layer-form-background">
@@ -29,7 +35,7 @@ export default class NewLayerPopup extends React.Component {
                             </button>
                             <span id="new-layer-span">LAYER NAME:</span>
                             <div id="new-layer-input">
-                                <input id="new-layer-input-text" type="text" onChange={(e) => this.handleInputChange(e)}>
+                                <input id="new-layer-input-text" type="text" onChange={(e) => this.handleInputChange(e)} onKeyDown={(e) => this.handleInputSubmit(e)}>
                                 </input>
                                 <button id="new-layer-input-button" type="button" onClick={this.handleButtonClick}>
                                     CREATE

@@ -46,7 +46,6 @@ export default class LayerButton extends React.Component{
 
     handleInputSubmit = (e) => {
         if(e.keyCode == 13){
-            console.log("Enter key pressed!")
             this.props.changeLayerName(this.props.layer.id, this.state.layerName)
         }
     }
