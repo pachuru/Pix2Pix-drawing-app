@@ -12,7 +12,8 @@ export default class DrawingCanvas extends Component {
                    return <Layer
                             key={index}
                             id={layer.id}
-                            order={layer.order}>
+                            order={layer.order}
+                            >
                           </Layer>
                   })
                 }

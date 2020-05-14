@@ -24,7 +24,7 @@ button:focus{
 }
 
 #drawing-canvas-col{
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   padding: 0;
 }
 
