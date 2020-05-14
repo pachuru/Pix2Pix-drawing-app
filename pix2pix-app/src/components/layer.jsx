@@ -71,10 +71,9 @@ export default class Layer extends Component {
     }
 
     drawElements = () => {
-        if(this.props.elements)
-            this.props.elements.map((element) => {
-                this.drawRectangle(element.x, element.y, element.width, element.height, element.color)
-            })
+        this.props.elements.map((element) => {
+            this.drawRectangle(element.x, element.y, element.width, element.height, element.color)
+        })
     }
 
     drawRectangle(cornerX, cornerY, width, height, color){
