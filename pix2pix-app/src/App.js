@@ -16,7 +16,21 @@ export default class App extends Component {
 
   state = {
     displayNewLayerPopup: false,
-    layers : []
+    layers : [
+      {
+        name: "Prueba",
+        id: "has123",
+        order: 1,
+        elements: [
+          {
+            x: 100,
+            y: 100,
+            width: 100,
+            height: 100
+          }
+        ]
+      }
+    ]
   }
 
   addLayer(layer){
