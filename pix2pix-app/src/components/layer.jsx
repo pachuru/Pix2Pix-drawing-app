@@ -6,6 +6,9 @@ export default class Layer extends Component {
 
     constructor(props){
         super(props)
+        this.dragging = false
+        this.initialRectX = 0
+        this.initialRectY = 0
         this.state = {
             canvasHeight: 0,
             canvasWidth: 0
@@ -23,17 +26,29 @@ export default class Layer extends Component {
     componentDidUpdate(){
     }
 
+    clearCanvas(){
+        this.ctx.clearRect(0,0, this.state.canvasWidth, this.state.canvasHeight);
+    }
+
     onMouseClickDown(event){
         let {mousePosX, mousePosY} = this.calculateMousePosition(event)
-        this.drawPoint(mousePosX, mousePosY)
+        this.dragging = true
+        this.initialRectX = mousePosX
+        this.initialRectY = mousePosY
     }
 
     onMouseMove(event){
-
+        if(this.dragging){
+            let {mousePosX, mousePosY} = this.calculateMousePosition(event)
+            let width = mousePosX - this.initialRectX
+            let height = mousePosY - this.initialRectY
+            this.clearCanvas()
+            this.drawRectangle(this.initialRectX, this.initialRectY, width, height)
+        }
     }
     
     onMouseRelease(event){
-
+        this.dragging = false
     }
 
     calculateMousePosition(event){
@@ -42,6 +57,15 @@ export default class Layer extends Component {
         let mousePosX = (event.clientX - offsetX) 
         let mousePosY = (event.clientY - offsetY) 
         return {mousePosX, mousePosY}
+    }
+
+    drawRectangle(cornerX, cornerY, width, height){
+        this.ctx.beginPath();
+        this.ctx.fillStyle = "#2be828"
+        this.ctx.globalAlpha = 0.75;
+        this.ctx.rect(cornerX, cornerY, width, height)
+        this.ctx.fill()
+        this.ctx.globalAlpha = 1;
     }
 
     drawPoint(x,y){
