@@ -16,6 +16,7 @@ export default class App extends Component {
 
   state = {
     displayNewLayerPopup: false,
+    selectedColor : "#00aaff",
     layers : [
       {
         name: "Prueba",
@@ -31,6 +32,10 @@ export default class App extends Component {
         ]
       }
     ]
+  }
+
+  componentDidUpdate(){
+    console.log(this.state)
   }
 
   addLayer(layer){
@@ -94,6 +99,12 @@ export default class App extends Component {
     })
   }
 
+  changeSelectedColor(colorCode){
+    this.setState({
+      selectedColor: colorCode
+    })
+  }
+
   render() {
     return (
       <div>
@@ -115,7 +126,9 @@ export default class App extends Component {
           </div>
           <div class="row" id="row-2">
             <div class="col-2" id="color-button-list-col">
-              <ColorButtonList></ColorButtonList>
+              <ColorButtonList selectedColor={this.state.selectedColor}
+                               changeSelectedColor={this.changeSelectedColor.bind(this)}>
+              </ColorButtonList>
             </div>
             <div class="col-4" id="drawing-canvas-col">
               <DrawingCanvas

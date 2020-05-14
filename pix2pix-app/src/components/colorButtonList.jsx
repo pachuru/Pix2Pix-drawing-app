@@ -4,12 +4,18 @@ import ColorButton from './colorButton'
 
 import '../stylesheets/colorButtonList.css'
 
-export default function ColorButtonList() {
+export default function ColorButtonList(props) {
     return (
         <ul id="color-button-unordered-list">
             {
-                colorList.map((value, index) => {
-                        return <li key={index}><ColorButton colorName={value}></ColorButton></li>
+                colorList.map((color, index) => {
+                        return <li key={index}>
+                                    <ColorButton colorName={color.name}
+                                                 colorCode={color.code}
+                                                 selectedColor={props.selectedColor}
+                                                 changeSelectedColor={props.changeSelectedColor}>
+                                    </ColorButton>
+                            </li>
                 })
             }
         </ul>
