@@ -49,7 +49,7 @@ export default class Layer extends Component {
             let width = mousePosX - this.initialRectX
             let height = mousePosY - this.initialRectY
             this.redrawCanvas()
-            this.drawRectangle(this.initialRectX, this.initialRectY, width, height)
+            this.drawRectangle(this.initialRectX, this.initialRectY, width, height, this.props.selectedColor)
         }
     }
     
@@ -58,7 +58,8 @@ export default class Layer extends Component {
         let {mousePosX, mousePosY} = this.calculateMousePosition(event)
         let width = mousePosX - this.initialRectX
         let height = mousePosY - this.initialRectY
-        this.storeElement(this.initialRectX, this.initialRectY, width, height)
+        let color = this.props.selectedColor;
+        this.storeElement(this.initialRectX, this.initialRectY, width, height, color)
     }
 
     calculateMousePosition(event){
@@ -70,26 +71,28 @@ export default class Layer extends Component {
     }
 
     drawElements = () => {
-        this.props.elements.map((element) => {
-            this.drawRectangle(element.x, element.y, element.width, element.height)
-        })
+        if(this.props.elements)
+            this.props.elements.map((element) => {
+                this.drawRectangle(element.x, element.y, element.width, element.height, element.color)
+            })
     }
 
-    drawRectangle(cornerX, cornerY, width, height){
+    drawRectangle(cornerX, cornerY, width, height, color){
         this.ctx.beginPath();
-        this.ctx.fillStyle = "#2be828"
+        this.ctx.fillStyle = color;
         this.ctx.globalAlpha = 0.75;
         this.ctx.rect(cornerX, cornerY, width, height)
         this.ctx.fill()
         this.ctx.globalAlpha = 1;
     }
 
-    storeElement(x, y, width, height){
+    storeElement(x, y, width, height, color){
         this.props.elements.push({
             x: x,
             y: y,
             width: width, 
-            height: height
+            height: height,
+            color: color
         })
     }
 

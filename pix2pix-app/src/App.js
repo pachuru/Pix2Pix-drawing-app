@@ -27,7 +27,8 @@ export default class App extends Component {
             x: 100,
             y: 100,
             width: 100,
-            height: 100
+            height: 100,
+            color: "#00aaff"
           }
         ]
       }
@@ -89,7 +90,8 @@ export default class App extends Component {
     let newLayer = {
       name: layerName,
       id: randomId,
-      order: this.state.layers.length
+      order: this.state.layers.length,
+      elements: []
     }    
     let layers_ = this.state.layers
     
@@ -133,6 +135,7 @@ export default class App extends Component {
             <div class="col-4" id="drawing-canvas-col">
               <DrawingCanvas
                 layers={this.state.layers}
+                selectedColor={this.state.selectedColor}
               ></DrawingCanvas>
             </div>
             <div class="col-2" id="layers-menu-col">
