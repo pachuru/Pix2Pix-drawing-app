@@ -79,10 +79,9 @@ export default class Layer extends Component {
     drawRectangle(cornerX, cornerY, width, height, color){
         this.ctx.beginPath();
         this.ctx.fillStyle = color;
-        this.ctx.globalAlpha = 0.75;
+        this.ctx.globalAlpha = 1;
         this.ctx.rect(cornerX, cornerY, width, height)
         this.ctx.fill()
-        this.ctx.globalAlpha = 1;
     }
 
     storeElement(x, y, width, height, color){
