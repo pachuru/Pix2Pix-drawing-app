@@ -21,7 +21,7 @@ export default class App extends Component {
       {
         name: "Prueba",
         id: "has123",
-        order: 1,
+        order: 0,
         elements: [
           {
             x: 100,
@@ -67,7 +67,7 @@ export default class App extends Component {
     })
   }
 
-  addNewLayer(layerName){
+  addNewLayer = (layerName) => {
 
     //http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
     let randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -110,8 +110,24 @@ export default class App extends Component {
   }
 
   changeLayerOrder(layerId, newOrder){
+    let layers_ = this.state.layers.map((layer) => {
+      if(layer.id == layerId){
+        layer["order"] = newOrder
+      }else if(layer.order == newOrder){
+        layer["order"] = newOrder - 1
+      }
+      return layer
+    })
+    this.setState({
+      layers: layers_
+    })
+  }
+  
+  /*
+  changeLayerOrder(layerId, newOrder){
     this.changeLayerProperty(layerId, "order", newOrder)
   }
+  */
 
   render() {
     return (
