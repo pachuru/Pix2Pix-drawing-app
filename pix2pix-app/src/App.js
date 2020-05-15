@@ -54,21 +54,6 @@ export default class App extends Component {
     })
   }
 
-  changeLayerName(layerId, newName){
-    let layers_ = this.state.layers.map((layer) => {
-      if(layer.id == layerId){
-        return {
-          name: newName,
-          id: layer.id,
-          order: layer.order,
-          elements: []
-        }
-      }else return layer
-    })
-    this.setState({
-      layers: layers_
-    })
-  }
 
   displayNewLayerPopup(){
     this.setState({
@@ -105,6 +90,23 @@ export default class App extends Component {
     this.setState({
       selectedColor: colorCode
     })
+  }
+
+  changeLayerProperty(layerId, property, newValue){
+    let layers_ = this.state.layers.map((layer) => {
+      if(layer.id == layerId){
+         layer[property] = newValue;
+      } 
+         return layer
+    })
+    this.setState({
+      layers: layers_
+    })
+  }
+
+  
+  changeLayerName(layerId, newName){
+    this.changeLayerProperty(layerId, "name", newName)
   }
 
   render() {
