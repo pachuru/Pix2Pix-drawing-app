@@ -32,10 +32,17 @@ export default class LayerButton extends React.Component{
     }
 
     componentDidMount(){
-        let layerName = this.props.layer.name
         this.setState({
-            layerName: layerName
+            layerName: this.props.layer.name
         })
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.layer.name != this.props.layer.name){
+            this.setState({
+                layerName: this.props.layer.name
+            })
+        }
     }
 
     handleInputChange = (e) => {

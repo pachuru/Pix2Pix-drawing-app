@@ -54,6 +54,30 @@ export default class App extends Component {
     })
   }
 
+  sortLayers(layers){
+
+    let layersCopy = layers.slice(0)
+
+    function swap(arr,x,y){
+        let temp = arr[x]
+        arr[x] = arr[y]
+        arr[y] = temp
+    }
+
+    for(let i in layersCopy){
+        let maxElement = i
+        for(let j = i; j < layers.length; j++){
+            if(layersCopy[j]["order"] > layersCopy[maxElement]["order"]){
+                console.log("Bingo!")
+                maxElement = j
+            }
+        }
+        swap(layersCopy, i,maxElement)
+    }
+    console.log("Copy: ", layersCopy)
+
+    return layersCopy
+}
 
   displayNewLayerPopup(){
     this.setState({
