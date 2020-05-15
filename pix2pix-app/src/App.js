@@ -110,6 +110,10 @@ export default class App extends Component {
   }
 
   increaseLayerOrder(layerId, newOrder){
+
+    if(newOrder >= this.state.layers.length)
+       return
+
     let layers_ = this.state.layers.map((layer) => {
       if(layer.id == layerId){
         layer["order"] = newOrder
@@ -124,6 +128,10 @@ export default class App extends Component {
   }
 
   decreaseLayerOrder(layerId, newOrder){
+
+    if(newOrder < 0)
+      return
+
     let layers_ = this.state.layers.map((layer) => {
       if(layer.id == layerId){
         layer["order"] = newOrder
