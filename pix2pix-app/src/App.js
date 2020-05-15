@@ -109,6 +109,10 @@ export default class App extends Component {
     this.changeLayerProperty(layerId, "name", newName)
   }
 
+  changeLayerOrder(layerId, newOrder){
+    this.changeLayerProperty(layerId, "order", newOrder)
+  }
+
   render() {
     return (
       <div>
@@ -146,6 +150,7 @@ export default class App extends Component {
                 addLayer = {this.displayNewLayerPopup.bind(this)}
                 deleteLayer = {this.deleteLayer.bind(this)}
                 changeLayerName = {this.changeLayerName.bind(this)}
+                changeLayerOrder = {this.changeLayerOrder.bind(this)}
               ></LayerMenu>
             </div>
             <div class="col-4" id="output-canvas-col">
