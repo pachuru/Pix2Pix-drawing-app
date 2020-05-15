@@ -64,10 +64,10 @@ export default class LayerButton extends React.Component{
                 <button id="delete-layer-button" class="bg-dark" onClick={() => this.props.deleteLayer(layerId)}>
                     <img id="delete-layer-icon" src={require('../images/tools/remove.svg')} alt="DeleteIcon"/>
                 </button>
-                <button id="up-layer-button" class="bg-dark" onClick={() => this.props.changeLayerOrder(layerId, layerOrder + 1)}>
+                <button id="up-layer-button" class="bg-dark" onClick={() => this.props.increaseLayerOrder(layerId, layerOrder + 1)}>
                     <img id="up-layer-icon" src={require('../images/tools/up.svg')} alt="UpIcon"/>
                 </button>
-                <button id="down-layer-button" class="bg-dark" onClick={() => this.props.changeLayerOrder(layerId, layerOrder - 1)}>
+                <button id="down-layer-button" class="bg-dark" onClick={() => this.props.decreaseLayerOrder(layerId, layerOrder - 1)}>
                     <img id="down-layer-icon" src={require('../images/tools/down.svg')} alt="DownIcon"/>
                 </button>
             </div>

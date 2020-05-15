@@ -109,7 +109,7 @@ export default class App extends Component {
     this.changeLayerProperty(layerId, "name", newName)
   }
 
-  changeLayerOrder(layerId, newOrder){
+  increaseLayerOrder(layerId, newOrder){
     let layers_ = this.state.layers.map((layer) => {
       if(layer.id == layerId){
         layer["order"] = newOrder
@@ -122,6 +122,22 @@ export default class App extends Component {
       layers: layers_
     })
   }
+
+  decreaseLayerOrder(layerId, newOrder){
+    let layers_ = this.state.layers.map((layer) => {
+      if(layer.id == layerId){
+        layer["order"] = newOrder
+      }else if(layer.order == newOrder){
+        layer["order"] = newOrder + 1
+      }
+      return layer
+    })
+    this.setState({
+      layers: layers_
+    })
+  }
+
+  
   
   /*
   changeLayerOrder(layerId, newOrder){
@@ -166,7 +182,8 @@ export default class App extends Component {
                 addLayer = {this.displayNewLayerPopup.bind(this)}
                 deleteLayer = {this.deleteLayer.bind(this)}
                 changeLayerName = {this.changeLayerName.bind(this)}
-                changeLayerOrder = {this.changeLayerOrder.bind(this)}
+                increaseLayerOrder = {this.increaseLayerOrder.bind(this)}
+                decreaseLayerOrder = {this.decreaseLayerOrder.bind(this)}
               ></LayerMenu>
             </div>
             <div class="col-4" id="output-canvas-col">

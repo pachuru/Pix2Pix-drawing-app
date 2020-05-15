@@ -19,7 +19,8 @@ export default function LayerMenu(props) {
                                     layer={layer}
                                     deleteLayer={props.deleteLayer}
                                     changeLayerName={props.changeLayerName}
-                                    changeLayerOrder={props.changeLayerOrder}
+                                    increaseLayerOrder={props.increaseLayerOrder}
+                                    decreaseLayerOrder={props.decreaseLayerOrder}
                                 ></LayerButton>
                 })
             }
