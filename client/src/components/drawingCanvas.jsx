@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
 import '../stylesheets/drawingCanvas.css'
+import PropTypes from 'prop-types'
 
 import Layer from './layer'
 
@@ -22,4 +22,9 @@ export default class DrawingCanvas extends Component {
       </div>
     )
   }
+}
+
+DrawingCanvas.propTypes = {
+  layers: PropTypes.array,
+  selectedColor: PropTypes.string
 }
