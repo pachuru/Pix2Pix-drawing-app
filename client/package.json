@@ -17,11 +17,12 @@
     "react-app-rewired": "^2.1.6",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "sinon": "^9.0.2"
   },
   "husky": {
     "hooks": {
-      "pre-push": "eslint \"**/*.js*\" --ignore-pattern node_modules/",
+      "pre-commit": "eslint \"**/*.js[x]\" --ignore-pattern node_modules/",
       "pre-push": "npm test"
     }
   },
