@@ -1,5 +1,6 @@
 import React from 'react'
 import '../stylesheets/colorButton.css'
+import PropTypes from 'prop-types'
 
 /* Icons made by <a href="https://www.flaticon.com/authors/vectors-market"
 title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
@@ -14,4 +15,10 @@ export default function ColorButton (props) {
       <img id="color-image" src={require('../images/colors/' + colorName + '.svg')} alt="Color"/>
     </div>
   )
+}
+
+ColorButton.propTypes = {
+  colorName: PropTypes.string,
+  colorCode: PropTypes.string,
+  changeSelectedColor: PropTypes.func
 }
