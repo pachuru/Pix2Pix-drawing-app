@@ -21,13 +21,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-push": "eslint \"**/*.js*\" --ignore-pattern node_modules/",
+      "pre-push": "npm test"
     }
-  },
-  "lint-staged": {
-    "./src/*.{js,jsx,ts,tsx}": [
-      "eslint --fix-dry-run"
-    ]
   },
   "scripts": {
     "start": "react-scripts start",
