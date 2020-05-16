@@ -9,8 +9,10 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.2.0",
+    "babel-plugin-root-import": "^6.5.0",
     "bootstrap": "^4.4.1",
     "react": "^16.13.1",
+    "react-app-rewired": "^2.1.6",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
@@ -35,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2"
   }
 }
