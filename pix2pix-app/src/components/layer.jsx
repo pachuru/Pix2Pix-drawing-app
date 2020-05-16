@@ -24,7 +24,13 @@ export default class Layer extends Component {
     }
 
     componentDidUpdate(){
+        this.setCanvasOrder();
         this.redrawCanvas();
+    }
+
+    setCanvasOrder(){
+        let canvasId = "canvas-" + this.props.id;
+        document.getElementById(canvasId).style.zIndex = this.props.order;
     }
 
     redrawCanvas(){
@@ -108,8 +114,9 @@ export default class Layer extends Component {
     
 
     render() {
+        let id = "canvas-" + this.props.id;
         return (
-                <canvas id="canvas" ref="canvas" 
+                <canvas id={id} ref="canvas" 
                                     width={this.state.canvasWidth}  
                                     height={this.state.canvasHeight}
                                     onMouseDown={(e) => this.onMouseClickDown(e)} 
