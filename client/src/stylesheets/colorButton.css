@@ -1,16 +1,16 @@
 
-#color-button-wrapper{
+.color-button-wrapper{
     font-family: 'Righteous', cursive;
     display: flex;
     background-color: #343a40;
     margin-top: 0.25vw;
 }
 
-#color-button-wrapper:hover{
+.color-button-wrapper:hover{
     background-color:  #1d2124;
 }
 
-#color-button{
+.color-button{
     width: 100%;
     background-color: transparent;
     color: white;
@@ -18,7 +18,7 @@
     font-size: 1.5vw;
 }
 
-#color-image{
+.color-image{
     width: 2vw;
     margin-right: 1vw;
 }
