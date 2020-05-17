@@ -17,7 +17,7 @@ export default class Layer extends Component {
 
   componentDidMount () {
     const canvasId = 'canvas-' + this.props.id
-    this.ctx = document.getElementById(canvasId).canvas.getContext('2d')
+    this.ctx = document.getElementById(canvasId).getContext('2d')
     this.setState({
       canvasHeight: document.getElementById('canvas-wrapper').clientHeight,
       canvasWidth: document.getElementById('canvas-wrapper').clientWidth
