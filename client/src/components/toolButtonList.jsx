@@ -12,7 +12,7 @@ export default function ToolButtonList (props) {
           toolList.map((value, index) => {
             return <li className="tool-button-list-element" key={index}>
               <ToolButton toolName={value} />
-              </li>
+            </li>
           })
         }
       </ul>
