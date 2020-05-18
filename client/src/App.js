@@ -14,22 +14,7 @@ export default class App extends Component {
   state = {
     displayNewLayerPopup: false,
     selectedColor: '#00aaff',
-    layers: [
-      {
-        name: 'Prueba',
-        id: 'has123',
-        order: 0,
-        elements: [
-          {
-            x: 100,
-            y: 100,
-            width: 100,
-            height: 100,
-            color: '#00aaff'
-          }
-        ]
-      }
-    ]
+    layers: []
   }
 
   componentDidUpdate () {

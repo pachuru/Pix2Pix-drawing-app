@@ -1,11 +1,11 @@
-#layer-button-wrapper{
+.layer-button-wrapper{
     font-family: 'Righteous', cursive;
     display: flex;
     background-color: #343a40;
     margin-top: 0.25vw;
 }
 
-#hide-layer-button{
+.hide-layer-button{
     width: 12.5%;
     text-align: center;
     color: white;
@@ -13,7 +13,7 @@
     vertical-align: middle;
 }
 
-#delete-layer-button{
+.delete-layer-button{
     width: 12.5%;
     text-align: center;
     color: white;
@@ -21,7 +21,7 @@
     vertical-align: middle;
 }
 
-#up-layer-button{
+.up-layer-button{
     width: 12.5%;
     text-align: center;
     color: white;
@@ -29,7 +29,7 @@
     vertical-align: middle;
 }
 
-#down-layer-button{
+.down-layer-button{
     width: 12.5%;
     text-align: center;
     color: white;
@@ -37,7 +37,7 @@
     vertical-align: middle;
 }
 
-#layer-input-text{
+.layer-input-text{
     width: 50%;
     background-color: #292b2c;
     color: white;
@@ -48,22 +48,22 @@
     vertical-align: middle;
 }
 
-#hide-layer-icon{
+.hide-layer-icon{
     width: 1.5vw;
     vertical-align: middle;
 }
 
-#delete-layer-icon{
+.delete-layer-icon{
     width: 1.5vw;
     vertical-align: middle;
 }
 
-#up-layer-icon{
+.up-layer-icon{
     width: 1.5vw;
     vertical-align: middle;
 }
 
-#down-layer-icon{
+.down-layer-icon{
     width: 1.5vw;
     vertical-align: middle;
 }

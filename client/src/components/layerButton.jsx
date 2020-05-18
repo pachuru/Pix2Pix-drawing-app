@@ -57,20 +57,20 @@ export default class LayerButton extends React.Component {
       const layerId = this.props.layer.id
       const layerOrder = this.props.layer.order
       return (
-        <div id="layer-button-wrapper">
-          <input id="layer-input-text" type="text" value={this.state.layerName} onChange={(e) => this.handleInputChange(e)} onKeyDown={(e) => this.handleInputSubmit(e)}>
+        <div className="layer-button-wrapper">
+          <input className="layer-input-text" type="text" value={this.state.layerName} onChange={(e) => this.handleInputChange(e)} onKeyDown={(e) => this.handleInputSubmit(e)}>
           </input>
-          <button id="hide-layer-button" className="bg-dark">
-            <img id="hide-layer-icon" src={require('../images/tools/hide.svg')} alt="AddIcon"/>
+          <button className="hide-layer-button bg-dark">
+            <img className="hide-layer-icon" src={require('../images/tools/hide.svg')} alt="AddIcon"/>
           </button>
-          <button id="delete-layer-button" className="bg-dark" onClick={() => this.props.deleteLayer(layerId)}>
-            <img id="delete-layer-icon" src={require('../images/tools/remove.svg')} alt="DeleteIcon"/>
+          <button className="delete-layer-button bg-dark" onClick={() => this.props.deleteLayer(layerId)}>
+            <img className="delete-layer-icon" src={require('../images/tools/remove.svg')} alt="DeleteIcon"/>
           </button>
-          <button id="up-layer-button" className="bg-dark" onClick={() => this.props.increaseLayerOrder(layerId, layerOrder + 1)}>
-            <img id="up-layer-icon" src={require('../images/tools/up.svg')} alt="UpIcon"/>
+          <button className="up-layer-button bg-dark" onClick={() => this.props.increaseLayerOrder(layerId, layerOrder + 1)}>
+            <img className="up-layer-icon" src={require('../images/tools/up.svg')} alt="UpIcon"/>
           </button>
-          <button id="down-layer-button" className="bg-dark" onClick={() => this.props.decreaseLayerOrder(layerId, layerOrder - 1)}>
-            <img id="down-layer-icon" src={require('../images/tools/down.svg')} alt="DownIcon"/>
+          <button className="down-layer-button bg-dark" onClick={() => this.props.decreaseLayerOrder(layerId, layerOrder - 1)}>
+            <img className="down-layer-icon" src={require('../images/tools/down.svg')} alt="DownIcon"/>
           </button>
         </div>
       )
