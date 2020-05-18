@@ -1,0 +1,16 @@
+{
+    "colorList": [
+        { "name": "BACKGROUND"},
+        { "name": "WALL"},
+        { "name": "DOOR"},
+        { "name": "WINDOW"},
+        { "name": "WINDOW SILL"},
+        { "name": "WINDOW HEAD"},
+        { "name": "SHUTTER"},
+        { "name": "BALCONY"},
+        { "name": "TRIM"},
+        { "name": "CORNICE"},
+        { "name": "COLUMN"},
+        { "name": "ENTRANCE"}
+    ]
+}

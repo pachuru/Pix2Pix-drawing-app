@@ -7,8 +7,9 @@ title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com
 
 export default function ColorButton (props) {
   const colorName = props.colorName
+  const buttonId = 'color-button-' + colorName.replace(/\s+/g, '-').toLowerCase()
   return (
-    <div className="color-button-wrapper">
+    <div className="color-button-wrapper" id={buttonId} >
       <button className="color-button" type="button" onClick={() => props.changeSelectedColor(props.colorCode)}>
         <span clasName="color-text">{colorName}</span>
       </button>
