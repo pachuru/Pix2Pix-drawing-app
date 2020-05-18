@@ -1,14 +1,14 @@
-#tool-button-wrapper{
+.tool-button-wrapper{
     padding: 0.1vh;
 }
 
-#tool-button{
+.tool-button{
     width: 100%;
     border: none;
     padding: 1vh;
 }
 
-#tool-button-icon{
+.tool-button-icon{
     fill: white;
     width: 1.5vw;
 }

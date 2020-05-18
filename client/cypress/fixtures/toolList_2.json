@@ -1,0 +1,9 @@
+{
+    "toolList": [
+        {"name":"move"},
+        {"name":"resize"},
+        {"name":"square"},
+        {"name":"fill"},
+        {"name":"delete"}
+    ]
+}

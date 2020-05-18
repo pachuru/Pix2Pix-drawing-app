@@ -1,0 +1,9 @@
+{
+    "toolList": [
+        {"name":"undo"},
+        {"name":"redo"},
+        {"name":"save"},
+        {"name":"load"},
+        {"name":"random"}
+    ]
+}

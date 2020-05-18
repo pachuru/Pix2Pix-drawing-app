@@ -4,6 +4,7 @@ import ColorButton from '../components/colorButton'
 
 describe("Button component", () => {
   test("Matches the snapshot", () => {
-    const button = create(<ColorButton />);
+    const colorButton = create(<ColorButton />);
+    expect(colorButton.toJSON()).toMatchSnapshot();
   });
 });

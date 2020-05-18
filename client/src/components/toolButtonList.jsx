@@ -7,10 +7,12 @@ export default function ToolButtonList (props) {
   const toolList = props.toolList
   return (
     <div>
-      <ul id="tool-button-unordered-list">
+      <ul className="tool-button-unordered-list">
         {
           toolList.map((value, index) => {
-            return <li id="tool-button-list-element" key={index}><ToolButton toolName={value}></ToolButton></li>
+            return <li className="tool-button-list-element" key={index}>
+              <ToolButton toolName={value} />
+              </li>
           })
         }
       </ul>

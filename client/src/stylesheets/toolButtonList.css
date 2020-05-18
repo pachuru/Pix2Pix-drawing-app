@@ -1,4 +1,4 @@
-#tool-button-unordered-list{
+.tool-button-unordered-list{
     background-color: yellow;
     list-style-type: none;
     display: flex;
@@ -6,6 +6,6 @@
     padding: 0;
 }
 
-#tool-button-list-element{
+.tool-button-list-element{
     flex: 1;
 }
