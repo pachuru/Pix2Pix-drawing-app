@@ -27,8 +27,10 @@ export default class ExecutionHistory {
 
     redo = () => {
         if(this.currentSnapshotIndex <= (this.historyMaxLength - 2)){
-            this.currentSnapshotIndex += 1
-            return this.history[this.currentSnapshotIndex]
+            if(this.history[this.currentSnapshotIndex + 1] != null){
+                this.currentSnapshotIndex += 1
+                return this.history[this.currentSnapshotIndex]
+            }else return null;
         }else return null;
     }
 
