@@ -17,6 +17,7 @@ export default class App extends Component {
   constructor(){
     super()
     this.executionHistory = new ExecutionHistory;
+    this.executionHistory.push(this.state.layers)
     this.redoExecuted = false
     this.undoExecuted = false
   }
