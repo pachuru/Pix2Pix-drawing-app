@@ -55,6 +55,8 @@ describe("Layer Menu", () => {
             cy.get("#layer-menu-wrapper").find(".delete-layer-icon").invoke('attr', 'src').should('contain', 'remove')
         })
 
+        // Test layer up and down buttons
+
         it("Should render an up image icon and load the correct file", () => {
             cy.get("#layer-menu-wrapper").find(".up-layer-icon").should('be.visible')
             cy.get("#layer-menu-wrapper").find(".up-layer-icon").invoke('attr', 'src').should('contain', 'up')

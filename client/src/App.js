@@ -9,6 +9,7 @@ import NewLayerPopup from './components/newLayerPopup'
 import toolList from './config/toolList'
 
 import './stylesheets/app.css'
+import utils from './utils'
 
 export default class App extends Component {
   state = {
@@ -17,8 +18,12 @@ export default class App extends Component {
     layers: []
   }
 
-  componentDidUpdate () {
-    console.log(this.state)
+  componentDidUpdate(prevProps, prevState) {
+    if(!utils.arraysAreEqual(prevState.layers, this.state.layers)){
+      console.log("a", prevState.layers)
+      console.log("b", this.state.layers)
+      console.log("Layers changed")
+    }
   }
 
   addLayer (layer) {

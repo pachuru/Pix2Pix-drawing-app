@@ -127,7 +127,7 @@ export default class Layer extends Component {
 }
 
 Layer.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   order: PropTypes.number,
   elements: PropTypes.array,
   selectedColor: PropTypes.string

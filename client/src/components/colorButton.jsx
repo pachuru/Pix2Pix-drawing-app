@@ -11,7 +11,7 @@ export default function ColorButton (props) {
   return (
     <div className="color-button-wrapper" id={buttonId} >
       <button className="color-button" type="button" onClick={() => props.changeSelectedColor(props.colorCode)}>
-        <span clasName="color-text">{colorName}</span>
+        <span className="color-text">{colorName}</span>
       </button>
       <img className="color-image" src={require('../images/colors/' + colorName + '.svg')} alt="Color"/>
     </div>
