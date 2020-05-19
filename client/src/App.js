@@ -10,8 +10,17 @@ import toolList from './config/toolList'
 
 import './stylesheets/app.css'
 import utils from './utils'
+import ExecutionHistory from './utils/executionHistory'
 
 export default class App extends Component {
+
+  constructor(){
+    super()
+    this.executionHistory = new ExecutionHistory;
+    this.redoExecuted = false
+    this.undoExecuted = false
+  }
+
   state = {
     displayNewLayerPopup: false,
     selectedColor: '#00aaff',
@@ -20,9 +29,32 @@ export default class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(!utils.arraysAreEqual(prevState.layers, this.state.layers)){
-      console.log("a", prevState.layers)
-      console.log("b", this.state.layers)
-      console.log("Layers changed")
+      if(!this.redoExecuted && !this.undoExecuted){
+         this.executionHistory.push(this.state.layers)
+      }
+      this.redoExecuted = false
+      this.undoExecuted = false
+    }else{
+    }
+  }
+
+  redo = () => {
+    const redoLayers = this.executionHistory.redo()
+    if(redoLayers !== null){
+      this.redoExecuted = true
+      this.setState({
+        layers: redoLayers,
+      })
+    }
+  }
+
+  undo = () => {
+    const undoLayers = this.executionHistory.undo()
+    if(undoLayers !== null){
+      this.undoExecuted = true
+      this.setState({
+        layers: undoLayers,
+      })
     }
   }
 
@@ -54,13 +86,11 @@ export default class App extends Component {
       let maxElement = i
       for (let j = i; j < layers.length; j++) {
         if (layersCopy[j].order > layersCopy[maxElement].order) {
-          console.log('Bingo!')
           maxElement = j
         }
       }
       swap(layersCopy, i, maxElement)
     }
-    console.log('Copy: ', layersCopy)
 
     return layersCopy
   }
@@ -133,7 +163,7 @@ export default class App extends Component {
     })
   }
 
-  decreaseLayerOrder (layerId, newOrder) {
+  decreaseLayerOrder(layerId, newOrder) {
     if (newOrder < 0) { return }
 
     const layers_ = this.state.layers.map((layer) => {
@@ -143,6 +173,22 @@ export default class App extends Component {
         layer.order = newOrder + 1
       }
       return layer
+    })
+    this.setState({
+      layers: layers_
+    })
+  }
+
+  addLayerElement = (layerId, newElement) => {
+    const layers_ = this.state.layers.map((layer) => {
+      if(layer.id === layerId){
+        return {
+          name: layer.name,
+          id: layer.id,
+          order: layer.order,
+          elements: [...layer.elements, newElement]
+        }
+      }else return layer
     })
     this.setState({
       layers: layers_
@@ -164,7 +210,10 @@ export default class App extends Component {
             <div className="col-2">
             </div>
             <div className="col-4" id="tool-button-list-col">
-              <ToolButtonList toolList={toolList.slice(0, 5)}></ToolButtonList>
+              <ToolButtonList toolList={toolList.slice(0, 5)}
+                              redo={this.redo}
+                              undo={this.undo}>
+              </ToolButtonList>
               <ToolButtonList toolList={toolList.slice(5, 10)}></ToolButtonList>
             </div>
             <div className="col-2">
@@ -184,6 +233,7 @@ export default class App extends Component {
               <DrawingCanvas
                 layers={this.state.layers}
                 selectedColor={this.state.selectedColor}
+                addLayerElement={this.addLayerElement}
               ></DrawingCanvas>
             </div>
             <div className="col-2" id="layers-menu-col">

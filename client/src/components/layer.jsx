@@ -92,13 +92,14 @@ export default class Layer extends Component {
     }
 
     storeElement (x, y, width, height, color) {
-      this.props.elements.push({
+      const newElement = {
         x: x,
         y: y,
         width: width,
         height: height,
         color: color
-      })
+      }
+      this.props.addLayerElement(this.props.id, newElement)
     }
 
     drawPoint (x, y) {
@@ -130,5 +131,6 @@ Layer.propTypes = {
   id: PropTypes.string,
   order: PropTypes.number,
   elements: PropTypes.array,
-  selectedColor: PropTypes.string
+  selectedColor: PropTypes.string,
+  addLayerElement: PropTypes.func
 }

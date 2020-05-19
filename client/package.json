@@ -23,8 +23,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint \"**/*.js[x]\" --ignore-pattern node_modules/",
-      "pre-push": "npm test"
+      "pre-commit": "eslint \"**/*.js[x]\" --ignore-pattern node_modules/"
     }
   },
   "jest" :{

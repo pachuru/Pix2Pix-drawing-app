@@ -15,6 +15,7 @@ export default class DrawingCanvas extends Component {
             elements={layer.elements}
             order={layer.order}
             selectedColor={this.props.selectedColor}
+            addLayerElement={this.props.addLayerElement}
           >
           </Layer>
         })
@@ -26,5 +27,6 @@ export default class DrawingCanvas extends Component {
 
 DrawingCanvas.propTypes = {
   layers: PropTypes.array,
-  selectedColor: PropTypes.string
+  selectedColor: PropTypes.string,
+  addLayerElement: PropTypes.func
 }

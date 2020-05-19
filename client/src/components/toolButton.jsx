@@ -7,7 +7,7 @@ export default function ToolButton (props) {
   const toolId = 'tool-' + props.toolName
   return (
     <div className="tool-button-wrapper">
-      <button className="tool-button bg-dark" id={toolId} type="button">
+      <button className="tool-button bg-dark" id={toolId} onClick={() => props.toolFunction()} type="button">
         <img className="tool-button-icon" src={require('../images/tools/' + toolName + '.svg')} alt="Logo"/>
       </button>
     </div>
@@ -15,5 +15,6 @@ export default function ToolButton (props) {
 }
 
 ToolButton.propTypes = {
-  toolName: PropTypes.string
+  toolName: PropTypes.string,
+  toolFunction: PropTypes.func
 }
