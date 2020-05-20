@@ -196,18 +196,54 @@ export default class App extends Component {
       layers: layers_
     })
   }
+/*
+              return {
+              x: element.x,
+              y: element.y,
+              width: element.width,
+              height: element.height,
+              color: newColor,
+              order: element.order
+            }*/
 
-  /*
-  changeLayerOrder(layerId, newOrder){
-    this.changeLayerProperty(layerId, "order", newOrder)
+  changeElementColor = (layerId, elementOrder, newColor) => {
+    console.log("Layer id:", layerId)
+    console.log("Element order: ", elementOrder)
+    console.log("New Color: ", newColor)
+    const layers_ = this.state.layers.map((layer) => {
+      if(layer.id === layerId){
+        let elements = layer.elements.map((element) => {
+            if(element.order === elementOrder){
+              return {
+                x: element.x,
+                y: element.y,
+                width: element.width,
+                height: element.height,
+                color: newColor,
+                order: element.order
+              }
+            }else return element;
+        })
+        return {
+          name: layer.name,
+          id: layer.id,
+          order: layer.order,
+          elements: elements
+        }
+      }else return layer
+    })
+    console.log("New layers: ", layers_)
+    this.setState({
+      layers: layers_
+    })
   }
-  */
 
   changeSelectedTool = (tool) => {
     this.setState({
       selectedTool: tool
     })
   }
+
 
   render () {
     return (
@@ -248,6 +284,7 @@ export default class App extends Component {
                 selectedColor={this.state.selectedColor}
                 selectedTool={this.state.selectedTool}
                 addLayerElement={this.addLayerElement}
+                changeElementColor={this.changeElementColor}
               ></DrawingCanvas>
             </div>
             <div className="col-2" id="layers-menu-col">

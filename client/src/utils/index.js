@@ -25,6 +25,12 @@ export const utils = {
             if(pointY >= Math.min(y,y2) && pointY <= Math.max(y,y2))
                 isInsideYBoundarie = true
             return isInsideXBoundarie && isInsideYBoundarie
+        },
+
+        sortArrayBy(arr, attribute, order){
+            let sortedArr =  order == "decreasing" ? arr.sort((a, b) => (a[attribute] > b[attribute]) ? -1 : 1)
+                                                   : arr.sort((a, b) => (a[attribute] > b[attribute]) ? 1 : -1)
+            return sortedArr
         }
 
 

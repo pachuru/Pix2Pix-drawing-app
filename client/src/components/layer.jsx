@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import '../stylesheets/layer.css'
+import utils from '../utils'
 
 export default class Layer extends Component {
   constructor (props) {
@@ -21,6 +22,19 @@ export default class Layer extends Component {
         ref.dragging = true
         ref.initialRectX = mousePosX
         ref.initialRectY = mousePosY
+      },
+
+      fill (event) {
+        const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+        const elements = ref.props.elements
+        const elementsUnderClick = []
+        for(let i = 0; i < elements.length; i++){
+          if(utils.isPointInsideRectangle(elements[i], mousePosX, mousePosY))
+            elementsUnderClick.push(elements[i])
+        }
+        console.log(elementsUnderClick)
+        utils.sortArrayBy(elementsUnderClick, "order", "decreasing")
+        ref.props.changeElementColor(ref.props.id, elementsUnderClick[0].order, ref.props.selectedColor)
       }
     }
 
@@ -77,18 +91,15 @@ export default class Layer extends Component {
   }
 
   onMouseClickDown (event) {
-    if (typeof(this.onMouseClickDownWith[this.props.selectedTool]) == 'function')
-      this.onMouseClickDownWith[this.props.selectedTool](event)
+    if (typeof (this.onMouseClickDownWith[this.props.selectedTool]) === 'function') { this.onMouseClickDownWith[this.props.selectedTool](event) }
   }
 
   onMouseMove (event) {
-    if (typeof(this.onMouseMoveWith[this.props.selectedTool]) == 'function')
-      this.onMouseMoveWith[this.props.selectedTool](event)
+    if (typeof (this.onMouseMoveWith[this.props.selectedTool]) === 'function') { this.onMouseMoveWith[this.props.selectedTool](event) }
   }
 
   onMouseRelease (event) {
-    if (typeof(this.onMouseReleaseWith[this.props.selectedTool]) == 'function')
-      this.onMouseReleaseWith[this.props.selectedTool](event)
+    if (typeof (this.onMouseReleaseWith[this.props.selectedTool]) === 'function') { this.onMouseReleaseWith[this.props.selectedTool](event) }
   }
 
   calculateMousePosition (event) {
@@ -114,12 +125,15 @@ export default class Layer extends Component {
     }
 
     storeElement (x, y, width, height, color) {
+      let orderedElements = utils.sortArrayBy(this.props.elements, "order", "increasing")
+      let order = this.props.elements.length ? (orderedElements[this.props.elements.length - 1].order + 1) : 0
       const newElement = {
         x: x,
         y: y,
         width: width,
         height: height,
-        color: color
+        color: color,
+        order: order
       }
       this.props.addLayerElement(this.props.id, newElement)
     }
@@ -155,5 +169,6 @@ Layer.propTypes = {
   elements: PropTypes.array,
   selectedColor: PropTypes.string,
   selectedTool: PropTypes.func,
-  addLayerElement: PropTypes.func
+  addLayerElement: PropTypes.func,
+  changeElementcolor: PropTypes.func
 }
