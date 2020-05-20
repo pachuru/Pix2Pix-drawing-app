@@ -11,7 +11,10 @@ export default function ToolButtonList (props) {
         {
           toolList.map((toolName, index) => {
             return <li className="tool-button-list-element" key={index}>
-              <ToolButton toolName={toolName} toolFunction={props[toolName]}/>
+              <ToolButton toolName={toolName}
+                toolFunction={props[toolName]}
+                selectedTool={props.selectedTool}
+                changeSelectedTool={props.changeSelectedTool}/>
             </li>
           })
         }
@@ -21,5 +24,7 @@ export default function ToolButtonList (props) {
 }
 
 ToolButtonList.propTypes = {
-  toolList: PropTypes.array
+  toolList: PropTypes.array,
+  selectedTool: PropTypes.string,
+  changeSelectedTool: PropTypes.func
 }

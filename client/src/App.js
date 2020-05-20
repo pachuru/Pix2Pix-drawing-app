@@ -25,6 +25,7 @@ export default class App extends Component {
   state = {
     displayNewLayerPopup: false,
     selectedColor: '#00aaff',
+    selectedTool: 'square',
     layers: []
   }
 
@@ -202,6 +203,12 @@ export default class App extends Component {
   }
   */
 
+  changeSelectedTool = (tool) => {
+    this.setState({
+      selectedTool: tool
+    })
+  }
+
   render () {
     return (
       <div>
@@ -213,9 +220,14 @@ export default class App extends Component {
             <div className="col-4" id="tool-button-list-col">
               <ToolButtonList toolList={toolList.slice(0, 5)}
                               redo={this.redo}
-                              undo={this.undo}>
+                              undo={this.undo}
+                              selectedTool={this.state.selectedTool}
+                              changeSelectedTool={this.changeSelectedTool}>
               </ToolButtonList>
-              <ToolButtonList toolList={toolList.slice(5, 10)}></ToolButtonList>
+              <ToolButtonList toolList={toolList.slice(5, 10)}
+                              selectedTool={this.state.selectedTool}
+                              changeSelectedTool={this.changeSelectedTool}>
+              </ToolButtonList>
             </div>
             <div className="col-2">
 
