@@ -177,5 +177,6 @@ Layer.propTypes = {
   selectedColor: PropTypes.string,
   selectedTool: PropTypes.func,
   addLayerElement: PropTypes.func,
-  changeElementcolor: PropTypes.func
+  changeElementcolor: PropTypes.func,
+  deleteElement: PropTypes.func
 }
