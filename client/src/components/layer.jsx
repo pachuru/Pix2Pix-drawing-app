@@ -13,10 +13,10 @@ export default class Layer extends Component {
       canvasHeight: 0,
       canvasWidth: 0
     }
-    let ref = this;
+    const ref = this
 
     this.onMouseClickDownWith = {
-      square(event){
+      square (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
         ref.dragging = true
         ref.initialRectX = mousePosX
@@ -25,7 +25,7 @@ export default class Layer extends Component {
     }
 
     this.onMouseMoveWith = {
-      square(event){
+      square (event) {
         if (ref.dragging) {
           const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
           const width = mousePosX - ref.initialRectX
@@ -37,19 +37,16 @@ export default class Layer extends Component {
     }
 
     this.onMouseReleaseWith = {
-      square(event){
-            ref.dragging = false
-            const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
-            const width = mousePosX - ref.initialRectX
-            const height = mousePosY - ref.initialRectY
-            const color = ref.props.selectedColor
-            ref.storeElement(ref.initialRectX, ref.initialRectY, width, height, color)
+      square (event) {
+        ref.dragging = false
+        const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+        const width = mousePosX - ref.initialRectX
+        const height = mousePosY - ref.initialRectY
+        const color = ref.props.selectedColor
+        ref.storeElement(ref.initialRectX, ref.initialRectY, width, height, color)
       }
     }
-
   }
-
-
 
   componentDidMount () {
     const canvasId = 'canvas-' + this.props.id
@@ -80,15 +77,18 @@ export default class Layer extends Component {
   }
 
   onMouseClickDown (event) {
-    this.onMouseClickDownWith[this.props.selectedTool](event)
+    if (typeof(this.onMouseClickDownWith[this.props.selectedTool]) == 'function')
+      this.onMouseClickDownWith[this.props.selectedTool](event)
   }
 
   onMouseMove (event) {
-     this.onMouseMoveWith[this.props.selectedTool](event)
+    if (typeof(this.onMouseMoveWith[this.props.selectedTool]) == 'function')
+      this.onMouseMoveWith[this.props.selectedTool](event)
   }
 
   onMouseRelease (event) {
-    this.onMouseReleaseWith[this.props.selectedTool](event)
+    if (typeof(this.onMouseReleaseWith[this.props.selectedTool]) == 'function')
+      this.onMouseReleaseWith[this.props.selectedTool](event)
   }
 
   calculateMousePosition (event) {
@@ -154,5 +154,6 @@ Layer.propTypes = {
   order: PropTypes.number,
   elements: PropTypes.array,
   selectedColor: PropTypes.string,
+  selectedTool: PropTypes.func,
   addLayerElement: PropTypes.func
 }
