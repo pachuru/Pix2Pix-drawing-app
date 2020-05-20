@@ -13,7 +13,43 @@ export default class Layer extends Component {
       canvasHeight: 0,
       canvasWidth: 0
     }
+    let ref = this;
+
+    this.onMouseClickDownWith = {
+      square(event){
+        const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+        ref.dragging = true
+        ref.initialRectX = mousePosX
+        ref.initialRectY = mousePosY
+      }
+    }
+
+    this.onMouseMoveWith = {
+      square(event){
+        if (ref.dragging) {
+          const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+          const width = mousePosX - ref.initialRectX
+          const height = mousePosY - ref.initialRectY
+          ref.redrawCanvas()
+          ref.drawRectangle(ref.initialRectX, ref.initialRectY, width, height, ref.props.selectedColor)
+        }
+      }
+    }
+
+    this.onMouseReleaseWith = {
+      square(event){
+            ref.dragging = false
+            const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+            const width = mousePosX - ref.initialRectX
+            const height = mousePosY - ref.initialRectY
+            const color = ref.props.selectedColor
+            ref.storeElement(ref.initialRectX, ref.initialRectY, width, height, color)
+      }
+    }
+
   }
+
+
 
   componentDidMount () {
     const canvasId = 'canvas-' + this.props.id
@@ -44,29 +80,15 @@ export default class Layer extends Component {
   }
 
   onMouseClickDown (event) {
-    const { mousePosX, mousePosY } = this.calculateMousePosition(event)
-    this.dragging = true
-    this.initialRectX = mousePosX
-    this.initialRectY = mousePosY
+    this.onMouseClickDownWith[this.props.selectedTool](event)
   }
 
   onMouseMove (event) {
-    if (this.dragging) {
-      const { mousePosX, mousePosY } = this.calculateMousePosition(event)
-      const width = mousePosX - this.initialRectX
-      const height = mousePosY - this.initialRectY
-      this.redrawCanvas()
-      this.drawRectangle(this.initialRectX, this.initialRectY, width, height, this.props.selectedColor)
-    }
+     this.onMouseMoveWith[this.props.selectedTool](event)
   }
 
   onMouseRelease (event) {
-    this.dragging = false
-    const { mousePosX, mousePosY } = this.calculateMousePosition(event)
-    const width = mousePosX - this.initialRectX
-    const height = mousePosY - this.initialRectY
-    const color = this.props.selectedColor
-    this.storeElement(this.initialRectX, this.initialRectY, width, height, color)
+    this.onMouseReleaseWith[this.props.selectedTool](event)
   }
 
   calculateMousePosition (event) {

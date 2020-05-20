@@ -246,6 +246,7 @@ export default class App extends Component {
               <DrawingCanvas
                 layers={this.state.layers}
                 selectedColor={this.state.selectedColor}
+                selectedTool={this.state.selectedTool}
                 addLayerElement={this.addLayerElement}
               ></DrawingCanvas>
             </div>
