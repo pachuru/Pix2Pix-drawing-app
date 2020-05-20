@@ -234,6 +234,23 @@ export default class App extends Component {
     })
   }
 
+  deleteElement = (layerId, elementOrder) => {
+    const layers_ = this.state.layers.map((layer) => {
+      if(layer.id === layerId){
+        let elements = layer.elements.filter((element) => element.order != elementOrder)
+        return {
+          name: layer.name,
+          id: layer.id,
+          order: layer.order,
+          elements: elements
+        }
+      }else return layer
+    })
+    this.setState({
+      layers: layers_
+    })
+  }
+
   changeSelectedTool = (tool) => {
     this.setState({
       selectedTool: tool
@@ -281,6 +298,7 @@ export default class App extends Component {
                 selectedTool={this.state.selectedTool}
                 addLayerElement={this.addLayerElement}
                 changeElementColor={this.changeElementColor}
+                deleteElement={this.deleteElement}
               ></DrawingCanvas>
             </div>
             <div className="col-2" id="layers-menu-col">

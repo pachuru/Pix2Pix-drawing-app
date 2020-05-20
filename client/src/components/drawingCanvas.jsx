@@ -18,6 +18,7 @@ export default class DrawingCanvas extends Component {
             selectedTool={this.props.selectedTool}
             addLayerElement={this.props.addLayerElement}
             changeElementColor={this.props.changeElementColor}
+            deleteElement={this.props.deleteElement}
           >
           </Layer>
         })
@@ -32,5 +33,6 @@ DrawingCanvas.propTypes = {
   selectedColor: PropTypes.string,
   selectedTool: PropTypes.func,
   addLayerElement: PropTypes.func,
-  changeElementColor: PropTypes.func
+  changeElementColor: PropTypes.func,
+  deleteElement: PropTypes.func
 }

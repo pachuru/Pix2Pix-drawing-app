@@ -26,14 +26,21 @@ export default class Layer extends Component {
 
       fill (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
-        const elements = ref.props.elements
-        const elementsUnderClick = []
-        for (let i = 0; i < elements.length; i++) {
-          if (utils.isPointInsideRectangle(elements[i], mousePosX, mousePosY)) { elementsUnderClick.push(elements[i]) }
-        }
-        if(elementsUnderClick.length){
+        const elementsUnderClick = utils.calculateRectanglesUnderPoint(ref.props.elements, mousePosX, mousePosY)
+
+        if (elementsUnderClick.length) {
           utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
           ref.props.changeElementColor(ref.props.id, elementsUnderClick[0].order, ref.props.selectedColor)
+        }
+      },
+
+      delete (event) {
+        const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+        const elementsUnderClick = utils.calculateRectanglesUnderPoint(ref.props.elements, mousePosX, mousePosY)
+
+        if (elementsUnderClick.length) {
+          utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
+          ref.props.deleteElement(ref.props.id, elementsUnderClick[0].order)
         }
       }
     }

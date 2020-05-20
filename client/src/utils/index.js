@@ -27,6 +27,14 @@ export const utils = {
             return isInsideXBoundarie && isInsideYBoundarie
         },
 
+        calculateRectanglesUnderPoint(rectangles, pointX, pointY){
+            const rectanglesUnderPoint = []
+            for (let i = 0; i < rectangles.length; i++) {
+             if (utils.isPointInsideRectangle(rectangles[i], pointX, pointY)) { rectanglesUnderPoint.push(rectangles[i]) }
+            }
+            return rectanglesUnderPoint;
+        },
+
         sortArrayBy(arr, attribute, order){
             let sortedArr =  order == "decreasing" ? arr.sort((a, b) => (a[attribute] > b[attribute]) ? -1 : 1)
                                                    : arr.sort((a, b) => (a[attribute] > b[attribute]) ? 1 : -1)
