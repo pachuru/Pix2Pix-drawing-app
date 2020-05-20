@@ -28,13 +28,13 @@ export default class Layer extends Component {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
         const elements = ref.props.elements
         const elementsUnderClick = []
-        for(let i = 0; i < elements.length; i++){
-          if(utils.isPointInsideRectangle(elements[i], mousePosX, mousePosY))
-            elementsUnderClick.push(elements[i])
+        for (let i = 0; i < elements.length; i++) {
+          if (utils.isPointInsideRectangle(elements[i], mousePosX, mousePosY)) { elementsUnderClick.push(elements[i]) }
         }
-        console.log(elementsUnderClick)
-        utils.sortArrayBy(elementsUnderClick, "order", "decreasing")
-        ref.props.changeElementColor(ref.props.id, elementsUnderClick[0].order, ref.props.selectedColor)
+        if(elementsUnderClick.length){
+          utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
+          ref.props.changeElementColor(ref.props.id, elementsUnderClick[0].order, ref.props.selectedColor)
+        }
       }
     }
 
@@ -125,8 +125,8 @@ export default class Layer extends Component {
     }
 
     storeElement (x, y, width, height, color) {
-      let orderedElements = utils.sortArrayBy(this.props.elements, "order", "increasing")
-      let order = this.props.elements.length ? (orderedElements[this.props.elements.length - 1].order + 1) : 0
+      const orderedElements = utils.sortArrayBy(this.props.elements, 'order', 'increasing')
+      const order = this.props.elements.length ? (orderedElements[this.props.elements.length - 1].order + 1) : 0
       const newElement = {
         x: x,
         y: y,

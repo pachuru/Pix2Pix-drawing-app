@@ -207,9 +207,6 @@ export default class App extends Component {
             }*/
 
   changeElementColor = (layerId, elementOrder, newColor) => {
-    console.log("Layer id:", layerId)
-    console.log("Element order: ", elementOrder)
-    console.log("New Color: ", newColor)
     const layers_ = this.state.layers.map((layer) => {
       if(layer.id === layerId){
         let elements = layer.elements.map((element) => {
@@ -232,7 +229,6 @@ export default class App extends Component {
         }
       }else return layer
     })
-    console.log("New layers: ", layers_)
     this.setState({
       layers: layers_
     })
