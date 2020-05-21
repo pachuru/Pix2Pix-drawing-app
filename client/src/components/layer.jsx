@@ -52,17 +52,17 @@ export default class Layer extends Component {
         ref.clickDownX = mousePosX
         ref.clickDownY = mousePosY
 
-        ref.dragging = true
 
         const elementsUnderClick = utils.calculateRectanglesUnderPoint(ref.props.elements, mousePosX, mousePosY)
 
         if (elementsUnderClick.length) {
           utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
           ref.selectedElement = elementsUnderClick[0]
+          ref.dragging = true
         }
       },
 
-      resize (event){
+      resize (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
         ref.clickDownX = mousePosX
         ref.clickDownY = mousePosY
@@ -73,17 +73,15 @@ export default class Layer extends Component {
           utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
           ref.selectedElement = elementsUnderClick[0]
 
-          let offset = 10
-          if(ref.clickDownX >= ref.selectedElement.x - offset || ref.clickDownX <= ref.selectedElement.x + offset){
-            if(ref.clickDownY >= ref.selectedElement.y - offset || ref.clickDownY <= ref.selectedElement.y + offset){
-                ref.dragging = true
+          ref.drawPoint(ref.selectedElement.x, ref.selectedElement.y, 2, 2, "#FFF")
+
+          const offset = 10
+          if (ref.clickDownX >= ref.selectedElement.x - offset || ref.clickDownX <= ref.selectedElement.x + offset) {
+            if (ref.clickDownY >= ref.selectedElement.y - offset || ref.clickDownY <= ref.selectedElement.y + offset) {
+              ref.dragging = true
             }
           }
-
         }
-
-
-
       }
     }
 
@@ -112,7 +110,7 @@ export default class Layer extends Component {
         }
       },
 
-      resize (event){
+      resize (event) {
         if (ref.dragging) {
           const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
           const xShift = mousePosX - ref.clickDownX
@@ -121,7 +119,7 @@ export default class Layer extends Component {
           const width = ref.selectedElement.width - xShift
           const y = ref.selectedElement.y + yShift
           const height = ref.selectedElement.height - yShift
-          ref.props.resizeElement(ref.props.id, ref.selectedElement.order, { x, y, width, height})
+          ref.props.resizeElement(ref.props.id, ref.selectedElement.order, { x, y, width, height })
           /* ref.redrawCanvas()
           ref.drawRectangle(x + xShift, y + yShift, width, height, ref.props.selectedColor)
           */
@@ -143,7 +141,7 @@ export default class Layer extends Component {
         ref.dragging = false
       },
 
-      resize (event){
+      resize (event) {
         ref.dragging = false
       }
     }
@@ -211,6 +209,17 @@ export default class Layer extends Component {
       this.ctx.fill()
     }
 
+    drawPoint(xPos, yPos, radius, pointThickness, pointColor){
+
+        this.ctx.strokeStyle = pointColor;
+        this.ctx.fillStyle = pointColor;
+        this.ctx.lineWidth = pointThickness;
+        this.ctx.beginPath();
+        this.ctx.arc(xPos, yPos, radius, 0, 2 * Math.PI, true);
+        this.ctx.stroke();
+        this.ctx.fill();
+    }
+
     storeElement (x, y, width, height, color) {
       const orderedElements = utils.sortArrayBy(this.props.elements, 'order', 'increasing')
       const order = this.props.elements.length ? (orderedElements[this.props.elements.length - 1].order + 1) : 0
@@ -223,17 +232,6 @@ export default class Layer extends Component {
         order: order
       }
       this.props.addLayerElement(this.props.id, newElement)
-    }
-
-    drawPoint (x, y) {
-      const pointThickness = 2
-      const pointColor = '#FFF'
-
-      this.ctx.strokeStyle = pointColor
-      this.ctx.lineWidth = pointThickness
-      this.ctx.beginPath()
-      this.ctx.arc(x, y, 2, 0, 2 * Math.PI, true)
-      this.ctx.stroke()
     }
 
     render () {
