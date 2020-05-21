@@ -10,6 +10,9 @@ export default class Layer extends Component {
     this.dragging = false
     this.initialRectX = 0
     this.initialRectY = 0
+    this.clickDownX = 0
+    this.clickDownY = 0
+    this.selectedElement = null
     this.state = {
       canvasHeight: 0,
       canvasWidth: 0
@@ -42,6 +45,22 @@ export default class Layer extends Component {
           utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
           ref.props.deleteElement(ref.props.id, elementsUnderClick[0].order)
         }
+      },
+
+      move (event){
+        const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+        ref.clickDownX = mousePosX
+        ref.clickDownY = mousePosY
+
+        ref.dragging = true
+        
+        const elementsUnderClick = utils.calculateRectanglesUnderPoint(ref.props.elements, mousePosX, mousePosY)
+
+        if (elementsUnderClick.length) {
+          utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
+          ref.selectedElement = elementsUnderClick[0]
+        }
+
       }
     }
 
@@ -54,6 +73,20 @@ export default class Layer extends Component {
           ref.redrawCanvas()
           ref.drawRectangle(ref.initialRectX, ref.initialRectY, width, height, ref.props.selectedColor)
         }
+      },
+
+      move(event){
+        if (ref.dragging) {
+          const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+          const xShift = mousePosX - ref.clickDownX
+          const yShift = mousePosY - ref.clickDownY
+          const x = ref.selectedElement.x + xShift
+          const y = ref.selectedElement.y + yShift
+          ref.props.moveElement(ref.props.id, ref.selectedElement.order, {x, y})
+          /* ref.redrawCanvas()
+          ref.drawRectangle(x + xShift, y + yShift, width, height, ref.props.selectedColor)
+          */
+        }
       }
     }
 
@@ -65,6 +98,10 @@ export default class Layer extends Component {
         const height = mousePosY - ref.initialRectY
         const color = ref.props.selectedColor
         ref.storeElement(ref.initialRectX, ref.initialRectY, width, height, color)
+      },
+      
+      move (event) {
+        ref.dragging = false
       }
     }
   }
@@ -178,5 +215,6 @@ Layer.propTypes = {
   selectedTool: PropTypes.func,
   addLayerElement: PropTypes.func,
   changeElementcolor: PropTypes.func,
-  deleteElement: PropTypes.func
+  deleteElement: PropTypes.func,
+  moveElement: PropTypes.func
 }

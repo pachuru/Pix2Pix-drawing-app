@@ -251,6 +251,35 @@ export default class App extends Component {
     })
   }
 
+  moveElement = (layerId, elementOrder, elementCoordinates) => {
+    
+    const layers_ = this.state.layers.map((layer) => {
+      if(layer.id === layerId){
+        let elements = layer.elements.map((element) => {
+            if(element.order === elementOrder){
+              return {
+                x: elementCoordinates.x,
+                y: elementCoordinates.y,
+                width: element.width,
+                height: element.height,
+                color: element.color,
+                order: element.order
+              }
+            }else return element;
+        })
+        return {
+          name: layer.name,
+          id: layer.id,
+          order: layer.order,
+          elements: elements
+        }
+      }else return layer
+    })
+    this.setState({
+      layers: layers_
+    })
+  }
+
   changeSelectedTool = (tool) => {
     this.setState({
       selectedTool: tool
@@ -299,6 +328,7 @@ export default class App extends Component {
                 addLayerElement={this.addLayerElement}
                 changeElementColor={this.changeElementColor}
                 deleteElement={this.deleteElement}
+                moveElement={this.moveElement}
               ></DrawingCanvas>
             </div>
             <div className="col-2" id="layers-menu-col">
