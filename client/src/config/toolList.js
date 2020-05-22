@@ -40,9 +40,9 @@ from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 const toolList = [
   'undo',
   'redo',
+  'duplicate',
   'save',
   'load',
-  'random',
   'move',
   'resize',
   'square',

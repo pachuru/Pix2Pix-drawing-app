@@ -42,7 +42,6 @@ export default class ExecutionHistory {
         }
         newHistory.push(null)
         this.history = newHistory;
-        console.log(this.history)
     }
 
 }

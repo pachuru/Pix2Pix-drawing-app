@@ -52,7 +52,6 @@ export default class Layer extends Component {
         ref.clickDownX = mousePosX
         ref.clickDownY = mousePosY
 
-
         const elementsUnderClick = utils.calculateRectanglesUnderPoint(ref.props.elements, mousePosX, mousePosY)
 
         if (elementsUnderClick.length) {
@@ -73,7 +72,7 @@ export default class Layer extends Component {
           utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
           ref.selectedElement = elementsUnderClick[0]
 
-          ref.drawPoint(ref.selectedElement.x, ref.selectedElement.y, 2, 2, "#FFF")
+          ref.drawPoint(ref.selectedElement.x, ref.selectedElement.y, 2, 2, '#FFF')
 
           const offset = 10
           if (ref.clickDownX >= ref.selectedElement.x - offset || ref.clickDownX <= ref.selectedElement.x + offset) {
@@ -81,6 +80,16 @@ export default class Layer extends Component {
               ref.dragging = true
             }
           }
+        }
+      },
+
+      duplicate (event) {
+        const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+        const elementsUnderClick = utils.calculateRectanglesUnderPoint(ref.props.elements, mousePosX, mousePosY)
+
+        if (elementsUnderClick.length) {
+          utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
+          ref.props.duplicateElement(ref.props.id, elementsUnderClick[0].order)
         }
       }
     }
@@ -209,15 +218,14 @@ export default class Layer extends Component {
       this.ctx.fill()
     }
 
-    drawPoint(xPos, yPos, radius, pointThickness, pointColor){
-
-        this.ctx.strokeStyle = pointColor;
-        this.ctx.fillStyle = pointColor;
-        this.ctx.lineWidth = pointThickness;
-        this.ctx.beginPath();
-        this.ctx.arc(xPos, yPos, radius, 0, 2 * Math.PI, true);
-        this.ctx.stroke();
-        this.ctx.fill();
+    drawPoint (xPos, yPos, radius, pointThickness, pointColor) {
+      this.ctx.strokeStyle = pointColor
+      this.ctx.fillStyle = pointColor
+      this.ctx.lineWidth = pointThickness
+      this.ctx.beginPath()
+      this.ctx.arc(xPos, yPos, radius, 0, 2 * Math.PI, true)
+      this.ctx.stroke()
+      this.ctx.fill()
     }
 
     storeElement (x, y, width, height, color) {

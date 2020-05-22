@@ -60,6 +60,7 @@ export default class App extends Component {
     }
   }
 
+
   addLayer (layer) {
     const layers_ = this.state.layers
     layers_.push(layer)
@@ -309,6 +310,14 @@ export default class App extends Component {
     })
   }
 
+  duplicateElement = (layerId, elementOrder) => {
+    const layer = this.state.layers.filter(layer => layer.id === layerId)[0]
+    const orderedElements = utils.sortArrayBy(layer.elements, 'order', 'increasing')
+    const newElement = orderedElements.filter(element => element.order === elementOrder)[0]
+    newElement.order = layer.elements.length ? (orderedElements[layer.elements.length - 1].order + 1) : 0
+    this.addLayerElement(layerId, newElement)
+  }
+
   changeSelectedTool = (tool) => {
     this.setState({
       selectedTool: tool
@@ -359,6 +368,7 @@ export default class App extends Component {
                 deleteElement={this.deleteElement}
                 moveElement={this.moveElement}
                 resizeElement={this.resizeElement}
+                duplicateElement={this.duplicateElement}
               ></DrawingCanvas>
             </div>
             <div className="col-2" id="layers-menu-col">
