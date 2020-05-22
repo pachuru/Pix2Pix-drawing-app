@@ -313,8 +313,16 @@ export default class App extends Component {
   duplicateElement = (layerId, elementOrder) => {
     const layer = this.state.layers.filter(layer => layer.id === layerId)[0]
     const orderedElements = utils.sortArrayBy(layer.elements, 'order', 'increasing')
-    const newElement = orderedElements.filter(element => element.order === elementOrder)[0]
-    newElement.order = layer.elements.length ? (orderedElements[layer.elements.length - 1].order + 1) : 0
+    const element = orderedElements.filter(element => element.order === elementOrder)[0]
+    const newElementOrder = layer.elements.length ? (orderedElements[layer.elements.length - 1].order + 1) : 0
+    const newElement = {
+                x: element.x,
+                y: element.y,
+                width: element.width,
+                height: element.height,
+                color: element.color,
+                order: newElementOrder 
+    }
     this.addLayerElement(layerId, newElement)
   }
 
