@@ -34,7 +34,7 @@ export default class DrawingCanvas extends Component {
 DrawingCanvas.propTypes = {
   layers: PropTypes.array,
   selectedColor: PropTypes.string,
-  selectedTool: PropTypes.func,
+  selectedTool: PropTypes.string,
   addLayerElement: PropTypes.func,
   changeElementColor: PropTypes.func,
   deleteElement: PropTypes.func,

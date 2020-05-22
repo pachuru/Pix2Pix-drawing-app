@@ -198,6 +198,7 @@ export default class Layer extends Component {
   componentDidUpdate () {
     this.setCanvasOrder()
     this.redrawCanvas()
+    this.saveCanvas()
   }
 
   setCanvasOrder () {
@@ -208,6 +209,19 @@ export default class Layer extends Component {
   redrawCanvas () {
     this.clearCanvas()
     this.drawElements()
+  }
+
+  saveCanvas(){
+    if(this.props.selectedTool === 'save'){
+      console.log("Saving!")
+      const canvasId = 'canvas-' + this.props.id
+      let link = document.createElement('a')
+      link.href = document.getElementById(canvasId).toDataURL();
+      link.download = "test.png";
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
   }
 
   clearCanvas () {

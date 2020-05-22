@@ -60,6 +60,36 @@ export default class App extends Component {
     }
   }
 
+  save = () => {
+    const allElements = []
+    const layers = this.state.layers.sort((a, b) => (a.order > b.order) ? 1 : -1)
+    let currentOrder = 0
+    layers.map(layer => {
+      const elements = layer.elements
+      utils.sortArrayBy(elements, 'order', 'increasing')
+      elements.map(element => {
+        allElements.push({
+                x: element.x,
+                y: element.y,
+                width: element.width,
+                height: element.height,
+                color: element.color,
+                order: currentOrder
+        })
+        currentOrder += 1
+      })
+    })
+    const wholeCanvasLayer = {
+          name: "wholeCanvas",
+          id: "wholeCanvas",
+          order: 0,
+          elements: [...allElements]
+    }
+    console.log("Whole canvas layer: ", wholeCanvasLayer)
+    console.log("Selected tool:", this.state.selectedTool)
+    return wholeCanvasLayer
+  }
+
 
   addLayer (layer) {
     const layers_ = this.state.layers
@@ -197,15 +227,7 @@ export default class App extends Component {
       layers: layers_
     })
   }
-/*
-              return {
-              x: element.x,
-              y: element.y,
-              width: element.width,
-              height: element.height,
-              color: newColor,
-              order: element.order
-            }*/
+
 
   changeElementColor = (layerId, elementOrder, newColor) => {
     const layers_ = this.state.layers.map((layer) => {
@@ -357,7 +379,7 @@ export default class App extends Component {
 
             </div>
             <div className="col-4" id="output-button-list-col">
-              <ToolButtonList toolList={toolList.slice(2, 3)}></ToolButtonList>
+              <ToolButtonList toolList={toolList.slice(3, 4)}></ToolButtonList>
             </div>
           </div>
           <div className="row" id="row-2">
@@ -368,7 +390,7 @@ export default class App extends Component {
             </div>
             <div className="col-4" id="drawing-canvas-col">
               <DrawingCanvas
-                layers={this.state.layers}
+                layers={this.state.selectedTool === "save" ? [this.save()] : this.state.layers}
                 selectedColor={this.state.selectedColor}
                 selectedTool={this.state.selectedTool}
                 addLayerElement={this.addLayerElement}
