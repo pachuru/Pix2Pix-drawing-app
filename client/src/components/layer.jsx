@@ -13,6 +13,8 @@ export default class Layer extends Component {
     this.clickDownX = 0
     this.clickDownY = 0
     this.selectedElement = null
+    this.corners = null
+    this.closestCorner = null
     this.state = {
       canvasHeight: 0,
       canvasWidth: 0
@@ -72,14 +74,12 @@ export default class Layer extends Component {
           utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
           ref.selectedElement = elementsUnderClick[0]
 
-          ref.drawPoint(ref.selectedElement.x, ref.selectedElement.y, 2, 2, '#FFF')
+          ref.corners = utils.calculateCorners(ref.selectedElement)
+          ref.closestCorner = utils.closerTo(ref.corners, { x: mousePosX, y: mousePosY })
 
-          const offset = 10
-          if (ref.clickDownX >= ref.selectedElement.x - offset || ref.clickDownX <= ref.selectedElement.x + offset) {
-            if (ref.clickDownY >= ref.selectedElement.y - offset || ref.clickDownY <= ref.selectedElement.y + offset) {
-              ref.dragging = true
-            }
-          }
+          console.log('Closest corner: ', ref.closestCorner)
+
+          ref.dragging = true
         }
       },
 
@@ -124,10 +124,40 @@ export default class Layer extends Component {
           const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
           const xShift = mousePosX - ref.clickDownX
           const yShift = mousePosY - ref.clickDownY
-          const x = ref.selectedElement.x + xShift
-          const width = ref.selectedElement.width - xShift
-          const y = ref.selectedElement.y + yShift
-          const height = ref.selectedElement.height - yShift
+          const corners = {
+            topRight: { x: ref.corners.topRight.x, y: ref.corners.topRight.y },
+            topLeft: { x: ref.corners.topLeft.x, y: ref.corners.topLeft.y },
+            bottomRight: { x: ref.corners.bottomRight.x, y: ref.corners.bottomRight.y },
+            bottomLeft: { x: ref.corners.bottomLeft.x, y: ref.corners.bottomLeft.y }
+          }
+
+          if (ref.closestCorner === 'topRight') {
+            corners.topRight.x += xShift
+            corners.topRight.y += yShift
+            corners.bottomRight.x += xShift
+            corners.topLeft.y += yShift
+          } else if (ref.closestCorner === 'topLeft') {
+            corners.topLeft.x += xShift
+            corners.topLeft.y += yShift
+            corners.bottomLeft += xShift
+            corners.topRight.y += yShift
+          } else if (ref.closestCorner === 'bottomLeft') {
+            corners.bottomLeft.x += xShift
+            corners.bottomLeft.y += yShift
+            corners.topLeft.x += xShift
+            corners.bottomRight.y += yShift
+          } else if (ref.closestCorner === 'bottomRight') {
+            corners.bottomRight.x += xShift
+            corners.bottomRight.y += yShift
+            corners.topRight.x += xShift
+            corners.bottomLeft.y += yShift
+          }
+
+          const x = corners.topLeft.x
+          const y = corners.topLeft.y
+          const width = corners.topRight.x - corners.topLeft.x
+          const height = corners.bottomRight.y - corners.topRight.y
+
           ref.props.resizeElement(ref.props.id, ref.selectedElement.order, { x, y, width, height })
           /* ref.redrawCanvas()
           ref.drawRectangle(x + xShift, y + yShift, width, height, ref.props.selectedColor)

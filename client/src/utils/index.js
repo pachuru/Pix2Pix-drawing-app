@@ -79,13 +79,13 @@ export const utils = {
             const height = bottomRight.y - topRight.y
 
             if(x < (topLeft.x + width / 2) && y < (topLeft.y + height / 2)){
-                return topLeft
+                return 'topLeft'
             }else if(x < (topLeft.x + width / 2) && y > (topLeft.y + height / 2)){
-                return bottomLeft
+                return 'bottomLeft'
             }else if(x > (topLeft.x + width / 2) && y < (topLeft.y + height / 2)){
-                return topRight
+                return 'topRight'
             }else if(x > (topLeft.x + width / 2) && y > (topLeft.y + height / 2)){
-                return bottomRight
+                return 'bottomRight'
             }
         }
         
