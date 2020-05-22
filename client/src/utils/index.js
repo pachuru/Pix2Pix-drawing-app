@@ -69,6 +69,24 @@ export const utils = {
             }
 
             return {topRight, topLeft, bottomRight, bottomLeft}
+        },
+
+        closerTo(corners, point){
+            const {topRight, topLeft, bottomRight, bottomLeft} = corners
+            const {x, y} = point
+
+            const width = topRight.x - topLeft.x
+            const height = bottomRight.y - topRight.y
+
+            if(x < (topLeft.x + width / 2) && y < (topLeft.y + height / 2)){
+                return topLeft
+            }else if(x < (topLeft.x + width / 2) && y > (topLeft.y + height / 2)){
+                return bottomLeft
+            }else if(x > (topLeft.x + width / 2) && y < (topLeft.y + height / 2)){
+                return topRight
+            }else if(x > (topLeft.x + width / 2) && y > (topLeft.y + height / 2)){
+                return bottomRight
+            }
         }
         
 
