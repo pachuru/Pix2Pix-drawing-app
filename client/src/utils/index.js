@@ -39,8 +39,38 @@ export const utils = {
             let sortedArr =  order == "decreasing" ? arr.sort((a, b) => (a[attribute] > b[attribute]) ? -1 : 1)
                                                    : arr.sort((a, b) => (a[attribute] > b[attribute]) ? 1 : -1)
             return sortedArr
-        }
+        },
 
+
+        calculateCorners(rectangle){
+            let topRight, topLeft, bottomRight, bottomLeft
+            const {x, y, width, height} = rectangle
+
+            if(rectangle.width < 0 && rectangle.height < 0){
+                topRight =    { x: x,           y: y + height } 
+                topLeft =     { x: x + width,   y: y + height }
+                bottomRight = { x: x ,          y: y }
+                bottomLeft =  { x: x + width,   y: y }
+            }else if(rectangle.width < 0 && rectangle.height > 0){
+                topRight =    { x: x,           y: y } 
+                topLeft =     { x: x + width,   y: y }
+                bottomRight = { x: x ,          y: y + height }
+                bottomLeft =  { x: x + width,   y: y + height } 
+            }else if(rectangle.width > 0 && rectangle.height < 0){
+                topRight =    { x: x + width,   y: y + height } 
+                topLeft =     { x: x,           y: y + height }
+                bottomRight = { x: x + width,   y: y }
+                bottomLeft =  { x: x,           y: y } 
+            }else if(rectangle.width > 0 && rectangle.height > 0){
+                topRight =    { x: x + width,   y: y } 
+                topLeft =     { x: x,           y: y }
+                bottomRight = { x: x + width,   y: y + height }
+                bottomLeft =  { x: x,           y: y + height } 
+            }
+
+            return {topRight, topLeft, bottomRight, bottomLeft}
+        }
+        
 
 }
 
