@@ -428,9 +428,11 @@ export default class App extends Component {
               ></LayerMenu>
             </div>
             <div className="col-4" id="output-canvas-col" style={{padding: '0'}}>
+              <div className="output-wrapper" style={{marginRight: '0.25vw', backgroundColor: 'green'}}>
               {
                  this.state.output ? <img src={`data:image/png;base64,${this.state.output}`} style={{width: '100%'}}></img> : ''
               }
+              </div>
             </div>
           </div>
         </div>
