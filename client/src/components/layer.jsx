@@ -212,23 +212,36 @@ export default class Layer extends Component {
     this.drawElements()
   }
 
-  drawBackground(){
+  drawBackground () {
     const canvasId = 'canvas-' + this.props.id
     const canvasWidth = document.getElementById(canvasId).width
     const canvasHeight = document.getElementById(canvasId).height
-    this.drawRectangle(0, 0, canvasWidth, canvasHeight, "#0000aa")
+    this.drawRectangle(0, 0, canvasWidth, canvasHeight, '#0000aa')
   }
 
   saveCanvas () {
     if (this.props.selectedTool === 'save') {
       console.log('Saving!')
       const canvasId = 'canvas-' + this.props.id
-      const link = document.createElement('a')
+      /* const link = document.createElement('a')
       link.href = document.getElementById(canvasId).toDataURL()
       link.download = 'test.png'
       document.body.appendChild(link)
       link.click()
-      document.body.removeChild(link)
+      document.body.removeChild(link) */
+      const img = document.getElementById(canvasId).toDataURL()
+      const imageBase64 = {
+        data: img
+      }
+
+      fetch('http://localhost:5000', {
+        method: 'POST',
+        moder: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(imageBase64)
+      })
+        .then(res => console.log(res.json()))
+        .catch(err => console.log('Error: ', err))
     }
   }
 

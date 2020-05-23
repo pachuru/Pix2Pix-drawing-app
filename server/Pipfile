@@ -21,6 +21,9 @@ pylint = "*"
 git-pylint-commit-hook = "*"
 pre-commit = "*"
 tensorflowjs = "*"
+flask-restful = "*"
+flask-cors = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
