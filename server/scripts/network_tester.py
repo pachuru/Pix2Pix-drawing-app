@@ -47,9 +47,9 @@ dataset = image_handler.load_dataset(input_dataset_path)
 
 image_shape = dataset[0].shape[1:]
 
-discriminator = model.discriminator(image_shape)
+# discriminator = model.discriminator(image_shape)
 generator = model.generator(image_shape)
-gan = model.gan(generator, discriminator, image_shape)
+#gan = model.gan(generator, discriminator, image_shape)
 
 generator.load_weights(input_model_path)
 
