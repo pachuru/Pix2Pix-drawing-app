@@ -24,6 +24,7 @@ tensorflowjs = "*"
 flask-restful = "*"
 flask-cors = "*"
 pillow = "*"
+pypng = "*"
 
 [requires]
 python_version = "3.7"

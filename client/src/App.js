@@ -427,9 +427,9 @@ export default class App extends Component {
                 decreaseLayerOrder = {this.decreaseLayerOrder.bind(this)}
               ></LayerMenu>
             </div>
-            <div className="col-4" id="output-canvas-col">
+            <div className="col-4" id="output-canvas-col" style={{padding: '0'}}>
               {
-                 this.state.output ? <img src={`data:image/png;base64,${this.state.output}`}></img> : ''
+                 this.state.output ? <img src={`data:image/png;base64,${this.state.output}`} style={{width: '100%'}}></img> : ''
               }
             </div>
           </div>

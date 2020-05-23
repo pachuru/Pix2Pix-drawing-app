@@ -12,6 +12,7 @@ from PIL import Image
 import base64
 import re
 import io
+import png
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -28,9 +29,24 @@ def processImage():
     generator.load_weights(model_path)
     fake_image = generator.predict(image)[0]
     fake_image = (fake_image + 1) / 2.0
-    pyplot.imshow(fake_image)
-    pyplot.savefig('./prediction.png')
+
+    sizes = np.shape(fake_image)
+    fig = pyplot.figure()
+    fig.set_size_inches(1. * sizes[0] / sizes[1], 1, forward = False)
+    ax = pyplot.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+    ax.imshow(fake_image)
+    pyplot.savefig('./prediction.png', dpi = sizes[0], cmap='hot') 
     pyplot.close()
+
+    ''' 
+    pyplot.imshow(fake_image)
+    pyplot.axis('off')
+    pyplot.tight_layout()
+    pyplot.savefig('./prediction.png', bbox_inches='tight')
+    pyplot.close()
+    '''
 
 
 
