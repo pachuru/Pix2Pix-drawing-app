@@ -198,7 +198,8 @@ export default class Layer extends Component {
   componentDidUpdate () {
     this.setCanvasOrder()
     this.redrawCanvas()
-    this.saveCanvas()
+    // this.saveCanvas()
+    this.convertCanvas()
   }
 
   setCanvasOrder () {
@@ -223,12 +224,19 @@ export default class Layer extends Component {
     if (this.props.selectedTool === 'save') {
       console.log('Saving!')
       const canvasId = 'canvas-' + this.props.id
-      /* const link = document.createElement('a')
+      const link = document.createElement('a')
       link.href = document.getElementById(canvasId).toDataURL()
       link.download = 'test.png'
       document.body.appendChild(link)
       link.click()
-      document.body.removeChild(link) */
+      document.body.removeChild(link) 
+    }
+  }
+
+  convertCanvas(){
+    if (this.props.selectedTool === 'save') {
+      console.log('Saving!')
+      const canvasId = 'canvas-' + this.props.id
       const img = document.getElementById(canvasId).toDataURL()
       const imageBase64 = {
         data: img

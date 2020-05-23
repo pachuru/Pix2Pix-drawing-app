@@ -14,13 +14,17 @@ button:focus{
 
 #tool-button-list-col{
   background-color: lightcoral;
-  padding: 0.5vh;
+  padding: 0.1vw;
+}
+
+#convert-button-list-col{
+  background-color: green;
+  padding: 0.25vw;
 }
 
 #output-button-list-col{
   background-color: lightcoral;
-  padding: 0.5vh;
-  margin-top: 3vh;
+  padding: 0.25vw;
 }
 
 #drawing-canvas-col{

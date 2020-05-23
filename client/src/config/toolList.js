@@ -47,7 +47,8 @@ const toolList = [
   'resize',
   'square',
   'fill',
-  'delete'
+  'delete',
+  'convert'
 ]
 
 export default toolList

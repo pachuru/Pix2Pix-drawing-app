@@ -11,6 +11,7 @@ import toolList from './config/toolList'
 import './stylesheets/app.css'
 import utils from './utils'
 import ExecutionHistory from './utils/executionHistory'
+import ToolButton from './components/toolButton'
 
 export default class App extends Component {
 
@@ -385,15 +386,28 @@ export default class App extends Component {
                               selectedTool={this.state.selectedTool}
                               changeSelectedTool={this.changeSelectedTool}>
               </ToolButtonList>
+            </div>
+            <div className="col-2">
+            </div>
+            <div className="col-4">
+            </div>
+          </div>
+          <div className="row" id="row-3">
+            <div className="col-2">
+            </div>
+            <div className="col-4" id="tool-button-list-col">
               <ToolButtonList toolList={toolList.slice(5, 10)}
                               selectedTool={this.state.selectedTool}
                               changeSelectedTool={this.changeSelectedTool}>
               </ToolButtonList>
             </div>
-            <div className="col-2">
-
+            <div className="col-2" id="convert-button-list-col">
+              <ToolButtonList toolList={toolList.slice(10, 11)}
+                              selectedTool={this.state.selectedTool}
+                              changeSelectedTool={this.changeSelectedTool}>
+              </ToolButtonList>
             </div>
-            <div className="col-4" id="output-button-list-col">
+             <div className="col-4" id="output-button-list-col">
               <ToolButtonList toolList={toolList.slice(3, 4)}></ToolButtonList>
             </div>
           </div>

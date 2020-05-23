@@ -6,7 +6,6 @@ import '../stylesheets/toolButtonList.css'
 export default function ToolButtonList (props) {
   const toolList = props.toolList
   return (
-    <div>
       <ul className="tool-button-unordered-list">
         {
           toolList.map((toolName, index) => {
@@ -21,7 +20,6 @@ export default function ToolButtonList (props) {
           })
         }
       </ul>
-    </div>
   )
 }
 
