@@ -208,16 +208,24 @@ export default class Layer extends Component {
 
   redrawCanvas () {
     this.clearCanvas()
+    this.drawBackground()
     this.drawElements()
   }
 
-  saveCanvas(){
-    if(this.props.selectedTool === 'save'){
-      console.log("Saving!")
+  drawBackground(){
+    const canvasId = 'canvas-' + this.props.id
+    const canvasWidth = document.getElementById(canvasId).width
+    const canvasHeight = document.getElementById(canvasId).height
+    this.drawRectangle(0, 0, canvasWidth, canvasHeight, "#0000aa")
+  }
+
+  saveCanvas () {
+    if (this.props.selectedTool === 'save') {
+      console.log('Saving!')
       const canvasId = 'canvas-' + this.props.id
-      let link = document.createElement('a')
-      link.href = document.getElementById(canvasId).toDataURL();
-      link.download = "test.png";
+      const link = document.createElement('a')
+      link.href = document.getElementById(canvasId).toDataURL()
+      link.download = 'test.png'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
