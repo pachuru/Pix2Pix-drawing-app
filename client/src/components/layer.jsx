@@ -198,7 +198,7 @@ export default class Layer extends Component {
   componentDidUpdate () {
     this.setCanvasOrder()
     this.redrawCanvas()
-    // this.saveCanvas()
+    this.saveCanvas()
     this.convertCanvas()
   }
 
