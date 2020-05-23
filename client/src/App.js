@@ -379,7 +379,7 @@ export default class App extends Component {
           <div className="row" id="row-1">
             <div className="col-2">
             </div>
-            <div className="col-4" id="tool-button-list-col">
+            <div className="col-4" id="tool-button-list-col-1">
               <ToolButtonList toolList={toolList.slice(0, 5)}
                               redo={this.redo}
                               undo={this.undo}
@@ -395,7 +395,7 @@ export default class App extends Component {
           <div className="row" id="row-3">
             <div className="col-2">
             </div>
-            <div className="col-4" id="tool-button-list-col">
+            <div className="col-4" id="tool-button-list-col-2">
               <ToolButtonList toolList={toolList.slice(5, 10)}
                               selectedTool={this.state.selectedTool}
                               changeSelectedTool={this.changeSelectedTool}>

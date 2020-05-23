@@ -12,9 +12,13 @@ button:focus{
   padding: 0;
 }
 
-#tool-button-list-col{
+#tool-button-list-col-1{
   background-color: lightcoral;
-  padding: 0.1vw;
+  padding-top: 0.5vw;
+}
+
+#tool-button-list-col-2{
+  background-color: blue;
 }
 
 #convert-button-list-col{
