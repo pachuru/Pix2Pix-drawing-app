@@ -32,7 +32,7 @@ export default class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("Output: ", this.state.output)
+    console.log("Output: ", this.state.selectedTool)
     if(!utils.arraysAreEqual(prevState.layers, this.state.layers)){
       if(!this.redoExecuted && !this.undoExecuted){
          this.executionHistory.push(this.state.layers)

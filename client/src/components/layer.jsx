@@ -234,8 +234,8 @@ export default class Layer extends Component {
   }
 
   convertCanvas () {
-    if (this.props.selectedTool === 'save') {
-      console.log('Saving!')
+    if (this.props.selectedTool === 'convert') {
+      console.log('Converting!')
       const canvasId = 'canvas-' + this.props.id
       const img = document.getElementById(canvasId).toDataURL()
       const imageBase64 = {
