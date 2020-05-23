@@ -26,10 +26,12 @@ export default class App extends Component {
     displayNewLayerPopup: false,
     selectedColor: '#00aaff',
     selectedTool: 'square',
-    layers: []
+    layers: [],
+    output: null
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log("Output: ", this.state.output)
     if(!utils.arraysAreEqual(prevState.layers, this.state.layers)){
       if(!this.redoExecuted && !this.undoExecuted){
          this.executionHistory.push(this.state.layers)
@@ -354,6 +356,19 @@ export default class App extends Component {
     })
   }
 
+  pix2pix = (imageBase64) => {
+    this.state.selectedTool = null
+    console.log("Hi!")
+    fetch('http://localhost:5000', {
+        method: 'POST',
+        moder: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(imageBase64)
+      })
+        .then(res => res.json())
+        .then(json => this.setState({output:json['encoded_prediction'].substring(0, json['encoded_prediction'].length - 1)}))
+        .catch(err => console.log('Error: ', err))
+  }
 
   render () {
     return (
@@ -399,6 +414,7 @@ export default class App extends Component {
                 moveElement={this.moveElement}
                 resizeElement={this.resizeElement}
                 duplicateElement={this.duplicateElement}
+                pix2pix={this.pix2pix.bind(this)}
               ></DrawingCanvas>
             </div>
             <div className="col-2" id="layers-menu-col">
@@ -412,7 +428,9 @@ export default class App extends Component {
               ></LayerMenu>
             </div>
             <div className="col-4" id="output-canvas-col">
-
+              {
+                 this.state.output ? <img src={`data:image/png;base64,${this.state.output}`}></img> : ''
+              }
             </div>
           </div>
         </div>

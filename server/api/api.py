@@ -43,7 +43,9 @@ class HelloWorld(Resource):
         image_PIL = Image.open(buf)
         image_PIL.save('./image.png', quality=100)
         processImage()
-        return jsonify({"status":"200 OK"})
+        encoded_prediction = base64.b64encode(open("./prediction.png", "rb").read())
+        encoded_prediction = re.sub('b\'', '', str(encoded_prediction))
+        return jsonify({"encoded_prediction": str(encoded_prediction)})
 
 api.add_resource(HelloWorld, '/')
 

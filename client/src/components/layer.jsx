@@ -233,15 +233,7 @@ export default class Layer extends Component {
       const imageBase64 = {
         data: img
       }
-
-      fetch('http://localhost:5000', {
-        method: 'POST',
-        moder: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(imageBase64)
-      })
-        .then(res => console.log(res.json()))
-        .catch(err => console.log('Error: ', err))
+      this.props.pix2pix(imageBase64)
     }
   }
 
@@ -331,5 +323,6 @@ Layer.propTypes = {
   changeElementcolor: PropTypes.func,
   deleteElement: PropTypes.func,
   moveElement: PropTypes.func,
-  resizeElement: PropTypes.func
+  resizeElement: PropTypes.func,
+  pix2pix: PropTypes.func
 }

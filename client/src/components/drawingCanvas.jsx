@@ -22,6 +22,7 @@ export default class DrawingCanvas extends Component {
             moveElement={this.props.moveElement}
             resizeElement={this.props.resizeElement}
             duplicateElement={this.props.duplicateElement}
+            pix2pix={this.props.pix2pix}
           >
           </Layer>
         })
@@ -40,5 +41,6 @@ DrawingCanvas.propTypes = {
   deleteElement: PropTypes.func,
   moveElement: PropTypes.func,
   resizeElement: PropTypes.func,
-  duplicateElement: PropTypes.func
+  duplicateElement: PropTypes.func,
+  pix2pix: PropTypes.func
 }
