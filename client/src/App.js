@@ -101,6 +101,9 @@ export default class App extends Component {
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
+      this.setState({
+        selectedTool: null
+      })
   }
 
 
@@ -432,7 +435,7 @@ export default class App extends Component {
             </div>
             <div className="col-4" id="drawing-canvas-col">
               <DrawingCanvas
-                layers={this.state.selectedTool === "save" ? [this.save()] : this.state.layers}
+                layers={(this.state.selectedTool === "save" || this.state.selectedTool === 'convert') ? [this.save()] : this.state.layers}
                 selectedColor={this.state.selectedColor}
                 selectedTool={this.state.selectedTool}
                 addLayerElement={this.addLayerElement}

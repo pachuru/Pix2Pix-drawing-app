@@ -66,7 +66,7 @@ describe("Tool Button List", () => {
             cy.get(".tool-button-unordered-list").eq(3).find('li').eq(0).find('img').should('be.visible')
         })  
         it("Loads the correct icon", () => {
-            cy.get(".tool-button-unordered-list").eq(3).find('li').eq(0).find('img').invoke('attr', 'src').should('contain', 'save')
+            cy.get(".tool-button-unordered-list").eq(3).find('li').eq(0).find('img').invoke('attr', 'src').should('contain', 'store')
         })
     })
 
