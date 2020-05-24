@@ -1,5 +1,7 @@
 
 .color-button-wrapper{
+    border-style: solid;
+    border-color: #1d2124;
     font-family: 'Righteous', cursive;
     display: flex;
     background-color: #343a40;

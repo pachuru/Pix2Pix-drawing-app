@@ -3,6 +3,8 @@
     font-family: 'Righteous', cursive;
     display: flex;
     background-color: #343a40;
+    border-style: solid;
+    border-color: #1d2124;
     margin-top: 0.25vh;
 }
 #add-layer-button{

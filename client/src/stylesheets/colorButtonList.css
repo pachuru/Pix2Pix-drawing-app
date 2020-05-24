@@ -1,8 +1,10 @@
 #color-button-unordered-list{
-    background-color: yellow;
+    background-color: yellowgreen;
+    border-style: solid;
+    border-right: none;
+    border-color: #1d2124;
     list-style-type: none;
     margin: 0;
-    margin-top: 0.5vh;
     padding: 0.5vh;
     padding-top: 0.25vh;
 }

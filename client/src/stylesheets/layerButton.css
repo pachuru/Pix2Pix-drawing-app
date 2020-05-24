@@ -1,6 +1,8 @@
 .layer-button-wrapper{
     font-family: 'Righteous', cursive;
     display: flex;
+    border-style: solid;
+    border-color: #1d2124;
     background-color: #343a40;
     margin-top: 0.25vw;
 }

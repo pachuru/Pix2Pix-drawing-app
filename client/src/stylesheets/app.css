@@ -1,8 +1,18 @@
+body{
+   background-color: #343a40; 
+   background-color: yellowgreen; 
+   background-color: green;
+   background-color: #7ba32a;
+}
+
 button:focus{
   outline-width: 0;
 }
 
 .container-fluid{
+  background-color: yellowgreen;
+  background-color: green;
+  background-color: #7ba32a;
 }
 
 #color-button-list-row{
@@ -12,24 +22,38 @@ button:focus{
   padding: 0;
 }
 
+
 #tool-button-list-col-1{
-  background-color: lightcoral;
-  padding-top: 0.5vw;
+  margin-top: 2vw;
+  padding: 0;
+  background-color: yellowgreen;
+  border-style: solid;
+  border-bottom: none;
+  border-color: #1d2124;
 }
 
 #tool-button-list-col-2{
-  background-color: blue;
-  padding-top: 0.25vw;
+  padding: 0;
+  background-color: yellowgreen;
+  border-style: solid;
+  border-color: #1d2124;
 }
 
 #convert-button-list-col{
-  background-color: green;
-  padding: 0.25vw;
+  padding: 0;
+  background-color: yellowgreen;
+  border-style: solid;
+  border-left: none;
+  border-color: #1d2124;
 }
 
 #output-button-list-col{
-  background-color: lightcoral;
-  padding: 0.25vw;
+  padding: 0;
+  background-color: yellowgreen;
+  border-style: solid;
+  border-right: none;
+  border-left: none;
+  border-color: #1d2124;
 }
 
 #drawing-canvas-col{
@@ -38,11 +62,20 @@ button:focus{
 }
 
 #layers-menu-col{
-  background-color: rebeccapurple;
+  background-color: yellowgreen;
+  border-style: solid;
+  border-left: none;
+  border-top: none;
+  border-color: #1d2124;
   padding: 0;
 }
 
 #output-canvas-col{
-  background-color: saddlebrown;
+  border-style: solid;
+  border-color: #1d2124;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  background-color: #7ba32a;
 }
 
