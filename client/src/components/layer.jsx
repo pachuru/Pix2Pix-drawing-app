@@ -209,8 +209,7 @@ export default class Layer extends Component {
 
   redrawCanvas () {
     this.clearCanvas()
-    if(this.props.order === 0 && (this.selectedTool === 'save' || this.selectedTool === 'convert'))
-      this.drawBackground()
+    if (this.props.order === 0 && (this.selectedTool === 'save' || this.selectedTool === 'convert')) { this.drawBackground() }
     this.drawElements()
   }
 

@@ -32,7 +32,7 @@ export default class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("Output: ", this.state.selectedTool)
+    console.log("Execution History: ", this.executionHistory.history)
     if(!utils.arraysAreEqual(prevState.layers, this.state.layers)){
       if(!this.redoExecuted && !this.undoExecuted){
          this.executionHistory.push(this.state.layers)
@@ -88,8 +88,9 @@ export default class App extends Component {
           order: 0,
           elements: [...allElements]
     }
-    console.log("Whole canvas layer: ", wholeCanvasLayer)
-    console.log("Selected tool:", this.state.selectedTool)
+    this.setState({
+      selectedTool: null
+    })
     return wholeCanvasLayer
   }
 
