@@ -24,7 +24,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint \"**/*.js[x]\" --ignore-pattern node_modules/ --fix"
+      "pre-commit": "eslint \"**/*.js[x]\" --ignore-pattern node_modules/ --fix",
+      "pre-push": "npx cypress run"
     }
   },
   "jest": {

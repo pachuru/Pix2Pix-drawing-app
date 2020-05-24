@@ -2,8 +2,8 @@
     "toolList": [
         {"name":"undo"},
         {"name":"redo"},
+        {"name":"duplicate"},
         {"name":"save"},
-        {"name":"load"},
-        {"name":"random"}
+        {"name":"load"}
     ]
 }

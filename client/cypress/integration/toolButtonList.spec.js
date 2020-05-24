@@ -4,8 +4,8 @@ describe("Tool Button List", () => {
         cy.visit('http://localhost:3000')
     })
     
-    it("Renders 3 tool list", () => {
-        cy.get(".tool-button-unordered-list").its('length').should('eq', 3)
+    it("Renders 4 tool list", () => {
+        cy.get(".tool-button-unordered-list").its('length').should('eq', 4)
     })
 
     describe("First list", () => {
@@ -54,9 +54,23 @@ describe("Tool Button List", () => {
             cy.get(".tool-button-unordered-list").eq(2).find('li').eq(0).find('img').should('be.visible')
         })  
         it("Loads the correct icon", () => {
-            cy.get(".tool-button-unordered-list").eq(2).find('li').eq(0).find('img').invoke('attr', 'src').should('contain', 'save')
+            cy.get(".tool-button-unordered-list").eq(2).find('li').eq(0).find('img').invoke('attr', 'src').should('contain', 'convert')
         })
     })
+
+    describe("Fourth list", () => {
+        it("Renders 1 button in the second list", () => {
+            cy.get(".tool-button-unordered-list").eq(3).find('li').should('have.length', 1)
+        })
+        it("Renders an icon for every it", () => {
+            cy.get(".tool-button-unordered-list").eq(3).find('li').eq(0).find('img').should('be.visible')
+        })  
+        it("Loads the correct icon", () => {
+            cy.get(".tool-button-unordered-list").eq(3).find('li').eq(0).find('img').invoke('attr', 'src').should('contain', 'save')
+        })
+    })
+
+    
 
 
 })
