@@ -48,7 +48,8 @@ const toolList = [
   'square',
   'fill',
   'delete',
-  'convert'
+  'convert',
+  'store'
 ]
 
 export default toolList

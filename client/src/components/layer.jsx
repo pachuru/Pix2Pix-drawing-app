@@ -226,7 +226,7 @@ export default class Layer extends Component {
       const canvasId = 'canvas-' + this.props.id
       const link = document.createElement('a')
       link.href = document.getElementById(canvasId).toDataURL()
-      link.download = 'test.png'
+      link.download = 'canvas.png'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)

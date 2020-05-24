@@ -94,6 +94,15 @@ export default class App extends Component {
     return wholeCanvasLayer
   }
 
+  store = () => {
+      const link = document.createElement('a')
+      link.href = document.getElementById("output-image").src
+      link.download = 'output.png'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+  }
+
 
   addLayer (layer) {
     const layers_ = this.state.layers
@@ -409,7 +418,10 @@ export default class App extends Component {
               </ToolButtonList>
             </div>
              <div className="col-4" id="output-button-list-col">
-              <ToolButtonList toolList={toolList.slice(3, 4)}></ToolButtonList>
+              <ToolButtonList toolList={toolList.slice(11, 12)}
+                              store={this.store}
+                              changeSelectedTool={this.changeSelectedTool}>
+              </ToolButtonList>
             </div>
           </div>
           <div className="row" id="row-2">
@@ -445,7 +457,7 @@ export default class App extends Component {
             <div className="col-4" id="output-canvas-col" style={{padding: '0'}}>
               <div className="output-wrapper" style={{marginRight: '0.25vw', backgroundColor: 'green'}}>
               {
-                 this.state.output ? <img src={`data:image/png;base64,${this.state.output}`} style={{width: '100%'}}></img> : ''
+                 this.state.output ? <img id="output-image" src={`data:image/png;base64,${this.state.output}`} style={{width: '100%'}}></img> : ''
               }
               </div>
             </div>
