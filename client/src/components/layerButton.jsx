@@ -49,6 +49,8 @@ export default class LayerButton extends React.Component {
 
     handleInputSubmit = (e) => {
       if (e.keyCode === 13) {
+        e.preventDefault()
+        document.getElementById(`layer-button-${this.props.layer.id}`).firstElementChild.blur()
         this.props.changeLayerName(this.props.layer.id, this.state.layerName)
       }
     }
@@ -57,7 +59,7 @@ export default class LayerButton extends React.Component {
       const layerId = this.props.layer.id
       const layerOrder = this.props.layer.order
       return (
-        <div className="layer-button-wrapper">
+        <div className="layer-button-wrapper" id={`layer-button-${layerId}`}>
           <input className="layer-input-text" type="text" value={this.state.layerName} onChange={(e) => this.handleInputChange(e)} onKeyDown={(e) => this.handleInputSubmit(e)}>
           </input>
           <button className="hide-layer-button bg-dark">

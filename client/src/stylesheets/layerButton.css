@@ -45,9 +45,13 @@
     color: white;
     border: none;
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 0.75vw;
     padding-right: 1vw;
     vertical-align: middle;
+}
+
+.layer-input-text:focus{
+    outline-color: yellowgreen;
 }
 
 .hide-layer-icon{

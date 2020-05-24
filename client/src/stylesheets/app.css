@@ -51,7 +51,6 @@ button:focus{
   padding: 0;
   background-color: yellowgreen;
   border-style: solid;
-  border-right: none;
   border-left: none;
   border-color: #1d2124;
 }
@@ -73,7 +72,6 @@ button:focus{
 #output-canvas-col{
   border-style: solid;
   border-color: #1d2124;
-  border-right: none;
   border-left: none;
   border-top: none;
   background-color: #7ba32a;
