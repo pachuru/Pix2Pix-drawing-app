@@ -15,7 +15,7 @@ export default function ToolButton (props) {
   return (
     <div className="tool-button-wrapper">
       <button className="tool-button" style={{ backgroundColor: backgroundColor }} id={toolId} onClick={handleClick} type="button">
-        <img className="tool-button-icon" src={require('../images/tools/' + toolName + '.svg')} alt="Logo"/>
+        <img className="tool-button-icon" src={require('../images/tools/' + toolName + '.svg')} alt="ToolIcon"/>
       </button>
     </div>
   )

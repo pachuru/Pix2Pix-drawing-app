@@ -15,7 +15,7 @@ export default function ColorButton (props) {
       <button className="color-button" type="button" style={{ backgroundColor: backgroundColor }} onClick={() => props.changeSelectedColor(props.colorCode)}>
         <span className="color-text">{colorName}</span>
       </button>
-      <img className="color-image" src={require('../images/colors/' + colorName + '.svg')} style={{ backgroundColor: backgroundColor }} alt="Color"/>
+      <img className="color-image" src={require('../images/colors/' + colorName + '.svg')} style={{ backgroundColor: backgroundColor }} alt="ColorIcon"/>
     </div>
   )
 }

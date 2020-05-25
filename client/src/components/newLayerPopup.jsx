@@ -27,7 +27,7 @@ export default class NewLayerPopup extends React.Component {
         <div id="new-layer-form-background">
           <div id="new-layer-form">
             <button id="exit-new-layer-button" onClick={this.props.close}>
-              <img id="exit-new-layer-icon" src={require('../images/tools/remove.svg')} alt="AddIcon"/>
+              <img id="exit-new-layer-icon" src={require('../images/tools/remove.svg')} alt="RemoveIcon"/>
             </button>
             <span id="new-layer-span">LAYER NAME:</span>
             <div id="new-layer-input">
