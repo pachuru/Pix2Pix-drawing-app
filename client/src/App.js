@@ -32,7 +32,6 @@ export default class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("Execution History: ", this.executionHistory.history)
     if(!utils.arraysAreEqual(prevState.layers, this.state.layers)){
       if(!this.redoExecuted && !this.undoExecuted){
          this.executionHistory.push(this.state.layers)
@@ -203,9 +202,19 @@ export default class App extends Component {
 
     const layers_ = this.state.layers.map((layer) => {
       if (layer.id === layerId) {
-        layer.order = newOrder
+        return{   
+            name: layer.name,
+            id: layer.id,
+            order: newOrder,
+            elements: [...layer.elements]
+        }
       } else if (layer.order === newOrder) {
-        layer.order = newOrder - 1
+        return{   
+            name: layer.name,
+            id: layer.id,
+            order: newOrder - 1,
+            elements: [...layer.elements]
+        }
       }
       return layer
     })
@@ -219,9 +228,19 @@ export default class App extends Component {
 
     const layers_ = this.state.layers.map((layer) => {
       if (layer.id === layerId) {
-        layer.order = newOrder
+        return{   
+            name: layer.name,
+            id: layer.id,
+            order: newOrder,
+            elements: [...layer.elements]
+        }
       } else if (layer.order === newOrder) {
-        layer.order = newOrder + 1
+        return{   
+            name: layer.name,
+            id: layer.id,
+            order: newOrder + 1,
+            elements: [...layer.elements]
+        }
       }
       return layer
     })
@@ -322,7 +341,7 @@ export default class App extends Component {
   }
 
    resizeElement = (layerId, elementOrder, elementCoordinates) => {
-    
+
     const layers_ = this.state.layers.map((layer) => {
       if(layer.id === layerId){
         let elements = layer.elements.map((element) => {

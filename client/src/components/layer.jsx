@@ -24,6 +24,7 @@ export default class Layer extends Component {
     this.onMouseClickDownWith = {
       square (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
+        console.log('Drag true in square')
         ref.dragging = true
         ref.initialRectX = mousePosX
         ref.initialRectY = mousePosY
@@ -59,6 +60,7 @@ export default class Layer extends Component {
         if (elementsUnderClick.length) {
           utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
           ref.selectedElement = elementsUnderClick[0]
+          console.log('Drag true in move')
           ref.dragging = true
         }
       },
@@ -76,9 +78,7 @@ export default class Layer extends Component {
 
           ref.corners = utils.calculateCorners(ref.selectedElement)
           ref.closestCorner = utils.closerTo(ref.corners, { x: mousePosX, y: mousePosY })
-
-          console.log('Closest corner: ', ref.closestCorner)
-
+          console.log('Drag true in resize')
           ref.dragging = true
         }
       },
@@ -121,6 +121,8 @@ export default class Layer extends Component {
 
       resize (event) {
         if (ref.dragging) {
+          console.log('Calling resize')
+          console.log(ref)
           const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
           const xShift = mousePosX - ref.clickDownX
           const yShift = mousePosY - ref.clickDownY
@@ -168,22 +170,35 @@ export default class Layer extends Component {
 
     this.onMouseReleaseWith = {
       square (event) {
-        ref.dragging = false
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
         const width = mousePosX - ref.initialRectX
         const height = mousePosY - ref.initialRectY
         const color = ref.props.selectedColor
         ref.storeElement(ref.initialRectX, ref.initialRectY, width, height, color)
+        ref.resetValues()
       },
 
       move (event) {
-        ref.dragging = false
+        ref.resetValues()
       },
 
       resize (event) {
-        ref.dragging = false
+        ref.resetValues()
+        console.log(ref)
       }
     }
+  }
+
+  resetValues () {
+    this.initialRectX = 0
+    this.initialRectY = 0
+    this.clickDownX = 0
+    this.clickDownY = 0
+    this.selectedElement = null
+    this.corners = null
+    this.closestCorner = null
+    console.log('Putting dragging as false')
+    this.dragging = false
   }
 
   componentDidMount () {

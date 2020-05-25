@@ -8,24 +8,25 @@ export default class DrawingCanvas extends Component {
   render () {
     return (
       <div id="canvas-wrapper">
-        {this.props.layers.map((layer, index) => {
-          return <Layer
-            key={index}
-            id={layer.id}
-            elements={layer.elements}
-            order={layer.order}
-            selectedColor={this.props.selectedColor}
-            selectedTool={this.props.selectedTool}
-            addLayerElement={this.props.addLayerElement}
-            changeElementColor={this.props.changeElementColor}
-            deleteElement={this.props.deleteElement}
-            moveElement={this.props.moveElement}
-            resizeElement={this.props.resizeElement}
-            duplicateElement={this.props.duplicateElement}
-            pix2pix={this.props.pix2pix}
-          >
-          </Layer>
-        })
+        {this.props.layers.sort((a, b) => (a.order > b.order) ? -1 : 1)
+          .map((layer, index) => {
+            return <Layer
+              key={index}
+              id={layer.id}
+              elements={layer.elements}
+              order={layer.order}
+              selectedColor={this.props.selectedColor}
+              selectedTool={this.props.selectedTool}
+              addLayerElement={this.props.addLayerElement}
+              changeElementColor={this.props.changeElementColor}
+              deleteElement={this.props.deleteElement}
+              moveElement={this.props.moveElement}
+              resizeElement={this.props.resizeElement}
+              duplicateElement={this.props.duplicateElement}
+              pix2pix={this.props.pix2pix}
+            >
+            </Layer>
+          })
         }
       </div>
     )
