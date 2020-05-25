@@ -24,7 +24,6 @@ export default class Layer extends Component {
     this.onMouseClickDownWith = {
       square (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
-        console.log('Drag true in square')
         ref.dragging = true
         ref.initialRectX = mousePosX
         ref.initialRectY = mousePosY
@@ -60,7 +59,6 @@ export default class Layer extends Component {
         if (elementsUnderClick.length) {
           utils.sortArrayBy(elementsUnderClick, 'order', 'decreasing')
           ref.selectedElement = elementsUnderClick[0]
-          console.log('Drag true in move')
           ref.dragging = true
         }
       },
@@ -78,7 +76,6 @@ export default class Layer extends Component {
 
           ref.corners = utils.calculateCorners(ref.selectedElement)
           ref.closestCorner = utils.closerTo(ref.corners, { x: mousePosX, y: mousePosY })
-          console.log('Drag true in resize')
           ref.dragging = true
         }
       },
@@ -197,7 +194,6 @@ export default class Layer extends Component {
     this.selectedElement = null
     this.corners = null
     this.closestCorner = null
-    console.log('Putting dragging as false')
     this.dragging = false
   }
 
@@ -237,7 +233,6 @@ export default class Layer extends Component {
 
   saveCanvas () {
     if (this.props.selectedTool === 'save') {
-      console.log('Saving!')
       const canvasId = 'canvas-' + this.props.id
       const link = document.createElement('a')
       link.href = document.getElementById(canvasId).toDataURL()
@@ -250,7 +245,6 @@ export default class Layer extends Component {
 
   convertCanvas () {
     if (this.props.selectedTool === 'convert') {
-      console.log('Converting!')
       const canvasId = 'canvas-' + this.props.id
       const img = document.getElementById(canvasId).toDataURL()
       const imageBase64 = {
@@ -341,7 +335,7 @@ Layer.propTypes = {
   order: PropTypes.number,
   elements: PropTypes.array,
   selectedColor: PropTypes.string,
-  selectedTool: PropTypes.func,
+  selectedTool: PropTypes.string,
   addLayerElement: PropTypes.func,
   changeElementcolor: PropTypes.func,
   deleteElement: PropTypes.func,
