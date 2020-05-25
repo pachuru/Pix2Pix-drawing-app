@@ -94,7 +94,7 @@ export default class App extends Component {
   }
 
   store = () => {
-    if(this.output){
+    if(this.state.output){
         const link = document.createElement('a')
         link.href = document.getElementById("output-image").src
         link.download = 'output.png'
