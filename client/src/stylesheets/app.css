@@ -70,6 +70,8 @@ button:focus{
 }
 
 #output-canvas-col{
+  padding: 0;
+  margin: 0;
   border-style: solid;
   border-color: #1d2124;
   border-left: none;
@@ -77,3 +79,7 @@ button:focus{
   background-color: #7ba32a;
 }
 
+#output-image{
+  width: 100%;
+  height: 100%;
+}
