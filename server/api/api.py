@@ -40,17 +40,8 @@ def processImage():
     pyplot.savefig('./prediction.png', dpi = sizes[0], cmap='hot') 
     pyplot.close()
 
-    ''' 
-    pyplot.imshow(fake_image)
-    pyplot.axis('off')
-    pyplot.tight_layout()
-    pyplot.savefig('./prediction.png', bbox_inches='tight')
-    pyplot.close()
-    '''
 
-
-
-class HelloWorld(Resource):
+class RestApi(Resource):
     def post(self):
         image_b64 = request.get_json()['data']
         image_data = re.sub('^data:image/.+;base64,', '', image_b64)
@@ -63,7 +54,7 @@ class HelloWorld(Resource):
         encoded_prediction = re.sub('b\'', '', str(encoded_prediction))
         return jsonify({"encoded_prediction": str(encoded_prediction)})
 
-api.add_resource(HelloWorld, '/')
+api.add_resource(RestApi, '/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', threaded=False)

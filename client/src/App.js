@@ -393,7 +393,6 @@ export default class App extends Component {
 
   pix2pix = (imageBase64) => {
     this.state.selectedTool = null
-    console.log("Hi!")
     fetch('http://localhost:5000', {
         method: 'POST',
         moder: 'cors',
