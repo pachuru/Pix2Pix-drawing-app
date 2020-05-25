@@ -95,15 +95,17 @@ export default class App extends Component {
   }
 
   store = () => {
-      const link = document.createElement('a')
-      link.href = document.getElementById("output-image").src
-      link.download = 'output.png'
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      this.setState({
-        selectedTool: null
-      })
+    if(this.output){
+        const link = document.createElement('a')
+        link.href = document.getElementById("output-image").src
+        link.download = 'output.png'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        this.setState({
+          selectedTool: null
+        })
+    }
   }
 
 
