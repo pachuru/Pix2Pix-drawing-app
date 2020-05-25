@@ -6,6 +6,7 @@ import ToolButtonList from './components/toolButtonList'
 import DrawingCanvas from './components/drawingCanvas'
 import LayerMenu from './components/layerMenu'
 import NewLayerPopup from './components/newLayerPopup'
+import LoadStatePopup from './components/loadStatePopup'
 import toolList from './config/toolList'
 
 import './stylesheets/app.css'
@@ -25,6 +26,7 @@ export default class App extends Component {
 
   state = {
     displayNewLayerPopup: false,
+    displayLoadStatePopup: false,
     selectedColor: '#00aaff',
     selectedTool: 'square',
     layers: [],
@@ -32,6 +34,7 @@ export default class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log("Updated")
     if(!utils.arraysAreEqual(prevState.layers, this.state.layers)){
       if(!this.redoExecuted && !this.undoExecuted){
          this.executionHistory.push(this.state.layers)
@@ -63,6 +66,16 @@ export default class App extends Component {
   }
 
   save = () => {
+      let a = document.createElement("a");
+      let file = new Blob([JSON.stringify({layers: this.state.layers})], {type: 'json'});
+      a.href = URL.createObjectURL(file);
+      a.download = "canvas-json";
+      document.body.appendChild(a)
+      a.click();
+      document.body.removeChild(a)
+  }
+
+  mergeLayers = () => {
     const allElements = []
     const layers = this.state.layers.sort((a, b) => (a.order > b.order) ? 1 : -1)
     let currentOrder = 0
@@ -88,16 +101,21 @@ export default class App extends Component {
           elements: [...allElements]
     }
 
-    let a = document.createElement("a");
-    let file = new Blob([JSON.stringify(this.state)], {type: 'json'});
-    a.href = URL.createObjectURL(file);
-    a.download = "canvas-json";
-    a.click();
-
     this.setState({
       selectedTool: null
     })
+
     return wholeCanvasLayer
+  }
+
+  load = () => {
+    this.displayLoadStatePopup()
+  }
+
+  loadState = (state) =>{
+    this.setState({
+      layers : [...state.layers]
+    })
   }
 
   store = () => {
@@ -158,9 +176,21 @@ export default class App extends Component {
     })
   }
 
+  displayLoadStatePopup() {
+    this.setState({
+      displayLoadStatePopup: true
+    })
+  }
+
   closeNewLayerPopup () {
     this.setState({
       displayNewLayerPopup: false
+    })
+  }
+
+  closeLoadStatePopup(){
+    this.setState({
+      displayLoadStatePopup: false
     })
   }
 
@@ -423,6 +453,8 @@ export default class App extends Component {
               <ToolButtonList toolList={toolList.slice(0, 5)}
                               redo={this.redo}
                               undo={this.undo}
+                              load={this.load}
+                              save={this.save}
                               selectedTool={this.state.selectedTool}
                               changeSelectedTool={this.changeSelectedTool}>
               </ToolButtonList>
@@ -462,7 +494,7 @@ export default class App extends Component {
             </div>
             <div className="col-4" id="drawing-canvas-col">
               <DrawingCanvas
-                layers={(this.state.selectedTool === "save" || this.state.selectedTool === 'convert') ? [this.save()] : this.state.layers}
+                layers={(this.state.selectedTool === "save" || this.state.selectedTool === 'convert') ? [this.mergeLayers()] : this.state.layers}
                 selectedColor={this.state.selectedColor}
                 selectedTool={this.state.selectedTool}
                 addLayerElement={this.addLayerElement}
@@ -496,6 +528,13 @@ export default class App extends Component {
         addNewLayer={this.addNewLayer.bind(this)}
         close={this.closeNewLayerPopup.bind(this)}>
       </NewLayerPopup>
+        }
+        {this.state.displayLoadStatePopup &&
+      <LoadStatePopup
+        close={this.closeLoadStatePopup.bind(this)}
+        loadState={this.loadState.bind(this)}
+      >
+      </LoadStatePopup>
         }
       </div>
     )
