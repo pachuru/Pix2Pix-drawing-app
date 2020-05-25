@@ -65,13 +65,13 @@ export default class LayerButton extends React.Component {
           <button className="hide-layer-button bg-dark">
             <img className="hide-layer-icon" src={require('../images/tools/hide.svg')} alt="AddIcon"/>
           </button>
-          <button className="delete-layer-button bg-dark" onClick={() => this.props.deleteLayer(layerId)}>
+          <button className="delete-layer-button" onClick={() => this.props.deleteLayer(layerId)}>
             <img className="delete-layer-icon" src={require('../images/tools/remove.svg')} alt="DeleteIcon"/>
           </button>
-          <button className="up-layer-button bg-dark" onClick={() => this.props.increaseLayerOrder(layerId, layerOrder + 1)}>
+          <button className="up-layer-button" onClick={() => this.props.increaseLayerOrder(layerId, layerOrder + 1)}>
             <img className="up-layer-icon" src={require('../images/tools/up.svg')} alt="UpIcon"/>
           </button>
-          <button className="down-layer-button bg-dark" onClick={() => this.props.decreaseLayerOrder(layerId, layerOrder - 1)}>
+          <button className="down-layer-button" onClick={() => this.props.decreaseLayerOrder(layerId, layerOrder - 1)}>
             <img className="down-layer-icon" src={require('../images/tools/down.svg')} alt="DownIcon"/>
           </button>
         </div>

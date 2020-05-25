@@ -21,6 +21,11 @@
     color: white;
     border: none;
     vertical-align: middle;
+    background-color: #343a40;
+}
+
+.delete-layer-button:hover{
+    background-color: #1d2124;
 }
 
 .up-layer-button{
@@ -29,6 +34,11 @@
     color: white;
     border: none;
     vertical-align: middle;
+    background-color: #343a40;
+}
+
+.up-layer-button:hover{
+    background-color: #1d2124;
 }
 
 .down-layer-button{
@@ -37,6 +47,11 @@
     color: white;
     border: none;
     vertical-align: middle;
+    background-color: #343a40;
+}
+
+.down-layer-button:hover{
+    background-color: #1d2124;
 }
 
 .layer-input-text{
