@@ -87,6 +87,13 @@ export default class App extends Component {
           order: 0,
           elements: [...allElements]
     }
+
+    let a = document.createElement("a");
+    let file = new Blob([JSON.stringify(this.state)], {type: 'json'});
+    a.href = URL.createObjectURL(file);
+    a.download = "canvas-json";
+    a.click();
+
     this.setState({
       selectedTool: null
     })
