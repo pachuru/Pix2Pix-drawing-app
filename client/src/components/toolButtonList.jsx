@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import ToolButton from './toolButton'
 import '../stylesheets/toolButtonList.css'
 
-
 /**
  * ToolButtonList component returns a list of ToolButton components
  * @component

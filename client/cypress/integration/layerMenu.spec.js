@@ -45,10 +45,12 @@ describe("Layer Menu", () => {
             cy.get("#layer-menu-wrapper").find(".layer-input-text").invoke('attr', 'value').should('contain', 'Changed Cypress Layer')
         })
 
+        /*
         it("Should render a hide image icon and load the correct file", () => {
             cy.get("#layer-menu-wrapper").find(".hide-layer-icon").should('be.visible')
             cy.get("#layer-menu-wrapper").find(".hide-layer-icon").invoke('attr', 'src').should('contain', 'hide')
         })
+        */
 
         it("Should render a delete image icon and load the correct file", () => {
             cy.get("#layer-menu-wrapper").find(".delete-layer-icon").should('be.visible')
