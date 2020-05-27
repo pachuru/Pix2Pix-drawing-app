@@ -5,7 +5,11 @@ import PropTypes from 'prop-types'
 
 import '../stylesheets/colorButtonList.css'
 
-export default function ColorButtonList (props) {
+/**
+ * ColorButtonList component returns a list of ColorButton components
+ * @component
+ */
+function ColorButtonList (props) {
   return (
     <ul id="color-button-unordered-list">
       {
@@ -23,7 +27,14 @@ export default function ColorButtonList (props) {
   )
 }
 
+/**
+ * ColorButtonList proptypes
+ * @param {Function} changeSelectedColor function to change the currently selected color
+ * @param {String} selectedColor the hex code of the currently selected color
+ */
 ColorButtonList.propTypes = {
   selectedColor: PropTypes.string,
   changeSelectedColor: PropTypes.func
 }
+
+export default ColorButtonList

@@ -53,4 +53,4 @@ LayerMenu.propTypes = {
   changeLayerName: PropTypes.func
 }
 
-export default LayerMenu;
+export default LayerMenu
