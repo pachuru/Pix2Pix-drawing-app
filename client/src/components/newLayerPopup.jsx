@@ -10,7 +10,7 @@ import '../stylesheets/newLayerPopup.css'
  */
 class NewLayerPopup extends React.Component {
   /**
-   * @param {String} layerInputText the text that's being written in 
+   * @param {String} layerInputText the text that's being written in
    * the input text of the popup
    */
     state = {

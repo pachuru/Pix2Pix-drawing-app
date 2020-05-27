@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import '../stylesheets/toolButton.css'
 
-
 /**
  * ToolButton component returns a button with the icon of the tool it represents
  * and allows the user to set that tool as the currently selected tool
@@ -34,7 +33,7 @@ function ToolButton (props) {
 /**
  * ToolButton proptypes
  * @param {String} toolName the name of the tool
- * @param {Function} toolFunction the functionality of the tool. 
+ * @param {Function} toolFunction the functionality of the tool.
  * If a function for a tool doesn't exists, because it only works by changing
  * the selectedTool variable, an empty function is passed
  * @param {String} selectedTool the currently selected tool
