@@ -3,19 +3,40 @@ import PropTypes from 'prop-types'
 
 import '../stylesheets/newLayerPopup.css'
 
-export default class NewLayerPopup extends React.Component {
+/**
+ * NewLayerPopup component renders a popup window that allows the user
+ * to load set the name for a new layer and create it
+ * @component
+ */
+class NewLayerPopup extends React.Component {
+  /**
+   * @param {String} layerInputText the text that's being written in 
+   * the input text of the popup
+   */
     state = {
       layerInputText: ''
     }
 
+    /**
+     * Handles a change in the input text
+     * @param {Event} event
+     */
     handleInputChange = (event) => {
       this.setState({ layerInputText: event.target.value })
     }
 
+    /**
+     * Handles a click in the create button of the component and calls the
+     * addNewLayer function
+     */
     handleButtonClick = () => {
       this.props.addNewLayer(this.state.layerInputText)
     }
 
+    /**
+     * Analogous to the handleButtonClick function but instead of pressing a button
+     * it works by pressing the Enter key
+     */
     handleInputSubmit = (e) => {
       if (e.keyCode === 13) {
         this.props.addNewLayer(this.state.layerInputText)
@@ -43,7 +64,15 @@ export default class NewLayerPopup extends React.Component {
     }
 }
 
+/**
+ * NewLayerPopup proptypes
+ * @param {Function} addNewLayer adds a new layer to the app with the given name
+ * @param {Function} close closes the popup
+ */
+
 NewLayerPopup.propTypes = {
   addNewLayer: PropTypes.func,
   close: PropTypes.func
 }
+
+export default NewLayerPopup
