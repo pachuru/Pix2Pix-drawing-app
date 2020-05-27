@@ -9,8 +9,6 @@ import '../stylesheets/loadStatePopup.css'
  * @component
  */
 class LoadStatePopup extends React.Component {
-  
-     
     /**
      * Handles the user click to the load file button
      * It loads the file and pass the content parsed as an object to the

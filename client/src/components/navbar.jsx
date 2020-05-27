@@ -5,7 +5,12 @@ import '../stylesheets/navbar.css'
 /* Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
 from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
 
-export default function Navbar () {
+
+/**
+ * The Navbar component returns the navbar of the web app
+ * @component
+ */
+function Navbar () {
   return (
     <nav id="navbar" className="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
       <div id="navbar-logo-container">
@@ -23,3 +28,5 @@ export default function Navbar () {
     </nav>
   )
 }
+
+export default Navbar
