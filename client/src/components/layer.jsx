@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import '../stylesheets/layer.css'
 import utils from '../utils'
 
-
 /**
  * Layer component contains the canvas where the user interacts with its painting.
  * The Layer has a set of elements (rectangles, also referred as squares) that can be created
@@ -13,7 +12,6 @@ import utils from '../utils'
  */
 
 class Layer extends Component {
-
   /**
    * Layer constructor
    * @param {Boolean} Layer.dragging Indicates if the user is currently dragging the mouse after click
@@ -26,7 +24,7 @@ class Layer extends Component {
    * @param {Object} Layer.onMouseClickDown Stores the functions that could be called when the user clicks on the canvas
    * @param {Object} Layer.onMouseMoveWith Stores the functions that could be called when the user moves the mouse
    * @param {Object} Layer.onMouseReleaseWith Stores the functions that could be called when the user releases the click
-   * 
+   *
    */
   constructor (props) {
     super(props)
@@ -59,7 +57,7 @@ class Layer extends Component {
 
       /**
        * Register the (x,y) coordinate that represents one of the corners of a new square
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       square (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
@@ -70,7 +68,7 @@ class Layer extends Component {
 
       /**
        * Fills a selected square with the current given color
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       fill (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
@@ -84,7 +82,7 @@ class Layer extends Component {
 
       /**
        * Delete the selected element
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       delete (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
@@ -98,7 +96,7 @@ class Layer extends Component {
 
       /**
        * Selects an element that will be moved
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       move (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
@@ -117,7 +115,7 @@ class Layer extends Component {
       /**
        * Selectes an element that will be moved and saves all its corner and the closest
        * corner to the user click
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       resize (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
@@ -138,7 +136,7 @@ class Layer extends Component {
 
       /**
        * Duplicates the selected element with its same position
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       duplicate (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
@@ -160,7 +158,7 @@ class Layer extends Component {
        * While the user holds the click (dragging is true) new width and height are
        * calculated based on the current mouse position and the mouse position registered
        * when the user clicked. Rectangle is redrawed.
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       square (event) {
         if (ref.dragging) {
@@ -176,7 +174,7 @@ class Layer extends Component {
        * Based on how much and in which direction the user has moved the cursor
        * the reference corner for drawing an element is updated. Width and height
        * remains the same.
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       move (event) {
         if (ref.dragging) {
@@ -192,7 +190,7 @@ class Layer extends Component {
       /**
        * Based on the closest corner to the user click it updates the rest of the corners
        * taking in account the direction and magnitude of the cursor movement.
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       resize (event) {
         if (ref.dragging) {
@@ -247,7 +245,7 @@ class Layer extends Component {
       /**
        * Performs the same activity as its analogous function in the onMouseMoveWith object
        * but this time instead of just redrawing the element, the element is stored.
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       square (event) {
         const { mousePosX, mousePosY } = ref.calculateMousePosition(event)
@@ -257,11 +255,11 @@ class Layer extends Component {
         ref.storeElement(ref.clickDownX, ref.clickDownY, width, height, color)
         ref.resetValues()
       },
-      
+
       /**
        * Resets the values, putting dragging as false.
        * @see {@link resetValues}
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       move (event) {
         ref.resetValues()
@@ -270,7 +268,7 @@ class Layer extends Component {
       /**
        * Resets the values, putting dragging as false.
        * @see {@link resetValues}
-       * @param {MouseEvent} event 
+       * @param {MouseEvent} event
        */
       resize (event) {
         ref.resetValues()
@@ -329,7 +327,7 @@ class Layer extends Component {
   }
 
   /**
-   * Clears the canvas, depending on the selected tool it might or not draw a background (so if the user 
+   * Clears the canvas, depending on the selected tool it might or not draw a background (so if the user
    * downloads the canvas the background isn't white) and finally it draws the elements stored in the layer.
    */
   redrawCanvas () {
@@ -347,7 +345,7 @@ class Layer extends Component {
     const canvasHeight = document.getElementById(canvasId).height
     this.drawRectangle(0, 0, canvasWidth, canvasHeight, '#0000aa')
   }
-  
+
   /**
    * Saves the canvas as an image under the "canvas.png" name when the
    * currently selected tool is save.
@@ -365,7 +363,7 @@ class Layer extends Component {
   }
 
   /**
-   * Stores the canvas as an image into an object called imageBase64 
+   * Stores the canvas as an image into an object called imageBase64
    * and calls the pix2pix function passed as props with that object as argument.
    */
   convertCanvas () {
@@ -389,17 +387,17 @@ class Layer extends Component {
   /**
    * If there exists a function defined in the onMouseClickDownWith object which name is equal to the
    * currently selected tool and the user clicks in the canvas it calls that function.
-   * @param {MouseEvent} event 
+   * @param {MouseEvent} event
    * @see {@link onMouseClickDownWith}
    */
   onMouseClickDown (event) {
     if (typeof (this.onMouseClickDownWith[this.props.selectedTool]) === 'function') { this.onMouseClickDownWith[this.props.selectedTool](event) }
   }
-  
+
   /**
    * If there exists a function defined in the onMouseMoveWith object which name is equal to the
    * currently selected tool and the user moves the cursor it calls that function.
-   * @param {MouseEvent} event 
+   * @param {MouseEvent} event
    * @see {@link onMouseMoveWith}
    */
   onMouseMove (event) {
@@ -409,7 +407,7 @@ class Layer extends Component {
   /**
    * If there exists a function defined in the onMouseReleaseWith object which name is equal to the
    * currently selected tool and the user releases a click it calls that function.
-   * @param {MouseEvent} event 
+   * @param {MouseEvent} event
    * @see {@link onMouseReleaseWith}
    */
   onMouseRelease (event) {
@@ -419,7 +417,7 @@ class Layer extends Component {
   /**
    * Calculates the mouse position relative to the canvas instead of the mouse position relative to
    * the whole program window.
-   * @param {MouseEvent} event 
+   * @param {MouseEvent} event
    */
   calculateMousePosition (event) {
     const offsetX = document.getElementById('canvas-wrapper').getBoundingClientRect().left
@@ -505,6 +503,7 @@ class Layer extends Component {
  * @param {Function} deleteElement A function to delete an element
  * @param {Function} moveElement A function to move an element
  * @param {Function} resizeElement A function to resize an element
+ * @param {Function} duplicateElement function to duplicate an element
  * @param {Function} pix2pix A function to perform a pix2pix conversion of the canvas
  */
 Layer.propTypes = {
@@ -518,7 +517,8 @@ Layer.propTypes = {
   deleteElement: PropTypes.func,
   moveElement: PropTypes.func,
   resizeElement: PropTypes.func,
+  duplicateElement: PropTypes.func,
   pix2pix: PropTypes.func
 }
 
-export default Layer;
+export default Layer
