@@ -5,6 +5,12 @@ import AddLayerButton from './addLayerButton'
 
 import '../stylesheets/layerMenu.css'
 
+/**
+ * LayerMenu component returns a button for each layer the app owns to allow
+ * the modification of those layers. It also returns the AddLayerButton to
+ * add a new layer button.
+ * @component
+ */
 export default function LayerMenu (props) {
   const layers = props.layers
   return (
@@ -29,6 +35,15 @@ export default function LayerMenu (props) {
   )
 }
 
+/**
+ * LayerMenu proptypes
+ * @param {Object} layers the layers for which the menu will return a button
+ * @param {Function} addLayer function to add a layer
+ * @param {Function} deleteLayer function to delete the layer
+ * @param {Function} increaseLayerOrder function to increase the layer order
+ * @param {Function} decreaseLayerOrer function to decrease the layer order
+ * @param {Function} changeLayerName function to change the layer name
+ */
 LayerMenu.propTypes = {
   layers: PropTypes.array,
   addLayer: PropTypes.func,

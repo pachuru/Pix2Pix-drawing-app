@@ -39,7 +39,7 @@ class DrawingCanvas extends Component {
 }
 
 /**
- * Layer proptypes
+ * DrawingCanvas proptypes
  * @param {Array} layers The app layers
  * @param {String} selectedColor The currently selected color in the app
  * @param {String} selectedTool The currently selected tool in the app

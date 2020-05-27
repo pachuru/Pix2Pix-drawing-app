@@ -22,13 +22,12 @@ Icons made by <a href="https://icon54.com/" title="Pixel perfect">Pixel perfect<
 title="Flaticon"> www.flaticon.com</a>
  */
 
- /**
+/**
  * LayerButton component renders a button that allows the user to change a layer name,
  * order or delete it.
  * @component
  */
 class LayerButton extends React.Component {
-
   /**
    * @param {String} layerName the layer name that the button references to
    */
@@ -46,8 +45,8 @@ class LayerButton extends React.Component {
     }
 
     /**
-     * Updates the layer name of the state if it has changed 
-     * @param {Object} prevProps 
+     * Updates the layer name of the state if it has changed
+     * @param {Object} prevProps
      */
     componentDidUpdate (prevProps) {
       if (prevProps.layer.name !== this.props.layer.name) {
@@ -59,6 +58,7 @@ class LayerButton extends React.Component {
 
     /**
      * Changes the layer name value of the state to match the one the user types in the input form
+     * @param {Event} e
      */
     handleInputChange = (e) => {
       this.setState({
@@ -70,6 +70,7 @@ class LayerButton extends React.Component {
      * Changes the layer name in the app, calling the changeLayerName function passed as props
      * when the user press enters. It pass as the new layer name value the layer name value stored in the
      * app state.
+     * @param {Event} e
      */
     handleInputSubmit = (e) => {
       if (e.keyCode === 13) {
