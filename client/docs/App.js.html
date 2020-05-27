@@ -1,4 +1,32 @@
-import React, { Component } from 'react'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react'
 
 import Navbar from './components/navbar'
 import ColorButtonList from './components/colorButtonList'
@@ -68,7 +96,7 @@ class App extends Component {
    */
   componentDidUpdate(prevProps, prevState) {
     if(!utils.arraysAreEqual(prevState.layers, this.state.layers)){
-      if(!this.redoExecuted && !this.undoExecuted){
+      if(!this.redoExecuted &amp;&amp; !this.undoExecuted){
          this.executionHistory.push(this.state.layers)
       }
       this.redoExecuted = false
@@ -264,7 +292,7 @@ class App extends Component {
 
   /**
    * Sets the selected color
-   * @param {String} colorCode the hex code of the color
+   * @param {String} colorCode 
    */
   changeSelectedColor (colorCode) {
     this.setState({
@@ -336,7 +364,7 @@ class App extends Component {
    * @param {Number} newOrder the order in which the layer should be placed
    */
   decreaseLayerOrder(layerId, newOrder) {
-    if (newOrder < 0) { return }
+    if (newOrder &lt; 0) { return }
 
     const layers_ = this.state.layers.map((layer) => {
       if (layer.id === layerId) {
@@ -560,57 +588,57 @@ class App extends Component {
 
   render () {
     return (
-      <div>
-        <Navbar></Navbar>
-        <div className="container-fluid">
-          <div className="row" id="row-1">
-            <div className="col-2">
-            </div>
-            <div className="col-4" id="tool-button-list-col-1">
-              <ToolButtonList toolList={toolList.slice(0, 5)}
+      &lt;div>
+        &lt;Navbar>&lt;/Navbar>
+        &lt;div className="container-fluid">
+          &lt;div className="row" id="row-1">
+            &lt;div className="col-2">
+            &lt;/div>
+            &lt;div className="col-4" id="tool-button-list-col-1">
+              &lt;ToolButtonList toolList={toolList.slice(0, 5)}
                               redo={this.redo}
                               undo={this.undo}
                               load={this.load}
                               save={this.save}
                               selectedTool={this.state.selectedTool}
                               changeSelectedTool={this.changeSelectedTool}>
-              </ToolButtonList>
-            </div>
-            <div className="col-2">
-            </div>
-            <div className="col-4">
-            </div>
-          </div>
-          <div className="row" id="row-3">
-            <div className="col-2">
-            </div>
-            <div className="col-4" id="tool-button-list-col-2">
-              <ToolButtonList toolList={toolList.slice(5, 10)}
+              &lt;/ToolButtonList>
+            &lt;/div>
+            &lt;div className="col-2">
+            &lt;/div>
+            &lt;div className="col-4">
+            &lt;/div>
+          &lt;/div>
+          &lt;div className="row" id="row-3">
+            &lt;div className="col-2">
+            &lt;/div>
+            &lt;div className="col-4" id="tool-button-list-col-2">
+              &lt;ToolButtonList toolList={toolList.slice(5, 10)}
                               selectedTool={this.state.selectedTool}
                               changeSelectedTool={this.changeSelectedTool}>
-              </ToolButtonList>
-            </div>
-            <div className="col-2" id="convert-button-list-col">
-              <ToolButtonList toolList={toolList.slice(10, 11)}
+              &lt;/ToolButtonList>
+            &lt;/div>
+            &lt;div className="col-2" id="convert-button-list-col">
+              &lt;ToolButtonList toolList={toolList.slice(10, 11)}
                               selectedTool={this.state.selectedTool}
                               changeSelectedTool={this.changeSelectedTool}>
-              </ToolButtonList>
-            </div>
-             <div className="col-4" id="output-button-list-col">
-              <ToolButtonList toolList={toolList.slice(11, 12)}
+              &lt;/ToolButtonList>
+            &lt;/div>
+             &lt;div className="col-4" id="output-button-list-col">
+              &lt;ToolButtonList toolList={toolList.slice(11, 12)}
                               store={this.store}
                               changeSelectedTool={this.changeSelectedTool}>
-              </ToolButtonList>
-            </div>
-          </div>
-          <div className="row" id="row-2">
-            <div className="col-2" id="color-button-list-col">
-              <ColorButtonList selectedColor={this.state.selectedColor}
+              &lt;/ToolButtonList>
+            &lt;/div>
+          &lt;/div>
+          &lt;div className="row" id="row-2">
+            &lt;div className="col-2" id="color-button-list-col">
+              &lt;ColorButtonList selectedColor={this.state.selectedColor}
                 changeSelectedColor={this.changeSelectedColor.bind(this)}>
-              </ColorButtonList>
-            </div>
-            <div className="col-4" id="drawing-canvas-col">
-              <DrawingCanvas
+              &lt;/ColorButtonList>
+            &lt;/div>
+            &lt;div className="col-4" id="drawing-canvas-col">
+              &lt;DrawingCanvas
                 layers={(this.state.selectedTool === "save" || this.state.selectedTool === 'convert') ? [this.mergeLayers()] : this.state.layers}
                 selectedColor={this.state.selectedColor}
                 selectedTool={this.state.selectedTool}
@@ -621,41 +649,64 @@ class App extends Component {
                 resizeElement={this.resizeElement}
                 duplicateElement={this.duplicateElement}
                 pix2pix={this.pix2pix.bind(this)}
-              ></DrawingCanvas>
-            </div>
-            <div className="col-2" id="layers-menu-col">
-              <LayerMenu
+              >&lt;/DrawingCanvas>
+            &lt;/div>
+            &lt;div className="col-2" id="layers-menu-col">
+              &lt;LayerMenu
                 layers = {this.state.layers}
                 addLayer = {this.displayNewLayerPopup.bind(this)}
                 deleteLayer = {this.deleteLayer.bind(this)}
                 changeLayerName = {this.changeLayerName.bind(this)}
                 increaseLayerOrder = {this.increaseLayerOrder.bind(this)}
                 decreaseLayerOrder = {this.decreaseLayerOrder.bind(this)}
-              ></LayerMenu>
-            </div>
-            <div className="col-4" id="output-canvas-col">
+              >&lt;/LayerMenu>
+            &lt;/div>
+            &lt;div className="col-4" id="output-canvas-col">
               {
-                 this.state.output ? <img id="output-image" src={`data:image/png;base64,${this.state.output}`}></img> : ''
+                 this.state.output ? &lt;img id="output-image" src={`data:image/png;base64,${this.state.output}`}>&lt;/img> : ''
               }
-            </div>
-          </div>
-        </div>
-        {this.state.displayNewLayerPopup &&
-      <NewLayerPopup
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+        {this.state.displayNewLayerPopup &amp;&amp;
+      &lt;NewLayerPopup
         addNewLayer={this.addNewLayer.bind(this)}
         close={this.closeNewLayerPopup.bind(this)}>
-      </NewLayerPopup>
+      &lt;/NewLayerPopup>
         }
-        {this.state.displayLoadStatePopup &&
-      <LoadStatePopup
+        {this.state.displayLoadStatePopup &amp;&amp;
+      &lt;LoadStatePopup
         close={this.closeLoadStatePopup.bind(this)}
         loadState={this.loadState.bind(this)}
       >
-      </LoadStatePopup>
+      &lt;/LoadStatePopup>
         }
-      </div>
+      &lt;/div>
     )
   }
 }
 
 export default App
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="ColorButton.html">ColorButton</a></li><li><a href="ColorButtonList.html">ColorButtonList</a></li><li><a href="DrawingCanvas.html">DrawingCanvas</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerButton.html">LayerButton</a></li><li><a href="LayerMenu.html">LayerMenu</a></li><li><a href="LoadStatePopup.html">LoadStatePopup</a></li><li><a href="Navbar.html">Navbar</a></li><li><a href="NewLayerPopup.html">NewLayerPopup</a></li><li><a href="ToolButton.html">ToolButton</a></li><li><a href="ToolButtonList.html">ToolButtonList</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed May 27 2020 23:59:57 GMT+0100 (Western European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

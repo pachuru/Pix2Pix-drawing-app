@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: navbar.jsx</title>
+    <title>JSDoc: Source: toolButtonList.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: navbar.jsx</h1>
+    <h1 class="page-title">Source: toolButtonList.jsx</h1>
 
     
 
@@ -27,36 +27,47 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react'
-
-import '../stylesheets/navbar.css'
-
-/* Icons made by &lt;a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons&lt;/a>
-from &lt;a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com&lt;/a> */
+import PropTypes from 'prop-types'
+import ToolButton from './toolButton'
+import '../stylesheets/toolButtonList.css'
 
 /**
- * The Navbar component returns the navbar of the web app
+ * ToolButtonList component returns a list of ToolButton components
  * @component
  */
-function Navbar () {
+function ToolButtonList (props) {
+  const toolList = props.toolList
   return (
-    &lt;nav id="navbar" className="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
-      &lt;div id="navbar-logo-container">
-        &lt;img id="navbar-logo" src={require('../images/thinking.svg')} alt="Logo"/>
-        &lt;span id="navbar-title">PIX2PIX&lt;/span>
-      &lt;/div>
-      &lt;div id="navbar-buttons-wrapper">
-        &lt;button id="navbar-about" href="#">
-          &lt;span>ABOUT&lt;/span>
-        &lt;/button>
-        &lt;button id="navbar-create" href="#">
-          &lt;span>CREATE&lt;/span>
-        &lt;/button>
-      &lt;/div>
-    &lt;/nav>
+    &lt;ul className="tool-button-unordered-list">
+      {
+        toolList.map((toolName, index) => {
+          const toolFunction = props[toolName]
+
+          return &lt;li className="tool-button-list-element" key={index}>
+            &lt;ToolButton toolName={toolName}
+              toolFunction={toolFunction === undefined ? function () {} : toolFunction}
+              selectedTool={props.selectedTool}
+              changeSelectedTool={props.changeSelectedTool}/>
+          &lt;/li>
+        })
+      }
+    &lt;/ul>
   )
 }
 
-export default Navbar
+/**
+ * ToolButtonList proptypes
+ * @param {Array} toolList a list with the tool names
+ * @param {String} selectedTool the name of the currently selected tool
+ * @param {Function} changeSelectedTool a function for changing the currently selected tool
+ */
+ToolButtonList.propTypes = {
+  toolList: PropTypes.array,
+  selectedTool: PropTypes.string,
+  changeSelectedTool: PropTypes.func
+}
+
+export default ToolButtonList
 </code></pre>
         </article>
     </section>
