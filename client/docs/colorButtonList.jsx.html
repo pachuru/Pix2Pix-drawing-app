@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: colorButton.jsx</title>
+    <title>JSDoc: Source: colorButtonList.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: colorButton.jsx</h1>
+    <h1 class="page-title">Source: colorButtonList.jsx</h1>
 
     
 
@@ -27,47 +27,45 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react'
-import '../stylesheets/colorButton.css'
+import colorList from '../config/colorList'
+import ColorButton from './colorButton'
 import PropTypes from 'prop-types'
 
-/* Icons made by &lt;a href="https://www.flaticon.com/authors/vectors-market"
-title="Vectors Market">Vectors Market&lt;/a> from &lt;a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com&lt;/a> */
+import '../stylesheets/colorButtonList.css'
 
 /**
- * ColorButton component returns a button that displays a color and its name.
- * It allows the user to choose that color and set it as the currently selected color.
+ * ColorButtonList component returns a list of ColorButton components
  * @component
  */
-function ColorButton (props) {
-  const colorName = props.colorName
-  const buttonId = 'color-button-' + colorName.replace(/\s+/g, '-').toLowerCase()
-  const backgroundColor = (props.colorCode === props.selectedColor) ? '#1d2124' : '#343a40'
-
+function ColorButtonList (props) {
   return (
-    &lt;div className="color-button-wrapper" id={buttonId} style={{ backgroundColor: backgroundColor }} >
-      &lt;button className="color-button" type="button" style={{ backgroundColor: backgroundColor }} onClick={() => props.changeSelectedColor(props.colorCode)}>
-        &lt;span className="color-text">{colorName}&lt;/span>
-      &lt;/button>
-      &lt;img className="color-image" src={require('../images/colors/' + colorName + '.svg')} style={{ backgroundColor: backgroundColor }} alt="ColorIcon"/>
-    &lt;/div>
+    &lt;ul id="color-button-unordered-list">
+      {
+        colorList.map((color, index) => {
+          return &lt;li key={index}>
+            &lt;ColorButton colorName={color.name}
+              colorCode={color.code}
+              selectedColor={props.selectedColor}
+              changeSelectedColor={props.changeSelectedColor}>
+            &lt;/ColorButton>
+          &lt;/li>
+        })
+      }
+    &lt;/ul>
   )
 }
 
 /**
- * ColorButton proptypes
- * @param {String} colorName the name of the color
- * @param {String} colorCode the hexadecimal code of the color
+ * ColorButtonList proptypes
  * @param {Function} changeSelectedColor function to change the currently selected color
  * @param {String} selectedColor the hex code of the currently selected color
  */
-ColorButton.propTypes = {
-  colorName: PropTypes.string,
-  colorCode: PropTypes.string,
-  changeSelectedColor: PropTypes.func,
-  selectedColor: PropTypes.string
+ColorButtonList.propTypes = {
+  selectedColor: PropTypes.string,
+  changeSelectedColor: PropTypes.func
 }
 
-export default ColorButton
+export default ColorButtonList
 </code></pre>
         </article>
     </section>

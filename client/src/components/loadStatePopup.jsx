@@ -3,13 +3,20 @@ import PropTypes from 'prop-types'
 
 import '../stylesheets/loadStatePopup.css'
 
-export default class LoadStatePopup extends React.Component {
-    state = {
-      layerInputText: ''
-    }
-
+/**
+ * LoadStatePopup component renders a popup window that allows the user
+ * to load a JSON file with the layers configuration that he wants to render.
+ * @component
+ */
+class LoadStatePopup extends React.Component {
+  
+     
+    /**
+     * Handles the user click to the load file button
+     * It loads the file and pass the content parsed as an object to the
+     * loadState() function passed as props
+     */
     handleInputChange = (event) => {
-      console.log('Files: ', event.target.files)
       const file = event.target.files[0]
       const reader = new FileReader()
       reader.onload = (event) => {
@@ -38,7 +45,14 @@ export default class LoadStatePopup extends React.Component {
     }
 }
 
+/**
+ * LoadStatePopup proptypes
+ * @param {Function} close function to close the popup
+ * @param {Function} loadState function to load the JSON file configuration into the app
+ */
 LoadStatePopup.propTypes = {
   close: PropTypes.func,
   loadState: PropTypes.func
 }
+
+export default LoadStatePopup
