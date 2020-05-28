@@ -1,19 +1,21 @@
 /* Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
 /*
 Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
+import constants from './constants'
+
 const colorList = [
-  { name: 'BACKGROUND', code: '#0000de' },
-  { name: 'WALL', code: '#002ffe' },
-  { name: 'DOOR', code: '#aa0000' },
-  { name: 'WINDOW', code: '#017ffe' },
-  { name: 'WINDOW SILL', code: '#55ffaa' },
-  { name: 'WINDOW HEAD', code: '#00ffff' },
-  { name: 'SHUTTER', code: '#ffff00' },
-  { name: 'BALCONY', code: '#aaff55' },
-  { name: 'TRIM', code: '#ffaa00' },
-  { name: 'CORNICE', code: '#ff5500' },
-  { name: 'COLUMN', code: '#ff0000' },
-  { name: 'ENTRANCE', code: '#00aaff' }
+  { name: 'BACKGROUND', code: constants.background },
+  { name: 'WALL', code: constants.wall },
+  { name: 'DOOR', code: constants.door },
+  { name: 'WINDOW', code: constants.window },
+  { name: 'WINDOW SILL', code: constants.window_sill },
+  { name: 'WINDOW HEAD', code: constants.window_head },
+  { name: 'SHUTTER', code: constants.shutter},
+  { name: 'BALCONY', code: constants.balcony},
+  { name: 'TRIM', code: constants.trim },
+  { name: 'CORNICE', code: constants.cornice },
+  { name: 'COLUMN', code: constants.column},
+  { name: 'ENTRANCE', code: constants.entrance}
 ]
 
 

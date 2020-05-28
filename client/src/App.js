@@ -12,8 +12,7 @@ import toolList from './config/toolList'
 import './stylesheets/app.css'
 import utils from './utils'
 import ExecutionHistory from './utils/executionHistory'
-import ToolButton from './components/toolButton'
-
+import constants from './config/constants'
 
 /**
  * App component binds the whole logic of the app, it's the entry point
@@ -54,8 +53,8 @@ class App extends Component {
   state = {
     displayNewLayerPopup: false,
     displayLoadStatePopup: false,
-    selectedColor: '#00aaff',
-    selectedTool: 'square',
+    selectedColor: constants.door,
+    selectedTool: constants.square,
     layers: [],
     output: null
   }
@@ -111,7 +110,7 @@ class App extends Component {
       let a = document.createElement("a");
       let file = new Blob([JSON.stringify({layers: this.state.layers})], {type: 'json'});
       a.href = URL.createObjectURL(file);
-      a.download = "canvas-json";
+      a.download = constants.output_json_name
       document.body.appendChild(a)
       a.click();
       document.body.removeChild(a)
@@ -140,8 +139,8 @@ class App extends Component {
       })
     })
     const wholeCanvasLayer = {
-          name: "wholeCanvas",
-          id: "wholeCanvas",
+          name: constants.merged_canvas_name,
+          id: constants.merged_canvas_name,
           order: 0,
           elements: [...allElements]
     }
@@ -180,7 +179,7 @@ class App extends Component {
     if(this.state.output){
         const link = document.createElement('a')
         link.href = document.getElementById("output-image").src
-        link.download = 'output.png'
+        link.download = constants.output_image_name
         document.body.appendChild(link)
         link.click()
         document.body.removeChild(link)

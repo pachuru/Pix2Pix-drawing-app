@@ -1,0 +1,32 @@
+const constants = {
+    background: '#0000de',
+    wall: '#002ffe',
+    door: '#aa0000',
+    window: '#017ffe',
+    window_sill: '#55ffaa',
+    window_head: '#00ffff',
+    shutter: '#ffff00',
+    balcony: '#aaff55',
+    trim: '#ffaa00',
+    cornice: '#ff5500',
+    column: '#ff0000',
+    entrance: '#00aaff',
+    undo: 'undo',
+    redo: 'redo',
+    duplicate: 'duplicate',
+    save: 'save',
+    load: 'load',
+    move: 'move',
+    resize: 'resize',
+    square: 'square',
+    fill: 'fill',
+    delete: 'delete',
+    convert: 'convert',
+    store: 'store',
+    output_json_name: 'canvas-json',
+    output_canvas_image_name: 'canvas.png',
+    output_image_name: 'output.png',
+    merged_canvas_name: 'wholeCanvas'
+}
+
+export default constants

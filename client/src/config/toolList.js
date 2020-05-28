@@ -37,19 +37,21 @@ Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Round
 from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
  */
 
+import constants from './constants'
+
 const toolList = [
-  'undo',
-  'redo',
-  'duplicate',
-  'save',
-  'load',
-  'move',
-  'resize',
-  'square',
-  'fill',
-  'delete',
-  'convert',
-  'store'
+  constants.undo,
+  constants.redo,
+  constants.duplicate,
+  constants.save,
+  constants.load,
+  constants.move,
+  constants.resize,
+  constants.square,
+  constants.fill,
+  constants.delete,
+  constants.convert,
+  constants.store  
 ]
 
 export default toolList

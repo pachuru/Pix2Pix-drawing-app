@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import '../stylesheets/layer.css'
 import utils from '../utils'
+import constants from '../config/constants'
 
 /**
  * Layer component contains the canvas where the user interacts with its painting.
@@ -332,7 +333,7 @@ class Layer extends Component {
    */
   redrawCanvas () {
     this.clearCanvas()
-    if (this.props.order === 0 && (this.selectedTool === 'save' || this.selectedTool === 'convert')) { this.drawBackground() }
+    if (this.props.order === 0 && (this.selectedTool === constants.save || this.selectedTool === constants.convert)) { this.drawBackground() }
     this.drawElements()
   }
 
@@ -343,7 +344,7 @@ class Layer extends Component {
     const canvasId = 'canvas-' + this.props.id
     const canvasWidth = document.getElementById(canvasId).width
     const canvasHeight = document.getElementById(canvasId).height
-    this.drawRectangle(0, 0, canvasWidth, canvasHeight, '#0000aa')
+    this.drawRectangle(0, 0, canvasWidth, canvasHeight, constants.background)
   }
 
   /**
@@ -355,7 +356,7 @@ class Layer extends Component {
       const canvasId = 'canvas-' + this.props.id
       const link = document.createElement('a')
       link.href = document.getElementById(canvasId).toDataURL()
-      link.download = 'canvas.png'
+      link.download = constants.output_canvas_image_name
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
@@ -367,7 +368,7 @@ class Layer extends Component {
    * and calls the pix2pix function passed as props with that object as argument.
    */
   convertCanvas () {
-    if (this.props.selectedTool === 'convert') {
+    if (this.props.selectedTool === constants.convert) {
       const canvasId = 'canvas-' + this.props.id
       const img = document.getElementById(canvasId).toDataURL()
       const imageBase64 = {
