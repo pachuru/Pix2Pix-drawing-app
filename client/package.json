@@ -24,8 +24,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint \"**/*.js[x]\" --ignore-pattern node_modules/ --fix",
-      "pre-push": "npx cypress run"
+      "pre-commit": "eslint \"**/*.js[x]\" --ignore-pattern node_modules/ --fix"
     }
   },
   "jest": {
@@ -35,7 +34,7 @@
     }
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
