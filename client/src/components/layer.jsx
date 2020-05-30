@@ -296,6 +296,9 @@ class Layer extends Component {
   componentDidMount () {
     const canvasId = 'canvas-' + this.props.id
     this.ctx = document.getElementById(canvasId).getContext('2d')
+    // Avoids the selection of other elements of the page while clicking the canvas
+    document.getElementById(canvasId).onselectstart = function () { return false }
+
     this.setState({
       canvasHeight: document.getElementById('canvas-wrapper').clientHeight,
       canvasWidth: document.getElementById('canvas-wrapper').clientWidth

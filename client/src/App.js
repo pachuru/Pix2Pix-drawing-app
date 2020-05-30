@@ -546,7 +546,7 @@ class App extends Component {
    */
   pix2pix = (imageBase64) => {
     this.state.selectedTool = null
-    fetch('http://localhost:5000', {
+    fetch('http://localhost:8000', {
         method: 'POST',
         moder: 'cors',
         headers: { 'Content-Type': 'application/json' },
