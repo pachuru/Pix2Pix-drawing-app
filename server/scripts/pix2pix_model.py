@@ -124,7 +124,7 @@ def generator(image_shape=(256,256,3)):
     decoder_output_6 = decoder_block(kernel_initializer, decoder_output_5, encoder_output_2, 128, apply_dropout=False)
     decoder_output_7 = decoder_block(kernel_initializer, decoder_output_6, encoder_output_1, 64,  apply_dropout=False)
     
-    generator_output = Conv2DTranspose(3, (4,4), strides=(2,2), padding="same", kernel_initializer=init)(decoder_output_7)
+    generator_output = Conv2DTranspose(3, (4,4), strides=(2,2), padding="same", kernel_initializer=kernel_initializer)(decoder_output_7)
     output_image = Activation('tanh')(generator_output)
     
     model = Model(input_image, output_image)
