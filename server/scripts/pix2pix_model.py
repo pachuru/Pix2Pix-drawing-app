@@ -73,9 +73,7 @@ def discriminator(image_shape):
     return model
 
 
-def encoder_block(input, num_filters, apply_batch_norm=True):
-    
-    init = RandomNormal(stddev=0.02)
+def encoder_block(init, input, num_filters, apply_batch_norm=True):
     
     enc_output = Conv2D(num_filters, (4,4), strides=(2,2), padding="same", kernel_initializer=init)(input)
     if(apply_batch_norm):
@@ -87,9 +85,7 @@ def encoder_block(input, num_filters, apply_batch_norm=True):
 
 # The decoder blocks take as input among others the skip connections with the encoders. This skip connections
 # are then merged with the output of the normalized deconvoluted input.
-def decoder_block(input, skip_connection, num_filters, apply_dropout=True):
-    
-    init = RandomNormal(stddev=0.02)
+def decoder_block(init, input, skip_connection, num_filters, apply_dropout=True):
     
     dec_output = Conv2DTranspose(num_filters, (4,4), strides=(2,2), padding="same", kernel_initializer=init)(input)
     dec_output = BatchNormalization()(dec_output, training=True)
@@ -106,27 +102,27 @@ def decoder_block(input, skip_connection, num_filters, apply_dropout=True):
 # labeling map from which we want to obtain a realistic image (target image).
 def generator(image_shape=(256,256,3)):
     
-    init = RandomNormal(stddev=0.02)
+    kernel_initializer = RandomNormal(stddev=0.02)
     input_image = Input(shape=image_shape)
     
-    encoder_output_1 = encoder_block(input_image, 64, apply_batch_norm=False)
-    encoder_output_2 = encoder_block(encoder_output_1 , 128)
-    encoder_output_3 = encoder_block(encoder_output_2, 256)
-    encoder_output_4 = encoder_block(encoder_output_3, 512)
-    encoder_output_5 = encoder_block(encoder_output_4, 512)
-    encoder_output_6 = encoder_block(encoder_output_5, 512)
-    encoder_output_7 = encoder_block(encoder_output_6, 512)
+    encoder_output_1 = encoder_block(kernel_initializer, input_image, 64, apply_batch_norm=False)
+    encoder_output_2 = encoder_block(kernel_initializer, encoder_output_1 , 128)
+    encoder_output_3 = encoder_block(kernel_initializer, encoder_output_2, 256)
+    encoder_output_4 = encoder_block(kernel_initializer, encoder_output_3, 512)
+    encoder_output_5 = encoder_block(kernel_initializer, encoder_output_4, 512)
+    encoder_output_6 = encoder_block(kernel_initializer, encoder_output_5, 512)
+    encoder_output_7 = encoder_block(kernel_initializer, encoder_output_6, 512)
     
-    bottleneck = Conv2D(512, (4,4), strides=(2,2), padding='same', kernel_initializer=init)(encoder_output_7)
+    bottleneck = Conv2D(512, (4,4), strides=(2,2), padding='same', kernel_initializer=kernel_initializer)(encoder_output_7)
     bottleneck = Activation('relu')(bottleneck)
     
-    decoder_output_1 = decoder_block(bottleneck, encoder_output_7, 512)
-    decoder_output_2 = decoder_block(decoder_output_1, encoder_output_6, 512)
-    decoder_output_3 = decoder_block(decoder_output_2, encoder_output_5, 512)
-    decoder_output_4 = decoder_block(decoder_output_3, encoder_output_4, 512)
-    decoder_output_5 = decoder_block(decoder_output_4, encoder_output_3, 256, apply_dropout=False)
-    decoder_output_6 = decoder_block(decoder_output_5, encoder_output_2, 128, apply_dropout=False)
-    decoder_output_7 = decoder_block(decoder_output_6, encoder_output_1, 64,  apply_dropout=False)
+    decoder_output_1 = decoder_block(kernel_initializer, bottleneck, encoder_output_7, 512)
+    decoder_output_2 = decoder_block(kernel_initializer, decoder_output_1, encoder_output_6, 512)
+    decoder_output_3 = decoder_block(kernel_initializer, decoder_output_2, encoder_output_5, 512)
+    decoder_output_4 = decoder_block(kernel_initializer, decoder_output_3, encoder_output_4, 512)
+    decoder_output_5 = decoder_block(kernel_initializer, decoder_output_4, encoder_output_3, 256, apply_dropout=False)
+    decoder_output_6 = decoder_block(kernel_initializer, decoder_output_5, encoder_output_2, 128, apply_dropout=False)
+    decoder_output_7 = decoder_block(kernel_initializer, decoder_output_6, encoder_output_1, 64,  apply_dropout=False)
     
     generator_output = Conv2DTranspose(3, (4,4), strides=(2,2), padding="same", kernel_initializer=init)(decoder_output_7)
     output_image = Activation('tanh')(generator_output)

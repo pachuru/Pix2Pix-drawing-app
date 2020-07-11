@@ -76,42 +76,42 @@ def save_model(step, name, model):
     model.save_weights(filename + '.h5')
 
 #   Given a discriminator, generator and gan model in conjunction with a number of epochs
-#   and a batch_size it trains the networks.
+#   and a data_size it trains the networks.
 #   It also saves a log for displaying a Tensorboard (at real time or after training) that
 #   shows the training performance.
 #   The trained models are stored periodically (also the summarized performances).
 
-def train(discriminator, generator, gan, dataset, n_epochs=100, n_batch=1):
+def train(discriminator, generator, gan, dataset, n_epochs=100, batch_size=1):
     
     discriminator_patch_shape = discriminator.output_shape[1]
     source_imgs, target_imgs = dataset
-    batch_size = len(source_imgs)
-    iterations = int(batch_size / n_batch)
-    n_steps = iterations * n_epochs
+    epoch_size = len(source_imgs)
+    batches_per_epoch = int(epoch_size / batch_size)
+    n_steps = batches_per_epoch * n_epochs
 
         
     log_dir = os.path.join(routes.log_dir_path, datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
     summary_writer = tf.summary.create_file_writer(logdir=log_dir)
 
     for i in range(n_steps):
-        [source_imgs, target_imgs], real_labels = image_handler.retrieve_real_samples(dataset, n_batch, discriminator_patch_shape)
+        [source_imgs, target_imgs], real_labels = image_handler.retrieve_real_samples(dataset, batch_size, discriminator_patch_shape)
         fake_imgs, fake_labels = generate_fake_samples(generator, source_imgs, discriminator_patch_shape)
         disc_loss_real = discriminator.train_on_batch([source_imgs, target_imgs], real_labels)
         disc_loss_fake = discriminator.train_on_batch([source_imgs, fake_imgs], fake_labels)
         gan_loss, _, _ = gan.train_on_batch(source_imgs, [real_labels, target_imgs])
 
         with summary_writer.as_default():
-            tf.summary.scalar('gan_loss', gan_loss, step=int(i / iterations))
-            tf.summary.scalar('disc_loss_real', disc_loss_real,  step=int(i / iterations))
-            tf.summary.scalar('disc_loss_fake', disc_loss_fake,  step=int(i / iterations))
+            tf.summary.scalar('gan_loss', gan_loss, step=int(i / batches_per_epoch))
+            tf.summary.scalar('disc_loss_real', disc_loss_real,  step=int(i / batches_per_epoch))
+            tf.summary.scalar('disc_loss_fake', disc_loss_fake,  step=int(i / batches_per_epoch))
 
-        if ((i + 1) % (batch_size)) == 0:
-            print("EPOCH %d FINISHED" % ((i + 1) % (batch_size)))
+        if ((i + 1) % (epoch_size)) == 0:
+            print("EPOCH %d FINISHED" % ((i + 1) % (epoch_size)))
             print('>%d, disc_loss_real[%.3f] disc_loss_fake[%.3f] gan_loss[%.3f]' % (i+1, disc_loss_real, disc_loss_fake, gan_loss))
-            summarize_performance((i + 1) / batch_size, generator, dataset)
-        if ((i + 1) % (batch_size * 10)) == 0:
+            summarize_performance((i + 1) / epoch_size, generator, dataset)
+        if ((i + 1) % (epoch_size * 10)) == 0:
             print("SAVING MODEL")
-            save_models((i + 1) / batch_size, generator, discriminator, gan)
+            save_models((i + 1) / epoch_size, generator, discriminator, gan)
             
     save_models(n_steps, generator, discriminator, gan)
 
@@ -145,7 +145,5 @@ if args.dis_path != None:
 
 if args.gan_path != None:
     gan.load_weights(args.gan_path)
-
-summarize_performance(999, generator, dataset)
 
 train(discriminator, generator, gan, dataset, number_of_epochs, 1)

@@ -52,7 +52,6 @@ class RestApi(Resource):
         self.saveImage(fake_image)
 
 
-
     def post(self):
         image_b64 = request.get_json()['data']
         image_data = re.sub('^data:image/.+;base64,', '', image_b64)
